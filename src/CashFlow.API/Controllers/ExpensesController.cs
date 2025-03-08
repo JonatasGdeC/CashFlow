@@ -19,20 +19,12 @@ public class ExpensesController : ControllerBase
     }
     catch (ArgumentException e)
     {
-      var errorResponse = new ResponseErrorJson
-      {
-        ErrorMessage = e.Message
-      };
-
+      var errorResponse = new ResponseErrorJson(e.Message);
       return BadRequest(errorResponse);
     }
     catch
     {
-      var errorResponse = new ResponseErrorJson
-      {
-        ErrorMessage = "unknown error "
-      };
-
+      var errorResponse = new ResponseErrorJson("unknown error");
       return StatusCode(StatusCodes.Status500InternalServerError, errorResponse);
     }
   }
