@@ -13,17 +13,18 @@ public class CultureMIddleware
 
   public async Task Invoke(HttpContext context)
   {
-     var culture = context.Request.Headers.AcceptLanguage.FirstOrDefault();
-     var cultureInfo = new CultureInfo("en");
+    var supportedCultures = CultureInfo.GetCultures(CultureTypes.AllCultures).ToList();
+    var requestedCulture = context.Request.Headers.AcceptLanguage.FirstOrDefault();
+    var cultureInfo = new CultureInfo("en");
 
-     if (!string.IsNullOrWhiteSpace(culture))
-     {
-       cultureInfo = new CultureInfo(culture);
-     }
+    if (!string.IsNullOrWhiteSpace(requestedCulture) && supportedCultures.Exists(language => language.Name.Equals(requestedCulture)))
+    {
+      cultureInfo = new CultureInfo(requestedCulture);
+    }
 
-     CultureInfo.CurrentCulture = cultureInfo;
-     CultureInfo.CurrentUICulture = cultureInfo;
+    CultureInfo.CurrentCulture = cultureInfo;
+    CultureInfo.CurrentUICulture = cultureInfo;
 
-     await _next(context);
+    await _next(context);
   }
 }
