@@ -20,7 +20,7 @@ if (app.Environment.IsDevelopment())
   app.UseSwaggerUI();
 }
 
-app.UseMiddleware<CultureMIddleware>();
+app.UseMiddleware<CultureMiddleware>();
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
