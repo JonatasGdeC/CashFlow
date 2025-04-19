@@ -1,4 +1,5 @@
 using CashFlow.Application.UseCases.Expenses.Register;
+using CashFlow.Exception;
 using CommonTestUtilities.Requests;
 using Shouldly;
 
@@ -18,5 +19,21 @@ public class RegisterExpenseValidatorTests
 
     //Assert
     result.IsValid.ShouldBeTrue();
+  }
+
+  [Fact]
+  public void ErrorTitleEmpty()
+  {
+    var validator = new RegisterExpenseValidator();
+    var request = RequestRegisterExpenseJsonBuilder.Build();
+    request.Title = string.Empty;
+    
+    var result = validator.Validate(request);
+    
+    result.IsValid.ShouldBeFalse();
+    result.Errors.ShouldSatisfyAllConditions(
+      e => e.Count.ShouldBe(1),
+      e => e.First().ErrorMessage.ShouldBe(ResourcesErrorMessages.TITLE_REQUIRED)
+      );
   }
 }
