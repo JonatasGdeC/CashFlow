@@ -22,12 +22,15 @@ public class RegisterExpenseValidatorTests
     result.IsValid.ShouldBeTrue();
   }
 
-  [Fact]
-  public void ErrorTitleEmpty()
+  [Theory]
+  [InlineData("")]
+  [InlineData("  ")]
+  [InlineData(null)]
+  public void ErrorTitleEmpty(string title)
   {
     var validator = new RegisterExpenseValidator();
     var request = RequestRegisterExpenseJsonBuilder.Build();
-    request.Title = string.Empty;
+    request.Title = title;
     
     var result = validator.Validate(request);
     
