@@ -15,6 +15,5 @@ internal class ExpensesRepository : IExpensesRepository
   public void Add(Expense expense)
   {
     _context.Expenses.Add(expense);
-    _context.SaveChanges();
   }
 }
