@@ -22,4 +22,9 @@ internal class ExpensesRepository : IExpensesRepository
   {
     return await _context.Expenses.AsNoTracking().ToListAsync();
   }
+
+  public async Task<Expense?> GetById(long id)
+  {
+    return await _context.Expenses.AsNoTracking().FirstOrDefaultAsync(expense => expense.Id == id);
+  }
 }
