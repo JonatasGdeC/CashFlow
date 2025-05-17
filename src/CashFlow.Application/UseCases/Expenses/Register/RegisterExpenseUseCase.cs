@@ -29,7 +29,7 @@ public class RegisterExpenseUseCase : IRegisterExpenseUseCase
       Description = request.Description,
       Date = request.Date,
       Amount = request.Amount,
-      PaymentType = (Domain.Enums.PaymentType)request.PaymentType,
+      PaymentType = (PaymentType)request.PaymentType,
     };
 
     await _repository.Add(entity);
