@@ -1,3 +1,4 @@
+using CashFlow.Application.UseCases.Expenses.GetAll;
 using CashFlow.Application.UseCases.Expenses.Register;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Responses;
@@ -16,5 +17,19 @@ public class ExpensesController : ControllerBase
   {
     var response = await useCase.Execute(request);
     return Created(string.Empty, useCase);
+  }
+
+  [HttpGet]
+  [ProducesResponseType(typeof(ResponseExpensesJson), StatusCodes.Status200OK)]
+  [ProducesResponseType(StatusCodes.Status404NotFound)]
+  public async Task<IActionResult> GetAllExpenses([FromServices] IGetAllExpenseUseCase useCase)
+  {
+    var reponse = await useCase.Execute();
+    if (reponse.Expenses.Count != 0)
+    {
+      return Ok(reponse);
+    }
+
+    return NoContent();
   }
 }
