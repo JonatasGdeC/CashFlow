@@ -2,7 +2,7 @@ using CashFlow.Communication.Enums;
 
 namespace CashFlow.Communication.Requests;
 
-public class RequestRegisterExpenseJson
+public class RequestExpenseJson
 {
   public required string Title { get; set; }
   public string? Description { get; set; }
