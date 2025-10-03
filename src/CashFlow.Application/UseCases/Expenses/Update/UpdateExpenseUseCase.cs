@@ -5,6 +5,7 @@ using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Expenses;
 using CashFlow.Exception;
 using CashFlow.Exception.ExceptionBase;
+using FluentValidation.Results;
 
 namespace CashFlow.Application.UseCases.Expenses.Update;
 
@@ -23,30 +24,30 @@ public class UpdateExpenseUseCase : IUpdateExpenseUseCase
 
   public async Task Execute(long id, RequestExpenseJson request)
   {
-    Validate(request);
+    Validate(request: request);
 
-    Expense? expense = await _repository.GetById(id);
+    Expense? expense = await _repository.GetById(id: id);
 
     if (expense == null)
     {
-      throw new NotFoundException(ResourcesErrorMessages.EXPENSE_NOT_FOUND);
+      throw new NotFoundException(message: ResourcesErrorMessages.EXPENSE_NOT_FOUND);
     }
 
-    Expense result = _mapper.Map(request, expense);
+    Expense result = _mapper.Map(source: request, destination: expense);
 
-    _repository.Update(result);
+    _repository.Update(expense: result);
     await _unitOfWork.Commit();
   }
 
   private void Validate(RequestExpenseJson request)
   {
-    var validator = new ExpenseValidator();
-    var result = validator.Validate(request);
+    ExpenseValidator validator = new ExpenseValidator();
+    ValidationResult? result = validator.Validate(instance: request);
 
     if (result.IsValid == false)
     {
-      List<string> errorMessage = result.Errors.Select(f => f.ErrorMessage).ToList();
-      throw new ErrorOnValidationException(errorMessage);
+      List<string> errorMessage = result.Errors.Select(selector: f => f.ErrorMessage).ToList();
+      throw new ErrorOnValidationException(errorMessages: errorMessage);
     }
   }
 }

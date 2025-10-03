@@ -19,11 +19,11 @@ public class DeleteExpenseUseCase : IDeleteExpenseUseCase
 
   public async Task Execute(long id)
   {
-    var result = await _repository.Delete(id);
+    bool result = await _repository.Delete(id: id);
 
     if (result == false)
     {
-      throw new NotFoundException(ResourcesErrorMessages.EXPENSE_NOT_FOUND);
+      throw new NotFoundException(message: ResourcesErrorMessages.EXPENSE_NOT_FOUND);
     }
 
     await _unitOfWork.Commit();

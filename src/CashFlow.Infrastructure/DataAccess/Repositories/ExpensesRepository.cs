@@ -15,7 +15,7 @@ internal class ExpensesRepository : IExpensesReadOnlyRepository, IExpensesWhiteO
 
   public async Task Add(Expense expense)
   {
-    await _context.Expenses.AddAsync(expense);
+    await _context.Expenses.AddAsync(entity: expense);
   }
 
 
@@ -26,29 +26,41 @@ internal class ExpensesRepository : IExpensesReadOnlyRepository, IExpensesWhiteO
 
   async Task<Expense?> IExpensesReadOnlyRepository.GetById(long id)
   {
-    return await _context.Expenses.AsNoTracking().FirstOrDefaultAsync(expense => expense.Id == id);
+    return await _context.Expenses.AsNoTracking().FirstOrDefaultAsync(predicate: expense => expense.Id == id);
+  }
+
+  public async Task<List<Expense>> FilterByMonth(DateOnly date)
+  {
+    DateTime startDate = new DateTime(year: date.Year, month: date.Month, day: 1).Date;
+    int daysInMonth = DateTime.DaysInMonth(year: date.Year, month: date.Month);
+    DateTime endDate = new DateTime(year: date.Year, month: date.Month, day: daysInMonth, hour: 23, minute: 59, second: 59);
+
+    return await _context.Expenses.AsNoTracking()
+      .Where(predicate: expense => expense.Date >= startDate && expense.Date <= endDate)
+      .OrderBy(keySelector: expense => expense.Date)
+      .ThenBy(keySelector: expense => expense.Title).ToListAsync();
   }
 
   async Task<Expense?> IExpensesUpdateOnlyRepository.GetById(long id)
   {
-    return await _context.Expenses.FirstOrDefaultAsync(expense => expense.Id == id);
+    return await _context.Expenses.FirstOrDefaultAsync(predicate: expense => expense.Id == id);
   }
 
   public async Task<bool> Delete(long id)
   {
-    Expense? result = await _context.Expenses.FirstOrDefaultAsync(expense => expense.Id == id);
+    Expense? result = await _context.Expenses.FirstOrDefaultAsync(predicate: expense => expense.Id == id);
 
     if (result == null)
     {
       return false;
     }
 
-    _context.Expenses.Remove(result);
+    _context.Expenses.Remove(entity: result);
     return true;
   }
 
   public void Update(Expense expense)
   {
-    _context.Expenses.Update(expense);
+    _context.Expenses.Update(entity: expense);
   }
 }

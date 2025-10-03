@@ -1,8 +1,10 @@
 using CashFlow.Application.UseCases.Expenses;
 using CashFlow.Application.UseCases.Expenses.Register;
 using CashFlow.Communication.Enums;
+using CashFlow.Communication.Requests;
 using CashFlow.Exception;
 using CommonTestUtilities.Requests;
+using FluentValidation.Results;
 using Shouldly;
 
 namespace Validators.Tests.Expenses.Register;
@@ -13,82 +15,74 @@ public class ExpenseValidatorTests
   public void Success()
   {
     //Arrange
-    var validator = new ExpenseValidator();
-    var request = RequestRegisterExpenseJsonBuilder.Build();
+    ExpenseValidator validator = new ExpenseValidator();
+    RequestExpenseJson request = RequestRegisterExpenseJsonBuilder.Build();
 
     //Act
-    var result = validator.Validate(request);
+    ValidationResult? result = validator.Validate(instance: request);
 
     //Assert
     result.IsValid.ShouldBeTrue();
   }
 
   [Theory]
-  [InlineData("")]
-  [InlineData("  ")]
-  [InlineData(null)]
+  [InlineData(data: "")]
+  [InlineData(data: "  ")]
+  [InlineData(data: null)]
   public void ErrorTitleEmpty(string title)
   {
-    var validator = new ExpenseValidator();
-    var request = RequestRegisterExpenseJsonBuilder.Build();
+    ExpenseValidator validator = new ExpenseValidator();
+    RequestExpenseJson request = RequestRegisterExpenseJsonBuilder.Build();
     request.Title = title;
     
-    var result = validator.Validate(request);
+    ValidationResult? result = validator.Validate(instance: request);
     
     result.IsValid.ShouldBeFalse();
-    result.Errors.ShouldSatisfyAllConditions(
-      e => e.Count.ShouldBe(1),
-      e => e.First().ErrorMessage.ShouldBe(ResourcesErrorMessages.TITLE_REQUIRED)
+    result.Errors.ShouldSatisfyAllConditions(conditions: [e => ShouldBeTestExtensions.ShouldBe(actual: e.Count, expected: 1), e => Enumerable.First<ValidationFailure>(source: e).ErrorMessage.ShouldBe(expected: ResourcesErrorMessages.TITLE_REQUIRED)]
       );
   }
   
   [Fact]
   public void ErrorDateFuture()
   {
-    var validator = new ExpenseValidator();
-    var request = RequestRegisterExpenseJsonBuilder.Build();
-    request.Date = DateTime.Now.AddDays(1);
+    ExpenseValidator validator = new ExpenseValidator();
+    RequestExpenseJson request = RequestRegisterExpenseJsonBuilder.Build();
+    request.Date = DateTime.Now.AddDays(value: 1);
     
-    var result = validator.Validate(request);
+    ValidationResult? result = validator.Validate(instance: request);
     
     result.IsValid.ShouldBeFalse();
-    result.Errors.ShouldSatisfyAllConditions(
-      e => e.Count.ShouldBe(1),
-      e => e.First().ErrorMessage.ShouldBe(ResourcesErrorMessages.EXPENSES_CANNOT_FOR_THE_FUTURE)
+    result.Errors.ShouldSatisfyAllConditions(conditions: [e => ShouldBeTestExtensions.ShouldBe(actual: e.Count, expected: 1), e => Enumerable.First<ValidationFailure>(source: e).ErrorMessage.ShouldBe(expected: ResourcesErrorMessages.EXPENSES_CANNOT_FOR_THE_FUTURE)]
     );
   }
   
   [Fact]
   public void ErrorPaymentTypeInvalid()
   {
-    var validator = new ExpenseValidator();
-    var request = RequestRegisterExpenseJsonBuilder.Build();
+    ExpenseValidator validator = new ExpenseValidator();
+    RequestExpenseJson request = RequestRegisterExpenseJsonBuilder.Build();
     request.PaymentType = (PaymentType)700;
     
-    var result = validator.Validate(request);
+    ValidationResult? result = validator.Validate(instance: request);
     
     result.IsValid.ShouldBeFalse();
-    result.Errors.ShouldSatisfyAllConditions(
-      e => e.Count.ShouldBe(1),
-      e => e.First().ErrorMessage.ShouldBe(ResourcesErrorMessages.PAYMENT_TYPE_INVALID)
+    result.Errors.ShouldSatisfyAllConditions(conditions: [e => ShouldBeTestExtensions.ShouldBe(actual: e.Count, expected: 1), e => Enumerable.First<ValidationFailure>(source: e).ErrorMessage.ShouldBe(expected: ResourcesErrorMessages.PAYMENT_TYPE_INVALID)]
     );
   }
   
   [Theory]
-  [InlineData(0)]
-  [InlineData(-1)]
+  [InlineData(data: 0)]
+  [InlineData(data: -1)]
   public void ErrorAmountInvalid(decimal amount)
   {
-    var validator = new ExpenseValidator();
-    var request = RequestRegisterExpenseJsonBuilder.Build();
+    ExpenseValidator validator = new ExpenseValidator();
+    RequestExpenseJson request = RequestRegisterExpenseJsonBuilder.Build();
     request.Amount = amount;
     
-    var result = validator.Validate(request);
+    ValidationResult? result = validator.Validate(instance: request);
     
     result.IsValid.ShouldBeFalse();
-    result.Errors.ShouldSatisfyAllConditions(
-      e => e.Count.ShouldBe(1),
-      e => e.First().ErrorMessage.ShouldBe(ResourcesErrorMessages.AMOUNT_MUST_BE_GREATER_THAN_ZERO)
+    result.Errors.ShouldSatisfyAllConditions(conditions: [e => ShouldBeTestExtensions.ShouldBe(actual: e.Count, expected: 1), e => Enumerable.First<ValidationFailure>(source: e).ErrorMessage.ShouldBe(expected: ResourcesErrorMessages.AMOUNT_MUST_BE_GREATER_THAN_ZERO)]
     );
   }
 }

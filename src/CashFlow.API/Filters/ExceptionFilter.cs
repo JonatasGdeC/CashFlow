@@ -12,27 +12,27 @@ public class ExceptionFilter : IExceptionFilter
   {
     if (context.Exception is CashFlowException)
     {
-      HandleProjectException(context);
+      HandleProjectException(context: context);
     }
     else
     {
-      ThrowUnknowError(context);
+      ThrowUnknowError(context: context);
     }
   }
 
   private void HandleProjectException(ExceptionContext context)
   {
-    var cashFlowException = context.Exception as CashFlowException;
-    var errorResponse = new ResponseErrorJson(cashFlowException!.GetErrors());
+    CashFlowException? cashFlowException = context.Exception as CashFlowException;
+    ResponseErrorJson errorResponse = new ResponseErrorJson(errorMessages: cashFlowException!.GetErrors());
 
     context.HttpContext.Response.StatusCode = cashFlowException.StatusCode;
-    context.Result = new ObjectResult(errorResponse);
+    context.Result = new ObjectResult(value: errorResponse);
   }
 
   private void ThrowUnknowError(ExceptionContext context)
   {
-    var errorResponse = new ResponseErrorJson(ResourcesErrorMessages.UNKOWN_ERROR);
+    ResponseErrorJson errorResponse = new ResponseErrorJson(errorMessage: ResourcesErrorMessages.UNKOWN_ERROR);
     context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
-    context.Result = new ObjectResult(errorResponse);
+    context.Result = new ObjectResult(value: errorResponse);
   }
 }

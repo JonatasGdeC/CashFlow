@@ -12,18 +12,18 @@ public static class DependencyInjectionExtension
 {
   public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
   {
-    AddDbContext(services, configuration);
-    AddRepositories(services);
+    AddDbContext(services: services, configuration: configuration);
+    AddRepositories(services: services);
   }
 
   private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
   {
-    var connectionString = configuration.GetConnectionString("connection");;
+    string? connectionString = configuration.GetConnectionString(name: "connection");;
 
-    var version = new Version(8, 0, 41);
-    var serverVersion = new MySqlServerVersion(version);
+    Version version = new Version(major: 8, minor: 0, build: 41);
+    MySqlServerVersion serverVersion = new MySqlServerVersion(version: version);
 
-    services.AddDbContext<CashFlowDbContext>(config => config.UseMySql(connectionString, serverVersion));
+    services.AddDbContext<CashFlowDbContext>(optionsAction: config => config.UseMySql(connectionString: connectionString, serverVersion: serverVersion));
   }
 
   private static void AddRepositories(IServiceCollection services)

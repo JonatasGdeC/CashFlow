@@ -9,10 +9,10 @@ public class RequestRegisterExpenseJsonBuilder
   public static RequestExpenseJson Build()
   {
     return new Faker<RequestExpenseJson>()
-      .RuleFor(r => r.Title, faker => faker.Commerce.Product())
-      .RuleFor(r => r.Description, faker => faker.Commerce.ProductDescription())
-      .RuleFor(r => r.Date, faker => faker.Date.Past())
-      .RuleFor(r => r.Amount, faker => faker.Random.Decimal(min: 1, max: 1000))
-      .RuleFor(r => r.PaymentType, faker => faker.PickRandom<PaymentType>());
+      .RuleFor(property: r => r.Title, setter: faker => faker.Commerce.Product())
+      .RuleFor(property: r => r.Description, setter: faker => faker.Commerce.ProductDescription())
+      .RuleFor(property: r => r.Date, setter: faker => faker.Date.Past())
+      .RuleFor(property: r => r.Amount, setter: faker => faker.Random.Decimal(min: 1, max: 1000))
+      .RuleFor(property: r => r.PaymentType, setter: faker => faker.PickRandom<PaymentType>());
   }
 }
