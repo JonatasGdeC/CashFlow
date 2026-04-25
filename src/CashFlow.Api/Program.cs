@@ -1,41 +1,19 @@
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args: args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 WebApplication app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI(); 
 }
 
 app.UseHttpsRedirection();
 
-string[] summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet(pattern: "/weatherforecast", handler: () =>
-    {
-        WeatherForecast[] forecast = Enumerable.Range(start: 1, count: 5).Select(selector: index =>
-                new WeatherForecast
-                (
-                    Date: DateOnly.FromDateTime(dateTime: DateTime.Now.AddDays(value: index)),
-                    TemperatureC: Random.Shared.Next(minValue: -20, maxValue: 55),
-                    Summary: summaries[Random.Shared.Next(maxValue: summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName(endpointName: "GetWeatherForecast");
+app.MapControllers();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
