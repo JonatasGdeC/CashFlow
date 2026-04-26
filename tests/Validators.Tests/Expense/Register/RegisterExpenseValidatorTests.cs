@@ -1,6 +1,7 @@
 using CashFlow.Application.UsesCases.Expense.Register;
 using CashFlow.Communication.Requests;
 using CommomTestsUtilies.Requests;
+using FluentAssertions;
 using FluentValidation.Results;
 
 namespace Validators.Tests.Expense.Register;
@@ -18,6 +19,6 @@ public class RegisterExpenseValidatorTests
         ValidationResult? result = validator.Validate(instance: request);
 
         // Assert
-        Assert.True(condition: result.IsValid);
+        result.IsValid.Should().BeTrue();
     }
 }
