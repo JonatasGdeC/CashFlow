@@ -20,6 +20,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\CashFlow.Application\CashFlow.Application.csproj" />
+      <ProjectReference Include="..\CommomTestsUtilies\CommomTestsUtilies.csproj" />
     </ItemGroup>
 
 </Project>
