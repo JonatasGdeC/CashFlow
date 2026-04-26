@@ -10,6 +10,8 @@ namespace CashFlow.Api.Controllers;
 public class ExpensesController : ControllerBase
 {
     [HttpPost]
+    [ProducesResponseType(type: typeof(ResponseRegisterExpenseJson), statusCode: StatusCodes.Status201Created)]
+    [ProducesResponseType(type: typeof(ResponseErrorJson), statusCode: StatusCodes.Status400BadRequest)]
     public IActionResult Register([FromBody] RequestRegisterExpenseJson request)
     {
         RegisterExpenseUseCase useCase = new();
