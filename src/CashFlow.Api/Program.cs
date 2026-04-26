@@ -1,3 +1,5 @@
+using CashFlow.Api.Middleware;
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args: args);
 
 builder.Services.AddControllers();
@@ -15,5 +17,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapControllers();
+app.UseMiddleware<CultureMiddleware>();
 
 app.Run();
