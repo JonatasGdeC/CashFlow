@@ -9,6 +9,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMvc(setupAction: options => options.Filters.Add(filterType: typeof(ExceptionFilter)));
 
 WebApplication app = builder.Build();
+app.UseMiddleware<CultureMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
@@ -18,6 +19,5 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.MapControllers();
-app.UseMiddleware<CultureMiddleware>();
 
 app.Run();
