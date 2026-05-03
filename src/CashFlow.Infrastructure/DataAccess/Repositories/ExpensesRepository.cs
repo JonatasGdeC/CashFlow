@@ -8,6 +8,5 @@ internal class ExpensesRepository(CashFlowDbContext context) : IExpensesReposito
     public async Task Add(Expense expense)
     {
         await context.Expenses.AddAsync(entity:  expense);
-        await context.SaveChangesAsync();
     }
 }
