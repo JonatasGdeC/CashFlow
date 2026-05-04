@@ -6,4 +6,5 @@ public interface IExpensesWriteRepository
 {
     Task Add(Expense expense);
     Task Delete(Guid id);
+    void Update(Expense expense);
 }

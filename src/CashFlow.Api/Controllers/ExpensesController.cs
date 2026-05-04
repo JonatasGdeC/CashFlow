@@ -2,6 +2,7 @@
 using CashFlow.Application.UsesCases.Expense.GetAll;
 using CashFlow.Application.UsesCases.Expense.GetById;
 using CashFlow.Application.UsesCases.Expense.Register;
+using CashFlow.Application.UsesCases.Expense.Update;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Response;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -53,6 +54,20 @@ public class ExpensesController : ControllerBase
     public async Task<IActionResult> Delete([FromServices] IDeleteExpenseUseCase useCase, [FromRoute] Guid id)
     {
         await useCase.Execute(id: id);
+        return NoContent();
+    }
+
+    [HttpPut]
+    [Route(template: "{id}")]
+    [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
+    [ProducesResponseType(type: typeof(ResponseErrorJson), statusCode: StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(type: typeof(ResponseErrorJson), statusCode: StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Update(
+        [FromServices] IUpdateExpenseUseCase useCase,
+        [FromRoute] Guid id,
+        [FromBody] RequestRegisterExpenseJson request)
+    {
+        await useCase.Execute(id: id, request: request);
         return NoContent();
     }
 }

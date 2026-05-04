@@ -17,6 +17,11 @@ internal class ExpensesesRepository(CashFlowDbContext context) : IExpensesWriteR
         context.Expenses.Remove(entity: entity);
     }
 
+    public void Update(Expense expense)
+    {
+        context.Expenses.Update(entity: expense);
+    }
+
     public async Task<List<Expense>?> GetAllExpenses()
     {
         return await context.Expenses.AsNoTracking().ToListAsync();
