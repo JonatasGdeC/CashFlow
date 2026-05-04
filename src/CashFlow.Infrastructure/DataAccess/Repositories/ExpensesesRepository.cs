@@ -15,4 +15,9 @@ internal class ExpensesesRepository(CashFlowDbContext context) : IExpensesWriteR
     {
         return await context.Expenses.AsNoTracking().ToListAsync();
     }
+
+    public async Task<Expense?> GetExpenseById(Guid id)
+    {
+        return await context.Expenses.AsNoTracking().FirstOrDefaultAsync(predicate: expense => expense.Id == id);
+    }
 }
