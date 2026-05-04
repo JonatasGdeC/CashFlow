@@ -4,12 +4,11 @@ using CashFlow.Communication.Response;
 using CashFlow.Domain.Repositories.Expenses;
 using CashFlow.Exception.ExceptionBase;
 using FluentValidation.Results;
-using CashFlow.Domain.Enums;
 using CashFlow.Domain.Repositories;
 
 namespace CashFlow.Application.UsesCases.Expense.Register;
 
-public class RegisterExpenseUseCase(IExpensesRepository repository, IUnitOfWork unitOfWork, IMapper mapper) : IRegisterExpenseUseCase
+public class RegisterExpenseUseCase(IExpensesWriteRepository writeRepository, IUnitOfWork unitOfWork, IMapper mapper) : IRegisterExpenseUseCase
 {
     public async Task <ResponseRegisterExpenseJson> Execute(RequestRegisterExpenseJson request)
     {
@@ -17,7 +16,7 @@ public class RegisterExpenseUseCase(IExpensesRepository repository, IUnitOfWork 
         
         Domain.Enitites.Expense? entity = mapper.Map<Domain.Enitites.Expense>(source: request);
 
-        await repository.Add(expense: entity);
+        await writeRepository.Add(expense: entity);
         await unitOfWork.Commit();
         
         return mapper.Map<ResponseRegisterExpenseJson>(source: entity);
