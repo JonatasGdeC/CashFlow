@@ -1,4 +1,5 @@
-﻿using CashFlow.Application.UsesCases.Expense.GetAll;
+﻿using CashFlow.Application.UsesCases.Expense.Delete;
+using CashFlow.Application.UsesCases.Expense.GetAll;
 using CashFlow.Application.UsesCases.Expense.GetById;
 using CashFlow.Application.UsesCases.Expense.Register;
 using CashFlow.Communication.Requests;
@@ -43,5 +44,15 @@ public class ExpensesController : ControllerBase
     {
        ResponseExpenseJson response = await useCase.Execute(id: id);
        return Ok(value: response);
+    }
+
+    [HttpDelete]
+    [Route(template: "{id}")]
+    [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
+    [ProducesResponseType(type: typeof(ResponseErrorJson), statusCode: StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Delete([FromServices] IDeleteExpenseUseCase useCase, [FromRoute] Guid id)
+    {
+        await useCase.Execute(id: id);
+        return NoContent();
     }
 }
