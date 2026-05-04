@@ -1,4 +1,5 @@
 using System.Net.Mime;
+using CashFlow.Communication.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlow.Api.Controllers;
@@ -10,7 +11,7 @@ public class ReportController : ControllerBase
     [HttpGet(template: "excel")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetExcel()
+    public async Task<IActionResult> GetExcel([FromQuery] RequestInformationReportJson request)
     {
         byte[] file = new byte[1];
         if (file != null)
