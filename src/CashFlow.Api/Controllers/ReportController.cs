@@ -1,4 +1,5 @@
 using System.Net.Mime;
+using CashFlow.Application.UsesCases.Expense.Reports.Excel;
 using CashFlow.Communication.Requests;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,10 +12,11 @@ public class ReportController : ControllerBase
     [HttpGet(template: "excel")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetExcel([FromQuery] RequestInformationReportJson request)
+    public async Task<IActionResult> GetExcel([FromServices] IGenerateExpensesReportExcelUseCase useCase, [FromQuery] RequestInformationReportJson request)
     {
-        byte[] file = new byte[1];
-        if (file != null)
+        byte[] file = await useCase.Execute(request: request);
+        
+        if (file.Length > 0)
         {
             return File(fileContents: file, contentType:  MediaTypeNames.Application.Octet, fileDownloadName: "report.xlsx");
         }
