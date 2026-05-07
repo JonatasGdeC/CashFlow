@@ -17,6 +17,18 @@
       <PackageReference Include="ClosedXML" Version="0.105.0" />
       <PackageReference Include="FluentValidation" Version="12.1.1" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.7" />
+      <PackageReference Include="PDFsharp-MigraDoc" Version="6.2.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="UsesCases\Expense\Reports\Pdf\Fonts\Raleway-Black.ttf" />
+      <EmbeddedResource Include="UsesCases\Expense\Reports\Pdf\Fonts\Raleway-Black.ttf" />
+      <None Remove="UsesCases\Expense\Reports\Pdf\Fonts\Raleway-Regular.ttf" />
+      <EmbeddedResource Include="UsesCases\Expense\Reports\Pdf\Fonts\Raleway-Regular.ttf" />
+      <None Remove="UsesCases\Expense\Reports\Pdf\Fonts\WorkSans-Black.ttf" />
+      <EmbeddedResource Include="UsesCases\Expense\Reports\Pdf\Fonts\WorkSans-Black.ttf" />
+      <None Remove="UsesCases\Expense\Reports\Pdf\Fonts\WorkSans-Regular.ttf" />
+      <EmbeddedResource Include="UsesCases\Expense\Reports\Pdf\Fonts\WorkSans-Regular.ttf" />
     </ItemGroup>
 
 </Project>

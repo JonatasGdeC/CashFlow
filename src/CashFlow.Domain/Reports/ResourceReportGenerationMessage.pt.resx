@@ -38,4 +38,7 @@
     <data name="BANKTRANSFER" xml:space="preserve">
         <value>Transferência bancária</value>
     </data>
+    <data name="EXPENSES_FOR" xml:space="preserve">
+        <value>Total de gastos em</value>
+    </data>
 </root>

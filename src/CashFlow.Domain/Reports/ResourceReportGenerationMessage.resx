@@ -45,4 +45,7 @@
     <data name="BANKTRANSFER" xml:space="preserve">
         <value>Bank transfer</value>
     </data>
+    <data name="EXPENSES_FOR" xml:space="preserve">
+        <value>Total spent in </value>
+    </data>
 </root>

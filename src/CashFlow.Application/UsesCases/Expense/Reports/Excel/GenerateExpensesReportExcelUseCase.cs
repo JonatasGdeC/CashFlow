@@ -31,7 +31,7 @@ public class GenerateExpensesReportExcelUseCase(IExpensesReadRepository readRepo
         {
             worksheets.Cell(cellAddressInRange: $"A{row}").Value = expense.Title;
             worksheets.Cell(cellAddressInRange: $"B{row}").Value = expense.Date.ToString(format: "MM/dd/yyyy");
-            worksheets.Cell(cellAddressInRange: $"C{row}").Value = TreatPaymentType(paymentType: expense.PaymentType);
+            worksheets.Cell(cellAddressInRange: $"C{row}").Value = TreatPaymentType.Execute(paymentType: expense.PaymentType);
             worksheets.Cell(cellAddressInRange: $"D{row}").Value = expense.Amount;
             worksheets.Cell(cellAddressInRange: $"D{row}").Style.NumberFormat.Format = "[$R$-pt-BR] #,##0.00";
             
@@ -48,15 +48,6 @@ public class GenerateExpensesReportExcelUseCase(IExpensesReadRepository readRepo
 
         return file.ToArray();
     }
-
-    private string TreatPaymentType(PaymentType paymentType) => paymentType switch
-    {
-        PaymentType.Cash       => ResourceReportGenerationMessage.CASH,
-        PaymentType.CreditCard => ResourceReportGenerationMessage.CREDITCARD,
-        PaymentType.DebitCard  => ResourceReportGenerationMessage.DEBITCARD,
-        PaymentType.Electronic => ResourceReportGenerationMessage.BANKTRANSFER,
-        _                      => throw new ArgumentOutOfRangeException()
-    };
 
     private void InsertHeader(IXLWorksheet worksheet)
     {
