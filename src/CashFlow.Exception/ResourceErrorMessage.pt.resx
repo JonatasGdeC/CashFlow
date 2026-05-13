@@ -39,4 +39,34 @@
     <data name="EXPENSE_PAYMENT_TYPE_INVALID" xml:space="preserve">
         <value>O tipo de pagamento informado &#233; inv&#225;lido.</value>
     </data>
+    <data name="USER_NAME_REQUIRED" xml:space="preserve">
+        <value>O nome &#233; obrigat&#243;rio.</value>
+    </data>
+    <data name="USER_NAME_MINIMUM_LENGTH" xml:space="preserve">
+        <value>O nome deve ter pelo menos 3 caracteres.</value>
+    </data>
+    <data name="USER_EMAIL_REQUIRED" xml:space="preserve">
+        <value>O e-mail &#233; obrigat&#243;rio.</value>
+    </data>
+    <data name="USER_EMAIL_VALID" xml:space="preserve">
+        <value>O e-mail informado n&#227;o &#233; v&#225;lido.</value>
+    </data>
+    <data name="USER_PASSWORD_REQUIRED" xml:space="preserve">
+        <value>A senha &#233; obrigat&#243;ria.</value>
+    </data>
+    <data name="USER_PASSWORD_MINIMUM_LENGTH" xml:space="preserve">
+        <value>A senha deve ter pelo menos 8 caracteres.</value>
+    </data>
+    <data name="USER_PASSWORD_MUST_CONTAIN_LOWERCASE_LETTER" xml:space="preserve">
+        <value>A senha deve conter pelo menos uma letra min&#250;scula.</value>
+    </data>
+    <data name="USER_PASSWORD_MUST_CONTAIN_UPPERCASE_LETTER" xml:space="preserve">
+        <value>A senha deve conter pelo menos uma letra mai&#250;scula.</value>
+    </data>
+    <data name="USER_PASSWORD_MUST_CONTAIN_NUMBER" xml:space="preserve">
+        <value>A senha deve conter pelo menos um n&#250;mero.</value>
+    </data>
+    <data name="USER_PASSWORD_MUST_CONTAIN_SPECIAL_CHARACTER" xml:space="preserve">
+        <value>A senha deve conter pelo menos um caractere especial.</value>
+    </data>
 </root>

@@ -60,51 +60,6 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O título é obrigatório..
-        /// </summary>
-        internal static string EXPENSE_TITLE_REQUIRED {
-            get {
-                return ResourceManager.GetString("EXPENSE_TITLE_REQUIRED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to O titulo nao pode ter mais que 100 caracteres..
-        /// </summary>
-        internal static string EXPENSE_TITLE_MAXIMUM_LENGTH {
-            get {
-                return ResourceManager.GetString("EXPENSE_TITLE_MAXIMUM_LENGTH", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A descricao nao pode ter mais que 1000 caracteres..
-        /// </summary>
-        internal static string EXPENSE_DESCRIPTION_MAXIMUM_LENGTH {
-            get {
-                return ResourceManager.GetString("EXPENSE_DESCRIPTION_MAXIMUM_LENGTH", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A data e obrigatoria..
-        /// </summary>
-        internal static string EXPENSE_DATE_REQUIRED {
-            get {
-                return ResourceManager.GetString("EXPENSE_DATE_REQUIRED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A data nao pode ser futura..
-        /// </summary>
-        internal static string EXPENSE_DATE_CANNOT_BE_IN_THE_FUTURE {
-            get {
-                return ResourceManager.GetString("EXPENSE_DATE_CANNOT_BE_IN_THE_FUTURE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to O valor deve ser maior que zero..
         /// </summary>
         internal static string EXPENSE_AMOUNT_MUST_BE_GREATER_THAN_ZERO {
@@ -114,11 +69,56 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O tipo de pagamento informado e invalido..
+        ///   Looks up a localized string similar to A data não pode ser futura..
+        /// </summary>
+        internal static string EXPENSE_DATE_CANNOT_BE_IN_THE_FUTURE {
+            get {
+                return ResourceManager.GetString("EXPENSE_DATE_CANNOT_BE_IN_THE_FUTURE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A data é obrigatória..
+        /// </summary>
+        internal static string EXPENSE_DATE_REQUIRED {
+            get {
+                return ResourceManager.GetString("EXPENSE_DATE_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A descrição não pode ter mais que 1000 caracteres..
+        /// </summary>
+        internal static string EXPENSE_DESCRIPTION_MAXIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("EXPENSE_DESCRIPTION_MAXIMUM_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O tipo de pagamento informado é inválido..
         /// </summary>
         internal static string EXPENSE_PAYMENT_TYPE_INVALID {
             get {
                 return ResourceManager.GetString("EXPENSE_PAYMENT_TYPE_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O título não pode ter mais que 100 caracteres..
+        /// </summary>
+        internal static string EXPENSE_TITLE_MAXIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("EXPENSE_TITLE_MAXIMUM_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O título é obrigatório..
+        /// </summary>
+        internal static string EXPENSE_TITLE_REQUIRED {
+            get {
+                return ResourceManager.GetString("EXPENSE_TITLE_REQUIRED", resourceCulture);
             }
         }
     }
