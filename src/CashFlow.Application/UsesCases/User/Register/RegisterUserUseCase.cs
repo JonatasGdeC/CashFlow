@@ -1,22 +1,24 @@
 using AutoMapper;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Response;
+using CashFlow.Domain.Security.Cryptography;
 using CashFlow.Exception.ExceptionBase;
 using FluentValidation.Results;
 
 namespace CashFlow.Application.UsesCases.User.Register;
 
-public class RegisterUserUseCase(IMapper mapper) : IRegisterUserUseCase
+public class RegisterUserUseCase(IPasswordEncrypter encrypter, IMapper mapper) : IRegisterUserUseCase
 {
     public async Task<ResponseRegisterUserJson> Execute(RequestRegisterUserJson request)
     {
         Validate(request: request);
         
-        Domain.Enitites.User? entity = mapper.Map<Domain.Enitites.User>(source: request);
-
+        Domain.Enitites.User? user = mapper.Map<Domain.Enitites.User>(source: request);
+        user.Password = encrypter.Encrypt(password: request.Password);
+            
         return new ResponseRegisterUserJson
         {
-            Name = entity?.Name,
+            Name = user?.Name,
             Token = ""
         };
 
