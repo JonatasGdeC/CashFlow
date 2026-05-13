@@ -33,5 +33,6 @@ public static class DependencyInjectionExtension
         services.AddScoped<IExpensesReadRepository, ExpensesesRepository>();
         
         services.AddScoped<IUsersReadRepository, UserRepository>();
+        services.AddScoped<IUsersWriteRepository, UserRepository>();
     }
 }

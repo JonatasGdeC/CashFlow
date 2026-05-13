@@ -1,6 +1,7 @@
 using AutoMapper;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Response;
+using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Users;
 using CashFlow.Domain.Security.Cryptography;
 using CashFlow.Exception;
@@ -9,7 +10,7 @@ using FluentValidation.Results;
 
 namespace CashFlow.Application.UsesCases.User.Register;
 
-public class RegisterUserUseCase(IPasswordEncrypter encrypter, IUsersReadRepository readRepository, IMapper mapper) : IRegisterUserUseCase
+public class RegisterUserUseCase(IPasswordEncrypter encrypter, IUsersReadRepository readRepository, IUsersWriteRepository writeRepository, IUnitOfWork unitOfWork, IMapper mapper) : IRegisterUserUseCase
 {
     public async Task<ResponseRegisterUserJson> Execute(RequestRegisterUserJson request)
     {
@@ -19,20 +20,21 @@ public class RegisterUserUseCase(IPasswordEncrypter encrypter, IUsersReadReposit
         await readRepository.ExistsUsersWithThisEmail(email: user.Email);
         user.Password = encrypter.Encrypt(password: request.Password);
             
+        await writeRepository.Add(user: user);
+        await unitOfWork.Commit();
+        
         return new ResponseRegisterUserJson
         {
-            Name = user?.Name,
+            Name = user.Name,
             Token = ""
         };
-
-        throw new NotImplementedException();
     }
     
     private async Task Validate(RequestRegisterUserJson request)
     {
         ValidationResult resultRequest = new RegisterUserValidator().Validate(instance: request);
         bool emailExist = await readRepository.ExistsUsersWithThisEmail(email: request.Email);
-        if (!emailExist)
+        if (emailExist)
         {
             resultRequest.Errors.Add(item: new ValidationFailure(propertyName: string.Empty, errorMessage: ResourceErrorMessage.USER_EMAIL_ALREADY_EXIST));
         }

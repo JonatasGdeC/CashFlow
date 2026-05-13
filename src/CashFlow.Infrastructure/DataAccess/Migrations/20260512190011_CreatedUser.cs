@@ -20,7 +20,7 @@ namespace CashFlow.Infrastructure.DataAccess.Migrations
                 collation: "ascii_general_ci");
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -34,7 +34,7 @@ namespace CashFlow.Infrastructure.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -47,7 +47,7 @@ namespace CashFlow.Infrastructure.DataAccess.Migrations
                 name: "FK_Expenses_User_UserId",
                 table: "Expenses",
                 column: "UserId",
-                principalTable: "User",
+                principalTable: "Users",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
@@ -60,7 +60,7 @@ namespace CashFlow.Infrastructure.DataAccess.Migrations
                 table: "Expenses");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
 
             migrationBuilder.DropIndex(
                 name: "IX_Expenses_UserId",
