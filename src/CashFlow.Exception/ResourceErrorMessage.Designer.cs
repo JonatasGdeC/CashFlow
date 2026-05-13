@@ -123,6 +123,15 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This email has already been registered..
+        /// </summary>
+        public static string USER_EMAIL_ALREADY_EXIST {
+            get {
+                return ResourceManager.GetString("USER_EMAIL.ALREADY_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The email is required..
         /// </summary>
         public static string USER_EMAIL_REQUIRED {

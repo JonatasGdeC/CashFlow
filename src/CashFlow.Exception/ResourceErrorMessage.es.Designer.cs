@@ -121,5 +121,104 @@ namespace CashFlow.Exception {
                 return ResourceManager.GetString("EXPENSE_TITLE_REQUIRED", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Este e-mail ya está registrado..
+        /// </summary>
+        internal static string USER_EMAIL_ALREADY_EXIST {
+            get {
+                return ResourceManager.GetString("USER_EMAIL.ALREADY_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El e-mail es obligatorio..
+        /// </summary>
+        internal static string USER_EMAIL_REQUIRED {
+            get {
+                return ResourceManager.GetString("USER_EMAIL_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El e-mail informado no es válido..
+        /// </summary>
+        internal static string USER_EMAIL_VALID {
+            get {
+                return ResourceManager.GetString("USER_EMAIL_VALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El nombre debe tener al menos 3 caracteres..
+        /// </summary>
+        internal static string USER_NAME_MINIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("USER_NAME_MINIMUM_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El nombre es obligatorio..
+        /// </summary>
+        internal static string USER_NAME_REQUIRED {
+            get {
+                return ResourceManager.GetString("USER_NAME_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La contraseña debe tener al menos 8 caracteres..
+        /// </summary>
+        internal static string USER_PASSWORD_MINIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("USER_PASSWORD_MINIMUM_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La contraseña debe contener al menos una letra minúscula..
+        /// </summary>
+        internal static string USER_PASSWORD_MUST_CONTAIN_LOWERCASE_LETTER {
+            get {
+                return ResourceManager.GetString("USER_PASSWORD_MUST_CONTAIN_LOWERCASE_LETTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La contraseña debe contener al menos un número..
+        /// </summary>
+        internal static string USER_PASSWORD_MUST_CONTAIN_NUMBER {
+            get {
+                return ResourceManager.GetString("USER_PASSWORD_MUST_CONTAIN_NUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La contraseña debe contener al menos un carácter especial..
+        /// </summary>
+        internal static string USER_PASSWORD_MUST_CONTAIN_SPECIAL_CHARACTER {
+            get {
+                return ResourceManager.GetString("USER_PASSWORD_MUST_CONTAIN_SPECIAL_CHARACTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La contraseña debe contener al menos una letra mayúscula..
+        /// </summary>
+        internal static string USER_PASSWORD_MUST_CONTAIN_UPPERCASE_LETTER {
+            get {
+                return ResourceManager.GetString("USER_PASSWORD_MUST_CONTAIN_UPPERCASE_LETTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La contraseña es obligatoria..
+        /// </summary>
+        internal static string USER_PASSWORD_REQUIRED {
+            get {
+                return ResourceManager.GetString("USER_PASSWORD_REQUIRED", resourceCulture);
+            }
+        }
     }
 }

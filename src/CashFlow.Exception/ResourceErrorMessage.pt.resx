@@ -69,4 +69,7 @@
     <data name="USER_PASSWORD_MUST_CONTAIN_SPECIAL_CHARACTER" xml:space="preserve">
         <value>A senha deve conter pelo menos um caractere especial.</value>
     </data>
+    <data name="USER_EMAIL.ALREADY_EXIST" xml:space="preserve">
+        <value>Este e-mail já foi registrado.</value>
+    </data>
 </root>

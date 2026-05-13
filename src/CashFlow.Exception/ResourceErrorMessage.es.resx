@@ -69,4 +69,7 @@
     <data name="USER_PASSWORD_MUST_CONTAIN_SPECIAL_CHARACTER" xml:space="preserve">
         <value>La contrase&#241;a debe contener al menos un car&#225;cter especial.</value>
     </data>
+    <data name="USER_EMAIL.ALREADY_EXIST" xml:space="preserve">
+        <value>Este e-mail ya está registrado.</value>
+    </data>
 </root>
