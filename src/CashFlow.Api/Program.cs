@@ -6,12 +6,35 @@ using CashFlow.Infrastructure;
 using CashFlow.Infrastructure.DataAccess.Migrations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args: args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(setupAction: config =>
+{
+    config.AddSecurityDefinition(name: "Bearer", securityScheme: new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Description = @"JWT Authorization header using the Bearer scheme.
+                      Enter 'Bearer' [space] and then your token in the text input below.
+                      Example: 'Bearer 12345abcdef'",
+        In = ParameterLocation.Header,
+        Scheme = "Bearer",
+        Type = SecuritySchemeType.ApiKey
+    });
+
+    config.AddSecurityRequirement(securityRequirement: document => new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecuritySchemeReference(referenceId: "Bearer", hostDocument: document),
+            new List<string>()
+        }
+    });
+});
+
+
 builder.Services.AddMvc(setupAction: options => options.Filters.Add(filterType: typeof(ExceptionFilter)));
 
 builder.Services.AddInfrastructure(configuration: builder.Configuration, connectionString: builder.Configuration.GetConnectionString(name: "connection")!);
@@ -34,8 +57,8 @@ builder.Services.AddAuthentication(configureOptions: config =>
 
 WebApplication app = builder.Build();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseMiddleware<CultureMiddleware>();
 
