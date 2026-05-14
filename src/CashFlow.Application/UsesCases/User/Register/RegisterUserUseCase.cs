@@ -43,16 +43,14 @@ public class RegisterUserUseCase(
         bool emailExist = await readRepository.ExistsUsersWithThisEmail(email: request.Email);
         if (emailExist)
         {
-            resultRequest.Errors.Add(item: new ValidationFailure(propertyName: string.Empty,
-                errorMessage: ResourceErrorMessage.USER_EMAIL_ALREADY_EXIST));
+            resultRequest.Errors.Add(item: new ValidationFailure(propertyName: string.Empty, errorMessage: ResourceErrorMessage.USER_EMAIL_ALREADY_EXIST));
         }
 
         ValidationResult resultPassword = new PasswordValidator().Validate(instance: request.Password);
 
         if (!resultRequest.IsValid || !resultPassword.IsValid)
         {
-            List<string> errors = resultRequest.Errors.Concat(second: resultPassword.Errors)
-                .Select(selector: error => error.ErrorMessage).ToList();
+            List<string> errors = resultRequest.Errors.Concat(second: resultPassword.Errors).Select(selector: error => error.ErrorMessage).ToList();
             throw new ErrorOnValidationException(errorsMessages: errors);
         }
     }
