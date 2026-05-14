@@ -5,7 +5,7 @@ namespace CashFlow.Application.UsesCases.User;
 
 public class PasswordValidator : AbstractValidator<string>
 {
-    public PasswordValidator(string password)
+    public PasswordValidator()
     {
         RuleFor(expression: password => password)
             .NotEmpty()

@@ -47,8 +47,7 @@ public class RegisterUserUseCase(
                 errorMessage: ResourceErrorMessage.USER_EMAIL_ALREADY_EXIST));
         }
 
-        ValidationResult resultPassword =
-            new PasswordValidator(password: request.Password).Validate(instance: request.Password);
+        ValidationResult resultPassword = new PasswordValidator().Validate(instance: request.Password);
 
         if (!resultRequest.IsValid || !resultPassword.IsValid)
         {

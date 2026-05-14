@@ -34,8 +34,7 @@ public class RegisterExpenseValidatorTests
         ValidationResult? result = validator.Validate(instance: request);
 
         result.IsValid.Should().BeFalse();
-        result.Errors.Should().ContainSingle().And
-            .Contain(predicate: e => e.ErrorMessage.Equals(ResourceErrorMessage.EXPENSE_TITLE_REQUIRED));
+        result.Errors.Should().ContainSingle().And.Contain(predicate: e => e.ErrorMessage.Equals(ResourceErrorMessage.EXPENSE_TITLE_REQUIRED));
     }
 
     [Fact]
@@ -48,8 +47,7 @@ public class RegisterExpenseValidatorTests
         ValidationResult? result = validator.Validate(instance: request);
 
         result.IsValid.Should().BeFalse();
-        result.Errors.Should().ContainSingle().And
-            .Contain(predicate: e => e.ErrorMessage.Equals(ResourceErrorMessage.EXPENSE_TITLE_MAXIMUM_LENGTH));
+        result.Errors.Should().ContainSingle().And.Contain(predicate: e => e.ErrorMessage.Equals(ResourceErrorMessage.EXPENSE_TITLE_MAXIMUM_LENGTH));
     }
 
     [Fact]
@@ -62,8 +60,7 @@ public class RegisterExpenseValidatorTests
         ValidationResult? result = validator.Validate(instance: request);
 
         result.IsValid.Should().BeFalse();
-        result.Errors.Should().ContainSingle().And
-            .Contain(predicate: e => e.ErrorMessage.Equals(ResourceErrorMessage.EXPENSE_DESCRIPTION_MAXIMUM_LENGTH));
+        result.Errors.Should().ContainSingle().And.Contain(predicate: e => e.ErrorMessage.Equals(ResourceErrorMessage.EXPENSE_DESCRIPTION_MAXIMUM_LENGTH));
     }
 
     [Fact]
@@ -76,8 +73,7 @@ public class RegisterExpenseValidatorTests
         ValidationResult? result = validator.Validate(instance: request);
 
         result.IsValid.Should().BeFalse();
-        result.Errors.Should().ContainSingle().And
-            .Contain(predicate: e => e.ErrorMessage.Equals(ResourceErrorMessage.EXPENSE_DATE_REQUIRED));
+        result.Errors.Should().ContainSingle().And.Contain(predicate: e => e.ErrorMessage.Equals(ResourceErrorMessage.EXPENSE_DATE_REQUIRED));
     }
 
     [Fact]
@@ -90,8 +86,7 @@ public class RegisterExpenseValidatorTests
         ValidationResult? result = validator.Validate(instance: request);
 
         result.IsValid.Should().BeFalse();
-        result.Errors.Should().ContainSingle().And
-            .Contain(predicate: e => e.ErrorMessage.Equals(ResourceErrorMessage.EXPENSE_DATE_CANNOT_BE_IN_THE_FUTURE));
+        result.Errors.Should().ContainSingle().And.Contain(predicate: e => e.ErrorMessage.Equals(ResourceErrorMessage.EXPENSE_DATE_CANNOT_BE_IN_THE_FUTURE));
     }
 
     [Theory]
@@ -106,8 +101,7 @@ public class RegisterExpenseValidatorTests
         ValidationResult? result = validator.Validate(instance: request);
 
         result.IsValid.Should().BeFalse();
-        result.Errors.Should().ContainSingle().And
-            .Contain(predicate: e => e.ErrorMessage.Equals(ResourceErrorMessage.EXPENSE_AMOUNT_MUST_BE_GREATER_THAN_ZERO));
+        result.Errors.Should().ContainSingle().And.Contain(predicate: e => e.ErrorMessage.Equals(ResourceErrorMessage.EXPENSE_AMOUNT_MUST_BE_GREATER_THAN_ZERO));
     }
 
     [Fact]
@@ -120,7 +114,6 @@ public class RegisterExpenseValidatorTests
         ValidationResult? result = validator.Validate(instance: request);
 
         result.IsValid.Should().BeFalse();
-        result.Errors.Should().ContainSingle().And
-            .Contain(predicate: e => e.ErrorMessage.Equals(ResourceErrorMessage.EXPENSE_PAYMENT_TYPE_INVALID));
+        result.Errors.Should().ContainSingle().And.Contain(predicate: e => e.ErrorMessage.Equals(ResourceErrorMessage.EXPENSE_PAYMENT_TYPE_INVALID));
     }
 }
