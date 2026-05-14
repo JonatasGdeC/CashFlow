@@ -60,6 +60,15 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email or password invalid..
+        /// </summary>
+        public static string EMAIL_OR_PASSWORD_INVALID {
+            get {
+                return ResourceManager.GetString("EMAIL_OR_PASSWORD_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The amount must be greater than zero..
         /// </summary>
         public static string EXPENSE_AMOUNT_MUST_BE_GREATER_THAN_ZERO {

@@ -72,4 +72,7 @@
     <data name="USER_EMAIL.ALREADY_EXIST" xml:space="preserve">
         <value>Este e-mail já foi registrado.</value>
     </data>
+    <data name="EMAIL_OR_PASSWORD_INVALID" xml:space="preserve">
+        <value>E-mail ou senha inválidos.</value>
+    </data>
 </root>

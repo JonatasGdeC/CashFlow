@@ -1,4 +1,3 @@
-using CashFlow.Application.UsesCases.User;
 using CashFlow.Application.UsesCases.User.Register;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Response;

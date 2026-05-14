@@ -11,6 +11,11 @@ internal class UserRepository(CashFlowDbContext context)  : IUsersReadRepository
         return await context.Users.AnyAsync(predicate: user => user.Email == email);
     }
 
+    public async Task<User?> GetUserByEmail(string email)
+    {
+        return await context.Users.AsNoTracking().FirstOrDefaultAsync(predicate: user => user.Email == email);
+    }
+
     public async Task Add(User user)
     {
         await context.Users.AddAsync(entity: user);
