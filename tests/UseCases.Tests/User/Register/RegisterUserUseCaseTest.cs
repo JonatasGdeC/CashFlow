@@ -60,11 +60,13 @@ public class RegisterUserUseCaseTest
 
     private RegisterUserUseCase CreateUseCase(string? email = null)
     {
+        PasswordEncrypterBuilder passwordEncrypterBuilder = new();
+        
         IMapper mapper = MapperBuilder.Build();
         IUnitOfWork unitOfWork = UnitOfWorkBuilder.Build();
         IUsersWriteRepository writeRepository = UsersWriteRepositoryBuilder.Build();
         IAccessTokenGenerator accessTokenGenerator = JwtTokenGeneratorBuilder.Build();
-        IPasswordEncrypter passwordEncrypter = PasswordEncrypterBuilder.Build();
+        IPasswordEncrypter passwordEncrypter = passwordEncrypterBuilder.Build();
         UsersReadRepositoryBuilder readRepository = new();
 
         if (!string.IsNullOrEmpty(value: email))
