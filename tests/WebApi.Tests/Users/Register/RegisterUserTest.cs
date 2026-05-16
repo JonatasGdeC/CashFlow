@@ -3,11 +3,10 @@ using System.Net.Http.Json;
 using CashFlow.Communication.Requests;
 using CommomTestsUtilies.Requests;
 using FluentAssertions;
-using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace WebApi.Tests.Users.Register;
 
-public class RegisterUserTest(WebApplicationFactory<Program> factory) : IClassFixture<WebApplicationFactory<Program>>
+public class RegisterUserTest(CustomWebApplicationFactory factory) : IClassFixture<CustomWebApplicationFactory>
 {
     private readonly HttpClient _httpClient = factory.CreateClient();
 

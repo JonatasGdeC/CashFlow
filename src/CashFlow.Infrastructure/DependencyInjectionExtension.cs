@@ -5,6 +5,7 @@ using CashFlow.Domain.Security.Cryptography;
 using CashFlow.Domain.Security.Tokens;
 using CashFlow.Infrastructure.DataAccess;
 using CashFlow.Infrastructure.DataAccess.Repositories;
+using CashFlow.Infrastructure.Extensions;
 using CashFlow.Infrastructure.Security.Tokens;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,11 +17,14 @@ public static class DependencyInjectionExtension
 {
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration, string connectionString)
     {
-        AddDbContext(services: services, connectionString: connectionString);
         AddRepositories(services: services);
         AddToken(services: services, configuration: configuration);
-
         services.AddScoped<IPasswordEncrypter, Security.Cryptography.BCrypt>();
+        
+        if (!configuration.IsTestEnvironment())
+        {
+            AddDbContext(services: services, connectionString: connectionString);
+        }
     }
 
     private static void AddToken(IServiceCollection services, IConfiguration configuration)
@@ -33,7 +37,7 @@ public static class DependencyInjectionExtension
 
     private static void AddDbContext(IServiceCollection services, string connectionString)
     { 
-        MySqlServerVersion serverVersion = new(version: new Version(major: 8,minor: 0,build: 46));
+        ServerVersion? serverVersion = ServerVersion.AutoDetect(connectionString: connectionString);
         services.AddDbContext<CashFlowDbContext>(optionsAction: config => config.UseMySql(connectionString: connectionString, serverVersion: serverVersion));
     }
     
