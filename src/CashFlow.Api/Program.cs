@@ -30,7 +30,7 @@ builder.Services.AddSwaggerGen(setupAction: config =>
     {
         {
             new OpenApiSecuritySchemeReference(referenceId: "Bearer", hostDocument: document),
-            new List<string>()
+            []
         }
     });
 });
