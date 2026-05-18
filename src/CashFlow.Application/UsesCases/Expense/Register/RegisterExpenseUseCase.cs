@@ -14,12 +14,12 @@ public class RegisterExpenseUseCase(IExpensesWriteRepository writeRepository, IU
     {
         Validate(request: request);
         
-        Domain.Enitites.Expense? entity = mapper.Map<Domain.Enitites.Expense>(source: request);
+        Domain.Enitites.Expense? expense = mapper.Map<Domain.Enitites.Expense>(source: request);
 
-        await writeRepository.Add(expense: entity);
+        await writeRepository.Add(expense: expense);
         await unitOfWork.Commit();
         
-        return mapper.Map<ResponseRegisterExpenseJson>(source: entity);
+        return mapper.Map<ResponseRegisterExpenseJson>(source: expense);
     }
 
     private void Validate(RequestRegisterExpenseJson request)
