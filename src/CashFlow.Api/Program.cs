@@ -1,7 +1,9 @@
 using System.Text;
 using CashFlow.Api.Filters;
 using CashFlow.Api.Middleware;
+using CashFlow.Api.Token;
 using CashFlow.Application;
+using CashFlow.Domain.Security.Tokens;
 using CashFlow.Infrastructure;
 using CashFlow.Infrastructure.DataAccess.Migrations;
 using CashFlow.Infrastructure.Extensions;
@@ -35,7 +37,6 @@ builder.Services.AddSwaggerGen(setupAction: config =>
     });
 });
 
-
 builder.Services.AddMvc(setupAction: options => options.Filters.Add(filterType: typeof(ExceptionFilter)));
 
 builder.Services.AddInfrastructure(configuration: builder.Configuration, connectionString: builder.Configuration.GetConnectionString(name: "connection")!);
@@ -55,6 +56,10 @@ builder.Services.AddAuthentication(configureOptions: config =>
         IssuerSigningKey = new SymmetricSecurityKey(key: Encoding.UTF8.GetBytes(s: builder.Configuration.GetValue<string>(key: "Settings:Jwt:SigningKey")!))
     };
 });
+
+builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
+builder.Services.AddHttpContextAccessor();
+
 
 WebApplication app = builder.Build();
 
