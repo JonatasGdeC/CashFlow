@@ -1,6 +1,7 @@
+using CashFlow.Domain.Enitites;
 using CashFlow.Domain.Security.Cryptography;
-using CashFlow.Domain.Security.Tokens;
 using CashFlow.Infrastructure.DataAccess;
+using CommomTestsUtilies.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,10 @@ namespace WebApi.Tests;
 
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
+    public User User { get; private set; } = default!;
+    public string UserPassword { get; private set; } = default!;
+
+    
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment(environment: "Test")
@@ -25,10 +30,18 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 
                 IServiceScope scope = services.BuildServiceProvider().CreateScope();
                 CashFlowDbContext dbContext = scope.ServiceProvider.GetRequiredService<CashFlowDbContext>();
-                IPasswordEncrypter passwordEncrypter = scope.ServiceProvider.GetRequiredService<IPasswordEncrypter>();
-                IAccessTokenGenerator accessTokenGenerator = scope.ServiceProvider.GetRequiredService<IAccessTokenGenerator>();
+                IPasswordEncrypter encrypter = scope.ServiceProvider.GetRequiredService<IPasswordEncrypter>();
 
-                // StartDatabase(dbContext, passwordEncrypter, accessTokenGenerator);
+                StartDataBase(dbContext: dbContext, encrypter: encrypter);
             });
+    }
+
+    private void StartDataBase(CashFlowDbContext dbContext, IPasswordEncrypter encrypter)
+    {
+        User = UserBuilder.Build();
+        UserPassword = User.Password;
+        User.Password = encrypter.Encrypt(password: User.Password);
+        dbContext.Users.Add(entity: User);
+        dbContext.SaveChanges();
     }
 }
