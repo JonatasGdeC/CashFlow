@@ -5,6 +5,7 @@ namespace CashFlow.Domain.Repositories.Expenses;
 public interface IExpensesWriteRepository
 {
     Task Add(Expense expense);
-    Task Delete(Guid id);
+    void Delete(Expense expense);
     void Update(Expense expense);
+    Task<Expense?> GetExpenseByIdToUpdate(Guid expenseId, Guid userId);
 }

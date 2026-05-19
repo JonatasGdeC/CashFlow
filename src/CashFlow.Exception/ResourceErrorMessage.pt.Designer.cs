@@ -105,6 +105,15 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Despesa não encontrada..
+        /// </summary>
+        internal static string EXPENSE_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("EXPENSE_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O tipo de pagamento informado é inválido..
         /// </summary>
         internal static string EXPENSE_PAYMENT_TYPE_INVALID {

@@ -75,4 +75,7 @@
     <data name="EMAIL_OR_PASSWORD_INVALID" xml:space="preserve">
         <value>E-mail ou senha inválidos.</value>
     </data>
+    <data name="EXPENSE_NOT_FOUND" xml:space="preserve">
+        <value>Despesa não encontrada.</value>
+    </data>
 </root>
