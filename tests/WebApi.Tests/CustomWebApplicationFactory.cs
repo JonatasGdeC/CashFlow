@@ -1,5 +1,6 @@
 using CashFlow.Domain.Enitites;
 using CashFlow.Domain.Security.Cryptography;
+using CashFlow.Domain.Security.Tokens;
 using CashFlow.Infrastructure.DataAccess;
 using CommomTestsUtilies.Entities;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
     public User User { get; private set; } = default!;
     public string UserPassword { get; private set; } = default!;
+    public string Token { get; private set; } = default!;
 
     
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -31,8 +33,10 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
                 IServiceScope scope = services.BuildServiceProvider().CreateScope();
                 CashFlowDbContext dbContext = scope.ServiceProvider.GetRequiredService<CashFlowDbContext>();
                 IPasswordEncrypter encrypter = scope.ServiceProvider.GetRequiredService<IPasswordEncrypter>();
+                IAccessTokenGenerator tokenGenerator = scope.ServiceProvider.GetRequiredService<IAccessTokenGenerator>();
 
                 StartDataBase(dbContext: dbContext, encrypter: encrypter);
+                Token = tokenGenerator.Generate(user: User);
             });
     }
 
