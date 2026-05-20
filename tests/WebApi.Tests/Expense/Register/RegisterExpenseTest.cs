@@ -1,7 +1,5 @@
 using System.Globalization;
 using System.Net;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Text.Json;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Response;
@@ -13,9 +11,8 @@ using WebApi.Tests.Utils;
 
 namespace WebApi.Tests.Expense.Register;
 
-public class RegisterExpenseTest(CustomWebApplicationFactory factory) : IClassFixture<CustomWebApplicationFactory>
+public class RegisterExpenseTest(CustomWebApplicationFactory factory) : CashFlowClassFixture(webApplicationFactory: factory)
 {
-    private readonly HttpClient _httpClient = factory.CreateClient();
     private const string Method = "api/Expenses";
     
     [Fact]
@@ -23,8 +20,7 @@ public class RegisterExpenseTest(CustomWebApplicationFactory factory) : IClassFi
     {
         RequestRegisterExpenseJson request = RequestRegisterExpenseJsonBuilder.Build();
 
-        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(scheme: "Bearer", parameter: factory.Token);
-        HttpResponseMessage result = await _httpClient.PostAsJsonAsync(requestUri: Method, value: request);
+        HttpResponseMessage result = await DoPost(requestUri: Method, request: request, token: factory.Token);
 
         result.StatusCode.Should().Be(expected: HttpStatusCode.Created);
         Stream body = await result.Content.ReadAsStreamAsync();
@@ -38,8 +34,8 @@ public class RegisterExpenseTest(CustomWebApplicationFactory factory) : IClassFi
     {
         RequestRegisterExpenseJson request = RequestRegisterExpenseJsonBuilder.Build();
         
-        HttpResponseMessage result = await _httpClient.PostAsJsonAsync(requestUri: Method, value: request);
-
+        HttpResponseMessage result = await DoPost(requestUri: Method, request: request);
+    
         result.StatusCode.Should().Be(expected: HttpStatusCode.Unauthorized);
     }
     
@@ -49,11 +45,9 @@ public class RegisterExpenseTest(CustomWebApplicationFactory factory) : IClassFi
     {
         RequestRegisterExpenseJson request = RequestRegisterExpenseJsonBuilder.Build();
         request.Title = string.Empty;
-
-        _httpClient.DefaultRequestHeaders.AcceptLanguage.Add(item: new StringWithQualityHeaderValue(value: culture));
-        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(scheme: "Bearer", parameter: factory.Token);
-        HttpResponseMessage result = await _httpClient.PostAsJsonAsync(requestUri: Method, value: request);
-
+    
+        HttpResponseMessage result = await DoPost(requestUri: Method, request: request, token: factory.Token, culture: culture);
+    
         result.StatusCode.Should().Be(expected: HttpStatusCode.BadRequest);
         
         Stream body = await result.Content.ReadAsStreamAsync();
