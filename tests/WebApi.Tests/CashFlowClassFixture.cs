@@ -55,6 +55,8 @@ public class CashFlowClassFixture(CustomWebApplicationFactory webApplicationFact
 
     private void AuthorizeRequest(string token)
     {
+        _httpClient.DefaultRequestHeaders.Authorization = null;
+
         if(string.IsNullOrWhiteSpace(value: token))
         {
             return;
