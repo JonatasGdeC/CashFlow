@@ -19,7 +19,7 @@ public class ExpensesReadRepositoryBuilder
     {
         if (expense is not null)
         {
-            _repository.Setup(expression: repository => repository.GetExpenseById(user.Id, expense.Id)).ReturnsAsync(value: expense);
+            _repository.Setup(expression: repository => repository.GetExpenseById(expenseId: expense.Id, userId: user.Id)).ReturnsAsync(value: expense);
         }
 
         return this;
