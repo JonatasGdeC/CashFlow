@@ -1,7 +1,5 @@
 using System.Globalization;
 using System.Net;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Text.Json;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Response;
@@ -14,9 +12,8 @@ using WebApi.Tests.Utils;
 
 namespace WebApi.Tests.Login;
 
-public class LoginTest(CustomWebApplicationFactory factory) : IClassFixture<CustomWebApplicationFactory>
+public class LoginTest(CustomWebApplicationFactory factory) : CashFlowClassFixture(webApplicationFactory: factory)
 {
-    private readonly HttpClient _httpClient = factory.CreateClient();
     private const string Method = "api/Login";
 
     [Fact]
@@ -28,7 +25,7 @@ public class LoginTest(CustomWebApplicationFactory factory) : IClassFixture<Cust
             Password = factory.UserPassword
         };
 
-        HttpResponseMessage response = await _httpClient.PostAsJsonAsync(requestUri: Method, value: request);
+        HttpResponseMessage response = await DoPost(requestUri: Method, request: request);
 
         response.StatusCode.Should().Be(expected: HttpStatusCode.OK);
 
@@ -51,8 +48,7 @@ public class LoginTest(CustomWebApplicationFactory factory) : IClassFixture<Cust
             Password = user.Password
         };
         
-        _httpClient.DefaultRequestHeaders.AcceptLanguage.Add(item: new StringWithQualityHeaderValue(value: culture));
-        HttpResponseMessage response = await _httpClient.PostAsJsonAsync(requestUri: Method, value: request);
+        HttpResponseMessage response = await DoPost(requestUri: Method, request: request, culture: culture);
         
         response.StatusCode.Should().Be(expected: HttpStatusCode.Unauthorized);
     

@@ -12,9 +12,10 @@ namespace WebApi.Tests;
 
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
-    public User User { get; private set; } = default!;
-    public string UserPassword { get; private set; } = default!;
-    public string Token { get; private set; } = default!;
+    public User User { get; private set; } = null!;
+    public string UserPassword { get; private set; } = null!;
+    public string Token { get; private set; } = null!;
+    public CashFlow.Domain.Enitites.Expense Expense { get; private set; } = null!;
 
     
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -42,10 +43,22 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 
     private void StartDataBase(CashFlowDbContext dbContext, IPasswordEncrypter encrypter)
     {
+        AddUser(dbContext: dbContext, encrypter: encrypter);
+        AddExpense(dbContext: dbContext);
+        dbContext.SaveChanges();
+    }
+
+    private void AddUser(CashFlowDbContext dbContext, IPasswordEncrypter encrypter)
+    {
         User = UserBuilder.Build();
         UserPassword = User.Password;
         User.Password = encrypter.Encrypt(password: User.Password);
         dbContext.Users.Add(entity: User);
-        dbContext.SaveChanges();
+    }
+
+    private void AddExpense(CashFlowDbContext dbContext)
+    {
+        Expense = ExpenseBuilder.Build(user: User);
+        dbContext.Expenses.Add(entity: Expense);
     }
 }
