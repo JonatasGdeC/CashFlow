@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices.JavaScript;
 using CashFlow.Communication.Requests;
 using CashFlow.Domain.Enitites;
 using CashFlow.Domain.Repositories.Expenses;
@@ -13,10 +12,9 @@ internal class ExpensesesRepository(CashFlowDbContext context) : IExpensesWriteR
         await context.Expenses.AddAsync(entity: expense);
     }
 
-    public async Task Delete(Guid id)
+    public void Delete(Expense expense)
     {
-        Expense entity = await context.Expenses.FirstAsync(predicate: expense => expense.Id == id);
-        context.Expenses.Remove(entity: entity);
+        context.Expenses.Remove(entity: expense);
     }
 
     public void Update(Expense expense)
@@ -24,23 +22,30 @@ internal class ExpensesesRepository(CashFlowDbContext context) : IExpensesWriteR
         context.Expenses.Update(entity: expense);
     }
 
-    public async Task<List<Expense>?> GetAllExpenses()
+    public async Task<Expense?> GetExpenseByIdToUpdate(Guid expenseId, Guid userId)
     {
-        return await context.Expenses.AsNoTracking().ToListAsync();
+        return await context.Expenses.FirstOrDefaultAsync(predicate: expense => expense.Id == expenseId && expense.UserId == userId);
     }
 
-    public async Task<Expense?> GetExpenseById(Guid id)
+    public async Task<List<Expense>?> GetAllExpenses(Guid userId)
     {
-        return await context.Expenses.AsNoTracking().FirstOrDefaultAsync(predicate: expense => expense.Id == id);
+        return await context.Expenses.AsNoTracking().Where(predicate: expense => expense.UserId == userId).ToListAsync();
     }
 
-    public async Task<List<Expense>?> GetFilter(RequestInformationReportJson request)
+    public async Task<Expense?> GetExpenseById(Guid expenseId, Guid userId)
+    {
+        return await context.Expenses.AsNoTracking().FirstOrDefaultAsync(predicate: expense => expense.Id == expenseId && expense.UserId == userId);
+    }
+
+    public async Task<List<Expense>?> GetFilter(RequestInformationReportJson request, Guid userId)
     {
         DateTime startDate = new(year: request.Date.Year, month: request.Date.Month, day: 1);
         DateTime endDate = new(year: request.Date.Year, month: request.Date.Month, day: DateTime.DaysInMonth(year: request.Date.Year, month: request.Date.Month), hour: 23, minute: 59, second: 59);
 
         return await context.Expenses.AsNoTracking()
-            .Where(predicate: expense => expense.Date >= startDate && expense.Date <= endDate)
+            .Where(predicate: expense => expense.UserId == userId && 
+                                         expense.Date >= startDate && 
+                                         expense.Date <= endDate)
             .OrderBy(keySelector: expense => expense.Date).ThenBy(keySelector: expense => expense.Title).ToListAsync();
     }
 }

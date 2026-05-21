@@ -60,47 +60,11 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O título é obrigatório..
+        ///   Looks up a localized string similar to E-mail ou senha inválidos..
         /// </summary>
-        internal static string EXPENSE_TITLE_REQUIRED {
+        internal static string EMAIL_OR_PASSWORD_INVALID {
             get {
-                return ResourceManager.GetString("EXPENSE_TITLE_REQUIRED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to O titulo nao pode ter mais que 100 caracteres..
-        /// </summary>
-        internal static string EXPENSE_TITLE_MAXIMUM_LENGTH {
-            get {
-                return ResourceManager.GetString("EXPENSE_TITLE_MAXIMUM_LENGTH", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A descricao nao pode ter mais que 1000 caracteres..
-        /// </summary>
-        internal static string EXPENSE_DESCRIPTION_MAXIMUM_LENGTH {
-            get {
-                return ResourceManager.GetString("EXPENSE_DESCRIPTION_MAXIMUM_LENGTH", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A data e obrigatoria..
-        /// </summary>
-        internal static string EXPENSE_DATE_REQUIRED {
-            get {
-                return ResourceManager.GetString("EXPENSE_DATE_REQUIRED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A data nao pode ser futura..
-        /// </summary>
-        internal static string EXPENSE_DATE_CANNOT_BE_IN_THE_FUTURE {
-            get {
-                return ResourceManager.GetString("EXPENSE_DATE_CANNOT_BE_IN_THE_FUTURE", resourceCulture);
+                return ResourceManager.GetString("EMAIL_OR_PASSWORD_INVALID", resourceCulture);
             }
         }
         
@@ -114,11 +78,164 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O tipo de pagamento informado e invalido..
+        ///   Looks up a localized string similar to A data não pode ser futura..
+        /// </summary>
+        internal static string EXPENSE_DATE_CANNOT_BE_IN_THE_FUTURE {
+            get {
+                return ResourceManager.GetString("EXPENSE_DATE_CANNOT_BE_IN_THE_FUTURE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A data é obrigatória..
+        /// </summary>
+        internal static string EXPENSE_DATE_REQUIRED {
+            get {
+                return ResourceManager.GetString("EXPENSE_DATE_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A descrição não pode ter mais que 1000 caracteres..
+        /// </summary>
+        internal static string EXPENSE_DESCRIPTION_MAXIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("EXPENSE_DESCRIPTION_MAXIMUM_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Despesa não encontrada..
+        /// </summary>
+        internal static string EXPENSE_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("EXPENSE_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O tipo de pagamento informado é inválido..
         /// </summary>
         internal static string EXPENSE_PAYMENT_TYPE_INVALID {
             get {
                 return ResourceManager.GetString("EXPENSE_PAYMENT_TYPE_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O título não pode ter mais que 100 caracteres..
+        /// </summary>
+        internal static string EXPENSE_TITLE_MAXIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("EXPENSE_TITLE_MAXIMUM_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O título é obrigatório..
+        /// </summary>
+        internal static string EXPENSE_TITLE_REQUIRED {
+            get {
+                return ResourceManager.GetString("EXPENSE_TITLE_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Este e-mail já foi registrado..
+        /// </summary>
+        internal static string USER_EMAIL_ALREADY_EXIST {
+            get {
+                return ResourceManager.GetString("USER_EMAIL.ALREADY_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O e-mail é obrigatório..
+        /// </summary>
+        internal static string USER_EMAIL_REQUIRED {
+            get {
+                return ResourceManager.GetString("USER_EMAIL_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O e-mail informado não é válido..
+        /// </summary>
+        internal static string USER_EMAIL_VALID {
+            get {
+                return ResourceManager.GetString("USER_EMAIL_VALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O nome deve ter pelo menos 3 caracteres..
+        /// </summary>
+        internal static string USER_NAME_MINIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("USER_NAME_MINIMUM_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O nome é obrigatório..
+        /// </summary>
+        internal static string USER_NAME_REQUIRED {
+            get {
+                return ResourceManager.GetString("USER_NAME_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A senha deve ter pelo menos 8 caracteres..
+        /// </summary>
+        internal static string USER_PASSWORD_MINIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("USER_PASSWORD_MINIMUM_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A senha deve conter pelo menos uma letra minúscula..
+        /// </summary>
+        internal static string USER_PASSWORD_MUST_CONTAIN_LOWERCASE_LETTER {
+            get {
+                return ResourceManager.GetString("USER_PASSWORD_MUST_CONTAIN_LOWERCASE_LETTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A senha deve conter pelo menos um número..
+        /// </summary>
+        internal static string USER_PASSWORD_MUST_CONTAIN_NUMBER {
+            get {
+                return ResourceManager.GetString("USER_PASSWORD_MUST_CONTAIN_NUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A senha deve conter pelo menos um caractere especial..
+        /// </summary>
+        internal static string USER_PASSWORD_MUST_CONTAIN_SPECIAL_CHARACTER {
+            get {
+                return ResourceManager.GetString("USER_PASSWORD_MUST_CONTAIN_SPECIAL_CHARACTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A senha deve conter pelo menos uma letra maiúscula..
+        /// </summary>
+        internal static string USER_PASSWORD_MUST_CONTAIN_UPPERCASE_LETTER {
+            get {
+                return ResourceManager.GetString("USER_PASSWORD_MUST_CONTAIN_UPPERCASE_LETTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A senha é obrigatória..
+        /// </summary>
+        internal static string USER_PASSWORD_REQUIRED {
+            get {
+                return ResourceManager.GetString("USER_PASSWORD_REQUIRED", resourceCulture);
             }
         }
     }

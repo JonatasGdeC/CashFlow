@@ -5,7 +5,7 @@ namespace CashFlow.Domain.Repositories.Expenses;
 
 public interface IExpensesReadRepository
 {
-    Task<List<Expense>?> GetAllExpenses();
-    Task<Expense?> GetExpenseById(Guid id);
-    Task<List<Expense>?> GetFilter(RequestInformationReportJson request);
+    Task<List<Expense>?> GetAllExpenses(Guid userId);
+    Task<Expense?> GetExpenseById(Guid expenseId, Guid userId);
+    Task<List<Expense>?> GetFilter(RequestInformationReportJson request, Guid userId);
 }

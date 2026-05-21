@@ -39,4 +39,43 @@
     <data name="EXPENSE_PAYMENT_TYPE_INVALID" xml:space="preserve">
         <value>El tipo de pago informado no es v&#225;lido.</value>
     </data>
+    <data name="USER_NAME_REQUIRED" xml:space="preserve">
+        <value>El nombre es obligatorio.</value>
+    </data>
+    <data name="USER_NAME_MINIMUM_LENGTH" xml:space="preserve">
+        <value>El nombre debe tener al menos 3 caracteres.</value>
+    </data>
+    <data name="USER_EMAIL_REQUIRED" xml:space="preserve">
+        <value>El e-mail es obligatorio.</value>
+    </data>
+    <data name="USER_EMAIL_VALID" xml:space="preserve">
+        <value>El e-mail informado no es v&#225;lido.</value>
+    </data>
+    <data name="USER_PASSWORD_REQUIRED" xml:space="preserve">
+        <value>La contrase&#241;a es obligatoria.</value>
+    </data>
+    <data name="USER_PASSWORD_MINIMUM_LENGTH" xml:space="preserve">
+        <value>La contrase&#241;a debe tener al menos 8 caracteres.</value>
+    </data>
+    <data name="USER_PASSWORD_MUST_CONTAIN_LOWERCASE_LETTER" xml:space="preserve">
+        <value>La contrase&#241;a debe contener al menos una letra min&#250;scula.</value>
+    </data>
+    <data name="USER_PASSWORD_MUST_CONTAIN_UPPERCASE_LETTER" xml:space="preserve">
+        <value>La contrase&#241;a debe contener al menos una letra may&#250;scula.</value>
+    </data>
+    <data name="USER_PASSWORD_MUST_CONTAIN_NUMBER" xml:space="preserve">
+        <value>La contrase&#241;a debe contener al menos un n&#250;mero.</value>
+    </data>
+    <data name="USER_PASSWORD_MUST_CONTAIN_SPECIAL_CHARACTER" xml:space="preserve">
+        <value>La contrase&#241;a debe contener al menos un car&#225;cter especial.</value>
+    </data>
+    <data name="USER_EMAIL.ALREADY_EXIST" xml:space="preserve">
+        <value>Este e-mail ya está registrado.</value>
+    </data>
+    <data name="EMAIL_OR_PASSWORD_INVALID" xml:space="preserve">
+        <value>E-mail o contraseña incorrectos</value>
+    </data>
+    <data name="EXPENSE_NOT_FOUND" xml:space="preserve">
+        <value>Gasto no encontrado.</value>
+    </data>
 </root>

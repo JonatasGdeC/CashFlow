@@ -2,15 +2,18 @@ using CashFlow.Communication.Requests;
 using CashFlow.Domain.Enums;
 using CashFlow.Domain.Reports;
 using CashFlow.Domain.Repositories.Expenses;
+using CashFlow.Domain.Services.LoggedUser;
 using ClosedXML.Excel;
 
 namespace CashFlow.Application.UsesCases.Expense.Reports.Excel;
 
-public class GenerateExpensesReportExcelUseCase(IExpensesReadRepository readRepository) : IGenerateExpensesReportExcelUseCase
+public class GenerateExpensesReportExcelUseCase(IExpensesReadRepository readRepository, ILoggedUser loggedUser) : IGenerateExpensesReportExcelUseCase
 {
     public async Task<byte[]> Execute(RequestInformationReportJson request)
     {
-        List<Domain.Enitites.Expense>? response = await readRepository.GetFilter(request: request);
+        Domain.Enitites.User currentUser = await loggedUser.Get();
+        List<Domain.Enitites.Expense>? response = await readRepository.GetFilter(request: request, userId: currentUser.Id);
+        
         if (response is null || response.Count == 0)
         {
             return [];
