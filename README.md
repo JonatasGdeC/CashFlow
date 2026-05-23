@@ -118,24 +118,6 @@ Bearer seu-token-jwt
 
 Depois disso, os endpoints protegidos de usuario, despesas e relatorios poderao ser acessados.
 
-## Principais endpoints
-
-| Metodo | Rota | Descricao | Autenticacao |
-| --- | --- | --- | --- |
-| `POST` | `/api/User` | Cadastra um usuario | Nao |
-| `POST` | `/api/Login` | Realiza login e retorna token JWT | Nao |
-| `GET` | `/api/User` | Consulta o perfil do usuario autenticado | Sim |
-| `PUT` | `/api/User` | Atualiza o perfil do usuario autenticado | Sim |
-| `PUT` | `/api/User/change-password` | Altera a senha do usuario autenticado | Sim |
-| `DELETE` | `/api/User` | Remove a conta do usuario autenticado | Sim |
-| `POST` | `/api/Expenses` | Cadastra uma despesa | Sim |
-| `GET` | `/api/Expenses` | Lista as despesas | Sim |
-| `GET` | `/api/Expenses/{id}` | Busca uma despesa por id | Sim |
-| `PUT` | `/api/Expenses/{id}` | Atualiza uma despesa | Sim |
-| `DELETE` | `/api/Expenses/{id}` | Remove uma despesa | Sim |
-| `GET` | `/api/Report/pdf` | Gera relatorio em PDF | Sim |
-| `GET` | `/api/Report/excel` | Gera relatorio em Excel | Sim |
-
 ## Como executar os testes
 
 Execute todos os testes da solucao:
