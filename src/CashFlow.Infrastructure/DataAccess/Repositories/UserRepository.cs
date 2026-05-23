@@ -20,4 +20,14 @@ internal class UserRepository(CashFlowDbContext context)  : IUsersReadRepository
     {
         await context.Users.AddAsync(entity: user);
     }
+
+    public void Update(User user)
+    {
+        context.Users.Update(entity: user);
+    }
+
+    public void Delete(User user)
+    {
+        context.Users.Remove(entity: user);
+    }
 }

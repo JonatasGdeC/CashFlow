@@ -78,4 +78,7 @@
     <data name="EXPENSE_NOT_FOUND" xml:space="preserve">
         <value>Despesa não encontrada.</value>
     </data>
+    <data name="OLD_PASSWORD_INVALID" xml:space="preserve">
+        <value>Senha atual está incorreta.</value>
+    </data>
 </root>

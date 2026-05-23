@@ -141,6 +141,15 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Senha atual está incorreta..
+        /// </summary>
+        internal static string OLD_PASSWORD_INVALID {
+            get {
+                return ResourceManager.GetString("OLD_PASSWORD_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Este e-mail já foi registrado..
         /// </summary>
         internal static string USER_EMAIL_ALREADY_EXIST {

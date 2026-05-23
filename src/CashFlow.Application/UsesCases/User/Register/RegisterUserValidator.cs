@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace CashFlow.Application.UsesCases.User.Register;
 
-public class RegisterUserValidator : AbstractValidator<RequestRegisterUserJson>
+public class RegisterUserValidator : AbstractValidator<RequestUpdateUserJson>
 {
     public RegisterUserValidator()
     {
