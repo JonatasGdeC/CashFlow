@@ -8,6 +8,8 @@ using CashFlow.Infrastructure;
 using CashFlow.Infrastructure.DataAccess.Migrations;
 using CashFlow.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 
@@ -59,9 +61,19 @@ builder.Services.AddAuthentication(configureOptions: config =>
 
 builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
 builder.Services.AddHttpContextAccessor();
-
+builder.Services.AddHealthChecks();
 
 WebApplication app = builder.Build();
+
+app.MapHealthChecks(pattern: "/Health", options: new HealthCheckOptions
+{
+    AllowCachingResponses = false,
+    ResultStatusCodes =
+    {
+        [key: HealthStatus.Healthy] = StatusCodes.Status200OK,
+        [key: HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable,
+    }
+});
 
 app.UseAuthentication();
 app.UseAuthorization();
