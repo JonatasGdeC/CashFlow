@@ -15,6 +15,17 @@ using Microsoft.OpenApi;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args: args);
 
+builder.Services.AddCors(setupAction: options =>
+{
+    options.AddPolicy(name: "Frontend", configurePolicy: policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:5295")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(setupAction: config =>
@@ -64,6 +75,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddHealthChecks();
 
 WebApplication app = builder.Build();
+
+app.UseCors(policyName: "Frontend");
 
 app.MapHealthChecks(pattern: "/Health", options: new HealthCheckOptions
 {
