@@ -39,6 +39,24 @@
     <data name="EXPENSE_PAYMENT_TYPE_INVALID" xml:space="preserve">
         <value>O tipo de pagamento informado &#233; inv&#225;lido.</value>
     </data>
+    <data name="INCOME_TITLE_REQUIRED" xml:space="preserve">
+        <value>O t&#237;tulo &#233; obrigat&#243;rio.</value>
+    </data>
+    <data name="INCOME_TITLE_MAXIMUM_LENGTH" xml:space="preserve">
+        <value>O t&#237;tulo n&#227;o pode ter mais que 100 caracteres.</value>
+    </data>
+    <data name="INCOME_DESCRIPTION_MAXIMUM_LENGTH" xml:space="preserve">
+        <value>A descri&#231;&#227;o n&#227;o pode ter mais que 1000 caracteres.</value>
+    </data>
+    <data name="INCOME_DATE_REQUIRED" xml:space="preserve">
+        <value>A data &#233; obrigat&#243;ria.</value>
+    </data>
+    <data name="INCOME_DATE_CANNOT_BE_IN_THE_FUTURE" xml:space="preserve">
+        <value>A data n&#227;o pode ser futura.</value>
+    </data>
+    <data name="INCOME_AMOUNT_MUST_BE_GREATER_THAN_ZERO" xml:space="preserve">
+        <value>O valor deve ser maior que zero.</value>
+    </data>
     <data name="USER_NAME_REQUIRED" xml:space="preserve">
         <value>O nome &#233; obrigat&#243;rio.</value>
     </data>
@@ -77,6 +95,9 @@
     </data>
     <data name="EXPENSE_NOT_FOUND" xml:space="preserve">
         <value>Despesa não encontrada.</value>
+    </data>
+    <data name="INCOME_NOT_FOUND" xml:space="preserve">
+        <value>Receita não encontrada.</value>
     </data>
     <data name="OLD_PASSWORD_INVALID" xml:space="preserve">
         <value>Senha atual está incorreta.</value>

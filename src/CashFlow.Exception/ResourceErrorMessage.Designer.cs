@@ -139,6 +139,69 @@ namespace CashFlow.Exception {
                 return ResourceManager.GetString("EXPENSE_TITLE_REQUIRED", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The amount must be greater than zero..
+        /// </summary>
+        public static string INCOME_AMOUNT_MUST_BE_GREATER_THAN_ZERO {
+            get {
+                return ResourceManager.GetString("INCOME_AMOUNT_MUST_BE_GREATER_THAN_ZERO", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The date cannot be in the future..
+        /// </summary>
+        public static string INCOME_DATE_CANNOT_BE_IN_THE_FUTURE {
+            get {
+                return ResourceManager.GetString("INCOME_DATE_CANNOT_BE_IN_THE_FUTURE", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The date is required..
+        /// </summary>
+        public static string INCOME_DATE_REQUIRED {
+            get {
+                return ResourceManager.GetString("INCOME_DATE_REQUIRED", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The description cannot exceed 1000 characters..
+        /// </summary>
+        public static string INCOME_DESCRIPTION_MAXIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("INCOME_DESCRIPTION_MAXIMUM_LENGTH", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Income not found..
+        /// </summary>
+        public static string INCOME_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("INCOME_NOT_FOUND", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The title cannot exceed 100 characters..
+        /// </summary>
+        public static string INCOME_TITLE_MAXIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("INCOME_TITLE_MAXIMUM_LENGTH", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The title is required..
+        /// </summary>
+        public static string INCOME_TITLE_REQUIRED {
+            get {
+                return ResourceManager.GetString("INCOME_TITLE_REQUIRED", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to The current password is incorrect..
