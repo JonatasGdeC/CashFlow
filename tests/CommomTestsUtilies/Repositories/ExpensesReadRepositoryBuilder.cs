@@ -27,7 +27,7 @@ public class ExpensesReadRepositoryBuilder
 
     public ExpensesReadRepositoryBuilder FilterByMonth(User user, List<Expense> expenses)
     {
-        RequestInformationReportJson request = new()
+        RequestFilterJson request = new()
         {
             Date = It.IsAny<DateOnly>()
         };
