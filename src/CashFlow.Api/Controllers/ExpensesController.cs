@@ -1,6 +1,7 @@
 ﻿using CashFlow.Application.UsesCases.Expense.Delete;
 using CashFlow.Application.UsesCases.Expense.GetAll;
 using CashFlow.Application.UsesCases.Expense.GetById;
+using CashFlow.Application.UsesCases.Expense.GetDashboard;
 using CashFlow.Application.UsesCases.Expense.Register;
 using CashFlow.Application.UsesCases.Expense.Update;
 using CashFlow.Communication.Requests;
@@ -36,6 +37,15 @@ public class ExpensesController : ControllerBase
         }
 
         return NoContent();
+    }
+    
+    [HttpGet(template: "dashboard")]
+    [ProducesResponseType(type: typeof(ResponseDashboardJson), statusCode: StatusCodes.Status200OK)]
+    [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetDashboard([FromServices] IGetExpenseDashboard useCase)
+    {
+        ResponseDashboardJson response = await useCase.Execute();
+        return Ok(value: response);
     }
 
     [HttpGet]

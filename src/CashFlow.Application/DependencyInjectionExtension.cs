@@ -2,6 +2,7 @@ using CashFlow.Application.AutoMapper;
 using CashFlow.Application.UsesCases.Expense.Delete;
 using CashFlow.Application.UsesCases.Expense.GetAll;
 using CashFlow.Application.UsesCases.Expense.GetById;
+using CashFlow.Application.UsesCases.Expense.GetDashboard;
 using CashFlow.Application.UsesCases.Expense.Register;
 using CashFlow.Application.UsesCases.Expense.Reports.Excel;
 using CashFlow.Application.UsesCases.Expense.Reports.Pdf;
@@ -36,6 +37,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetByIdExpenseUseCase, GetByIdExpenseUseCase>();
         services.AddScoped<IDeleteExpenseUseCase, DeleteExpenseUseCase>();
         services.AddScoped<IUpdateExpenseUseCase, UpdateExpenseUseCase>();
+        services.AddScoped<IGetExpenseDashboard, GetExpenseDashboard>();
         
         services.AddScoped<IGenerateExpensesReportExcelUseCase, GenerateExpensesReportExcelUseCase>();
         services.AddScoped<IGenerateExpensesReportPdfUseCase, GenerateExpensesReportPdfUseCase>();
