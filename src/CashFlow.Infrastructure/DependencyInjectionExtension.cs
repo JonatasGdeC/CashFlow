@@ -1,5 +1,7 @@
 using CashFlow.Domain.Repositories;
+using CashFlow.Domain.Repositories.Categories;
 using CashFlow.Domain.Repositories.Expenses;
+using CashFlow.Domain.Repositories.Incomes;
 using CashFlow.Domain.Repositories.Users;
 using CashFlow.Domain.Security.Cryptography;
 using CashFlow.Domain.Security.Tokens;
@@ -49,10 +51,16 @@ public static class DependencyInjectionExtension
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         
-        services.AddScoped<IExpensesWriteRepository, ExpensesesRepository>();
         services.AddScoped<IExpensesReadRepository, ExpensesesRepository>();
+        services.AddScoped<IExpensesWriteRepository, ExpensesesRepository>();
         
         services.AddScoped<IUsersReadRepository, UserRepository>();
         services.AddScoped<IUsersWriteRepository, UserRepository>();
+        
+        services.AddScoped<ICategoriesReadRepository, CategoryRepository>();
+        services.AddScoped<ICategoriesWriteRepository, CategoryRepository>();
+        
+        services.AddScoped<IIncomesReadRepository, IncomeRepository>();
+        services.AddScoped<IIncomesWriteRepository, IncomeRepository>();
     }
 }
