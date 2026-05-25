@@ -1,5 +1,6 @@
 using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Categories;
+using CashFlow.Domain.Repositories.CategoriesGoals;
 using CashFlow.Domain.Repositories.Expenses;
 using CashFlow.Domain.Repositories.Incomes;
 using CashFlow.Domain.Repositories.Users;
@@ -62,5 +63,8 @@ public static class DependencyInjectionExtension
         
         services.AddScoped<IIncomesReadRepository, IncomeRepository>();
         services.AddScoped<IIncomesWriteRepository, IncomeRepository>();
+        
+        services.AddScoped<ICategoriesGoalsReadRepository, CategoryGoalRepository>();
+        services.AddScoped<ICategoriesGoalsWriteRepository, CategoryGoalRepository>();
     }
 }
