@@ -1,4 +1,14 @@
 using CashFlow.Application.AutoMapper;
+using CashFlow.Application.UsesCases.Category.Delete;
+using CashFlow.Application.UsesCases.Category.GetAll;
+using CashFlow.Application.UsesCases.Category.GetById;
+using CashFlow.Application.UsesCases.Category.Register;
+using CashFlow.Application.UsesCases.Category.Update;
+using CashFlow.Application.UsesCases.CategoryGoal.Delete;
+using CashFlow.Application.UsesCases.CategoryGoal.GetByCategoryId;
+using CashFlow.Application.UsesCases.CategoryGoal.GetById;
+using CashFlow.Application.UsesCases.CategoryGoal.Register;
+using CashFlow.Application.UsesCases.CategoryGoal.Update;
 using CashFlow.Application.UsesCases.Expense.Delete;
 using CashFlow.Application.UsesCases.Expense.GetAll;
 using CashFlow.Application.UsesCases.Expense.GetById;
@@ -54,6 +64,18 @@ public static class DependencyInjectionExtension
         services.AddScoped<IDeleteIncomeUseCase, DeleteIncomeUseCase>();
         services.AddScoped<IUpdateIncomeUseCase, UpdateIncomeUseCase>();
         services.AddScoped<IGetIncomeDashboard, GetIncomeDashboard>();
+
+        services.AddScoped<IRegisterCategoryUseCase, RegisterCategoryUseCase>();
+        services.AddScoped<IGetAllCategoryUseCase, GetAllCategoryUseCase>();
+        services.AddScoped<IGetByIdCategoryUseCase, GetByIdCategoryUseCase>();
+        services.AddScoped<IDeleteCategoryUseCase, DeleteCategoryUseCase>();
+        services.AddScoped<IUpdateCategoryUseCase, UpdateCategoryUseCase>();
+
+        services.AddScoped<IRegisterCategoryGoalUseCase, RegisterCategoryGoalUseCase>();
+        services.AddScoped<IGetByIdCategoryGoalUseCase, GetByIdCategoryGoalUseCase>();
+        services.AddScoped<IGetCategoryGoalByCategoryIdUseCase, GetCategoryGoalByCategoryIdUseCase>();
+        services.AddScoped<IDeleteCategoryGoalUseCase, DeleteCategoryGoalUseCase>();
+        services.AddScoped<IUpdateCategoryGoalUseCase, UpdateCategoryGoalUseCase>();
         
         services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
         services.AddScoped<IGetUserProfileUseCase, GetUserProfileUseCase>();

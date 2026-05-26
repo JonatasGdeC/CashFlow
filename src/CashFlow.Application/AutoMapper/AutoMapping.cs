@@ -17,6 +17,8 @@ public class AutoMapping : Profile
     {
         CreateMap<RequestRegisterExpenseJson, Expense>();
         CreateMap<RequestRegisterIncomeJson, Income>();
+        CreateMap<RequestRegisterCategoryJson, Category>();
+        CreateMap<RequestRegisterCategoryGoalJson, CategoryGoal>();
         
         CreateMap<RequestRegisterUserJson, User>().ForMember(destinationMember: dest => dest.Password, memberOptions: config => config.Ignore());
         CreateMap<RequestUpdateUserJson, User>();
@@ -30,6 +32,11 @@ public class AutoMapping : Profile
         CreateMap<Income, ResponseRegisterIncomeJson>();
         CreateMap<Income, ResponseIncomeShortJson>();
         CreateMap<Income, ResponseIncomeJson>();
+        CreateMap<Category, ResponseRegisterCategoryJson>();
+        CreateMap<Category, ResponseCategoryShortJson>();
+        CreateMap<Category, ResponseCategoryJson>();
+        CreateMap<CategoryGoal, ResponseRegisterCategoryGoalJson>();
+        CreateMap<CategoryGoal, ResponseCategoryGoalJson>();
         
         CreateMap<User, ResponseUserProfileJson>();
     }

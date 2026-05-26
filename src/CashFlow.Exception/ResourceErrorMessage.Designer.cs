@@ -60,6 +60,132 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category already exist..
+        /// </summary>
+        public static string CATEGORY_ALREADY_EXISTS {
+            get {
+                return ResourceManager.GetString("CATEGORY_ALREADY_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The color cannot exceed 20 characters..
+        /// </summary>
+        public static string CATEGORY_COLOR_MAXIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("CATEGORY_COLOR_MAXIMUM_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The color is required..
+        /// </summary>
+        public static string CATEGORY_COLOR_REQUIRED {
+            get {
+                return ResourceManager.GetString("CATEGORY_COLOR_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The description cannot exceed 1000 characters..
+        /// </summary>
+        public static string CATEGORY_DESCRIPTION_MAXIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("CATEGORY_DESCRIPTION_MAXIMUM_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The month is invalid..
+        /// </summary>
+        public static string CATEGORY_GOAL_MONTH_INVALID {
+            get {
+                return ResourceManager.GetString("CATEGORY_GOAL_MONTH_INVALID", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to A goal already exists for this category..
+        /// </summary>
+        public static string CATEGORY_GOAL_ALREADY_EXISTS {
+            get {
+                return ResourceManager.GetString("CATEGORY_GOAL_ALREADY_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category goal not found..
+        /// </summary>
+        public static string CATEGORY_GOAL_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("CATEGORY_GOAL_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The target amount must be greater than zero..
+        /// </summary>
+        public static string CATEGORY_GOAL_TARGET_AMOUNT_MUST_BE_GREATER_THAN_ZERO {
+            get {
+                return ResourceManager.GetString("CATEGORY_GOAL_TARGET_AMOUNT_MUST_BE_GREATER_THAN_ZERO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The year is invalid..
+        /// </summary>
+        public static string CATEGORY_GOAL_YEAR_INVALID {
+            get {
+                return ResourceManager.GetString("CATEGORY_GOAL_YEAR_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The category id is required..
+        /// </summary>
+        public static string CATEGORY_ID_REQUIRED {
+            get {
+                return ResourceManager.GetString("CATEGORY_ID_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name cannot exceed 100 characters..
+        /// </summary>
+        public static string CATEGORY_NAME_MAXIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("CATEGORY_NAME_MAXIMUM_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name is required..
+        /// </summary>
+        public static string CATEGORY_NAME_REQUIRED {
+            get {
+                return ResourceManager.GetString("CATEGORY_NAME_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category not found..
+        /// </summary>
+        public static string CATEGORY_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("CATEGORY_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The category type is invalid..
+        /// </summary>
+        public static string CATEGORY_TYPE_INVALID {
+            get {
+                return ResourceManager.GetString("CATEGORY_TYPE_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email or password invalid..
         /// </summary>
         public static string EMAIL_OR_PASSWORD_INVALID {
@@ -139,7 +265,7 @@ namespace CashFlow.Exception {
                 return ResourceManager.GetString("EXPENSE_TITLE_REQUIRED", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The amount must be greater than zero..
         /// </summary>
@@ -148,7 +274,7 @@ namespace CashFlow.Exception {
                 return ResourceManager.GetString("INCOME_AMOUNT_MUST_BE_GREATER_THAN_ZERO", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The date cannot be in the future..
         /// </summary>
@@ -157,7 +283,7 @@ namespace CashFlow.Exception {
                 return ResourceManager.GetString("INCOME_DATE_CANNOT_BE_IN_THE_FUTURE", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The date is required..
         /// </summary>
@@ -166,7 +292,7 @@ namespace CashFlow.Exception {
                 return ResourceManager.GetString("INCOME_DATE_REQUIRED", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The description cannot exceed 1000 characters..
         /// </summary>
@@ -175,7 +301,7 @@ namespace CashFlow.Exception {
                 return ResourceManager.GetString("INCOME_DESCRIPTION_MAXIMUM_LENGTH", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Income not found..
         /// </summary>
@@ -184,7 +310,7 @@ namespace CashFlow.Exception {
                 return ResourceManager.GetString("INCOME_NOT_FOUND", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The title cannot exceed 100 characters..
         /// </summary>
@@ -193,7 +319,7 @@ namespace CashFlow.Exception {
                 return ResourceManager.GetString("INCOME_TITLE_MAXIMUM_LENGTH", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The title is required..
         /// </summary>

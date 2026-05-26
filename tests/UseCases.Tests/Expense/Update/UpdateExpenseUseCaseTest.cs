@@ -2,6 +2,7 @@ using AutoMapper;
 using CashFlow.Application.UsesCases.Expense.Update;
 using CashFlow.Communication.Requests;
 using CashFlow.Domain.Repositories;
+using CashFlow.Domain.Repositories.Categories;
 using CashFlow.Domain.Repositories.Expenses;
 using CashFlow.Domain.Services.LoggedUser;
 using CashFlow.Exception;
@@ -13,6 +14,7 @@ using CommomTestsUtilies.Repositories;
 using CommomTestsUtilies.Requests;
 using FluentAssertions;
 using FluentAssertions.Specialized;
+using Moq;
 
 namespace UseCases.Tests.Expense.Update;
 
@@ -70,10 +72,16 @@ public class UpdateExpenseUseCaseTest
     private UpdateExpenseUseCase CreateUseCase(CashFlow.Domain.Enitites.User user, CashFlow.Domain.Enitites.Expense? expense = null)
     {
         IExpensesWriteRepository repository = new ExpensesWriteRepositoryBuilder().GetById(user: user, expense: expense).Build();
+        ICategoriesReadRepository categoriesReadRepository = new Mock<ICategoriesReadRepository>().Object;
         IUnitOfWork unitOfWork = UnitOfWorkBuilder.Build();
         IMapper mapper = MapperBuilder.Build();
         ILoggedUser loggedUser = LoggedUserBuilder.Build(user: user);
 
-        return new UpdateExpenseUseCase(writeRepository: repository, unitOfWork: unitOfWork, mapper: mapper, loggedUser: loggedUser);
+        return new UpdateExpenseUseCase(
+            writeRepository: repository,
+            categoriesReadRepository: categoriesReadRepository,
+            unitOfWork: unitOfWork,
+            mapper: mapper,
+            loggedUser: loggedUser);
     }
 }

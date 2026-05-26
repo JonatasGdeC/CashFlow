@@ -11,6 +11,11 @@ public class CategoryGoalRepository(CashFlowDbContext context) : ICategoriesGoal
         return await context.CategoriesGoals.AsNoTracking().FirstOrDefaultAsync(predicate: c => c.CategoryId == categoryId && c.UserId == userId);
     }
 
+    public async Task<CategoryGoal?> GetCategoryGoalById(Guid categoryGoalId, Guid userId)
+    {
+        return await context.CategoriesGoals.AsNoTracking().FirstOrDefaultAsync(predicate: c => c.Id == categoryGoalId && c.UserId == userId);
+    }
+
     public async Task Add(CategoryGoal categoryGoal)
     {
         await context.CategoriesGoals.AddAsync(entity: categoryGoal);
