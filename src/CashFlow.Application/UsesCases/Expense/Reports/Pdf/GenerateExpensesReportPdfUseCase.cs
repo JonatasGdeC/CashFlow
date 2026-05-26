@@ -23,7 +23,7 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
         GlobalFontSettings.FontResolver = new ExpenseReportFontResolver();
     }
 
-    public async Task<byte[]> Execute(RequestInformationReportJson request)
+    public async Task<byte[]> Execute(RequestFilterJson request)
     {
         Domain.Enitites.User currentUser = await _loggedUser.Get();
         List<Domain.Enitites.Expense>? response = await _readRepository.GetFilter(request: request, userId: currentUser.Id);
@@ -51,7 +51,7 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
         return RenderDocument(document: document);
     }
 
-    private Document CreateDocument(RequestInformationReportJson request)
+    private Document CreateDocument(RequestFilterJson request)
     {
         Document document = new();
 
@@ -79,7 +79,7 @@ public class GenerateExpensesReportPdfUseCase : IGenerateExpensesReportPdfUseCas
         return section;
     }
 
-    private void TotalSpendSection(Section section, RequestInformationReportJson request, List<Domain.Enitites.Expense> response)
+    private void TotalSpendSection(Section section, RequestFilterJson request, List<Domain.Enitites.Expense> response)
     {
         Paragraph paragraph = section.AddParagraph();
         string text = $"{ResourceReportGenerationMessage.EXPENSES_FOR} {request.Date.ToString(format: "Y")}";

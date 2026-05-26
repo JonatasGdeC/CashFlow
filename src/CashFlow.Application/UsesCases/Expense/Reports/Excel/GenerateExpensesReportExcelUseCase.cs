@@ -9,7 +9,7 @@ namespace CashFlow.Application.UsesCases.Expense.Reports.Excel;
 
 public class GenerateExpensesReportExcelUseCase(IExpensesReadRepository readRepository, ILoggedUser loggedUser) : IGenerateExpensesReportExcelUseCase
 {
-    public async Task<byte[]> Execute(RequestInformationReportJson request)
+    public async Task<byte[]> Execute(RequestFilterJson request)
     {
         Domain.Enitites.User currentUser = await loggedUser.Get();
         List<Domain.Enitites.Expense>? response = await readRepository.GetFilter(request: request, userId: currentUser.Id);

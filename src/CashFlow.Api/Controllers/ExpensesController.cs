@@ -1,6 +1,7 @@
 ﻿using CashFlow.Application.UsesCases.Expense.Delete;
 using CashFlow.Application.UsesCases.Expense.GetAll;
 using CashFlow.Application.UsesCases.Expense.GetById;
+using CashFlow.Application.UsesCases.Expense.GetDashboard;
 using CashFlow.Application.UsesCases.Expense.Register;
 using CashFlow.Application.UsesCases.Expense.Update;
 using CashFlow.Communication.Requests;
@@ -37,6 +38,15 @@ public class ExpensesController : ControllerBase
 
         return NoContent();
     }
+    
+    [HttpGet(template: "dashboard")]
+    [ProducesResponseType(type: typeof(ResponseDashboardJson), statusCode: StatusCodes.Status200OK)]
+    [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetDashboard([FromServices] IGetExpenseDashboard useCase)
+    {
+        ResponseDashboardJson response = await useCase.Execute();
+        return Ok(value: response);
+    }
 
     [HttpGet]
     [Route(template: "{id}")]
@@ -63,10 +73,7 @@ public class ExpensesController : ControllerBase
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
     [ProducesResponseType(type: typeof(ResponseErrorJson), statusCode: StatusCodes.Status400BadRequest)]
     [ProducesResponseType(type: typeof(ResponseErrorJson), statusCode: StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Update(
-        [FromServices] IUpdateExpenseUseCase useCase,
-        [FromRoute] Guid id,
-        [FromBody] RequestRegisterExpenseJson request)
+    public async Task<IActionResult> Update([FromServices] IUpdateExpenseUseCase useCase, [FromRoute] Guid id, [FromBody] RequestRegisterExpenseJson request)
     {
         await useCase.Execute(id: id, request: request);
         return NoContent();

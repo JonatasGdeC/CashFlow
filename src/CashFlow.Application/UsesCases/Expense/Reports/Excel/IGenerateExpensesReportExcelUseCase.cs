@@ -4,5 +4,5 @@ namespace CashFlow.Application.UsesCases.Expense.Reports.Excel;
 
 public interface IGenerateExpensesReportExcelUseCase
 {
-    Task<byte[]> Execute(RequestInformationReportJson request);
+    Task<byte[]> Execute(RequestFilterJson request);
 }

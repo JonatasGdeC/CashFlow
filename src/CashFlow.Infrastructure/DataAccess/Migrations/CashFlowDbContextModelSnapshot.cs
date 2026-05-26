@@ -22,6 +22,66 @@ namespace CashFlow.Infrastructure.DataAccess.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
+            modelBuilder.Entity("CashFlow.Domain.Enitites.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("CashFlow.Domain.Enitites.CategoryGoal", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<int>("Month")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TargetAmount")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CategoriesGoals");
+                });
+
             modelBuilder.Entity("CashFlow.Domain.Enitites.Expense", b =>
                 {
                     b.Property<Guid>("Id")
@@ -30,6 +90,9 @@ namespace CashFlow.Infrastructure.DataAccess.Migrations
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(65,30)");
+
+                    b.Property<Guid?>("CategoryId")
+                        .HasColumnType("char(36)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
@@ -49,9 +112,45 @@ namespace CashFlow.Infrastructure.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Expenses");
+                });
+
+            modelBuilder.Entity("CashFlow.Domain.Enitites.Income", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<Guid?>("CategoryId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Incomes");
                 });
 
             modelBuilder.Entity("CashFlow.Domain.Enitites.User", b =>
@@ -77,16 +176,69 @@ namespace CashFlow.Infrastructure.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("CashFlow.Domain.Enitites.Expense", b =>
+            modelBuilder.Entity("CashFlow.Domain.Enitites.Category", b =>
                 {
                     b.HasOne("CashFlow.Domain.Enitites.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("CashFlow.Domain.Enitites.CategoryGoal", b =>
+                {
+                    b.HasOne("CashFlow.Domain.Enitites.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CashFlow.Domain.Enitites.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("CashFlow.Domain.Enitites.Expense", b =>
+                {
+                    b.HasOne("CashFlow.Domain.Enitites.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+
+                    b.HasOne("CashFlow.Domain.Enitites.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("CashFlow.Domain.Enitites.Income", b =>
+                {
+                    b.HasOne("CashFlow.Domain.Enitites.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+
+                    b.HasOne("CashFlow.Domain.Enitites.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
 
                     b.Navigation("User");
                 });

@@ -39,6 +39,57 @@
     <data name="EXPENSE_PAYMENT_TYPE_INVALID" xml:space="preserve">
         <value>El tipo de pago informado no es v&#225;lido.</value>
     </data>
+    <data name="INCOME_TITLE_REQUIRED" xml:space="preserve">
+        <value>El t&#237;tulo es obligatorio.</value>
+    </data>
+    <data name="INCOME_TITLE_MAXIMUM_LENGTH" xml:space="preserve">
+        <value>El t&#237;tulo no puede superar los 100 caracteres.</value>
+    </data>
+    <data name="INCOME_DESCRIPTION_MAXIMUM_LENGTH" xml:space="preserve">
+        <value>La descripci&#243;n no puede superar los 1000 caracteres.</value>
+    </data>
+    <data name="INCOME_DATE_REQUIRED" xml:space="preserve">
+        <value>La fecha es obligatoria.</value>
+    </data>
+    <data name="INCOME_DATE_CANNOT_BE_IN_THE_FUTURE" xml:space="preserve">
+        <value>La fecha no puede estar en el futuro.</value>
+    </data>
+    <data name="INCOME_AMOUNT_MUST_BE_GREATER_THAN_ZERO" xml:space="preserve">
+        <value>El importe debe ser mayor que cero.</value>
+    </data>
+    <data name="CATEGORY_NAME_REQUIRED" xml:space="preserve">
+        <value>El nombre es obligatorio.</value>
+    </data>
+    <data name="CATEGORY_NAME_MAXIMUM_LENGTH" xml:space="preserve">
+        <value>El nombre no puede superar los 100 caracteres.</value>
+    </data>
+    <data name="CATEGORY_DESCRIPTION_MAXIMUM_LENGTH" xml:space="preserve">
+        <value>La descripci&#243;n no puede superar los 1000 caracteres.</value>
+    </data>
+    <data name="CATEGORY_COLOR_REQUIRED" xml:space="preserve">
+        <value>El color es obligatorio.</value>
+    </data>
+    <data name="CATEGORY_COLOR_MAXIMUM_LENGTH" xml:space="preserve">
+        <value>El color no puede superar los 20 caracteres.</value>
+    </data>
+    <data name="CATEGORY_TYPE_INVALID" xml:space="preserve">
+        <value>El tipo de categor&#237;a informado no es v&#225;lido.</value>
+    </data>
+    <data name="CATEGORY_GOAL_TARGET_AMOUNT_MUST_BE_GREATER_THAN_ZERO" xml:space="preserve">
+        <value>El importe objetivo debe ser mayor que cero.</value>
+    </data>
+    <data name="CATEGORY_GOAL_MONTH_INVALID" xml:space="preserve">
+        <value>El mes informado no es v&#225;lido.</value>
+    </data>
+    <data name="CATEGORY_GOAL_YEAR_INVALID" xml:space="preserve">
+        <value>El a&#241;o informado no es v&#225;lido.</value>
+    </data>
+    <data name="CATEGORY_GOAL_ALREADY_EXISTS" xml:space="preserve">
+        <value>Ya existe una meta para esta categor&#237;a.</value>
+    </data>
+    <data name="CATEGORY_ID_REQUIRED" xml:space="preserve">
+        <value>El id de la categor&#237;a es obligatorio.</value>
+    </data>
     <data name="USER_NAME_REQUIRED" xml:space="preserve">
         <value>El nombre es obligatorio.</value>
     </data>
@@ -78,7 +129,19 @@
     <data name="EXPENSE_NOT_FOUND" xml:space="preserve">
         <value>Gasto no encontrado.</value>
     </data>
+    <data name="INCOME_NOT_FOUND" xml:space="preserve">
+        <value>Ingreso no encontrado.</value>
+    </data>
+    <data name="CATEGORY_NOT_FOUND" xml:space="preserve">
+        <value>Categor&#237;a no encontrada.</value>
+    </data>
+    <data name="CATEGORY_GOAL_NOT_FOUND" xml:space="preserve">
+        <value>Meta de categor&#237;a no encontrada.</value>
+    </data>
     <data name="OLD_PASSWORD_INVALID" xml:space="preserve">
         <value>La contraseña actual es incorrecta.</value>
+    </data>
+    <data name="CATEGORY_ALREADY_EXISTS" xml:space="preserve">
+        <value>La categoría ya existe.</value>
     </data>
 </root>

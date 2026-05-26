@@ -15,7 +15,7 @@ public class ReportController : ControllerBase
     [HttpGet(template: "excel")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetExcel([FromServices] IGenerateExpensesReportExcelUseCase useCase, [FromQuery] RequestInformationReportJson request)
+    public async Task<IActionResult> GetExcel([FromServices] IGenerateExpensesReportExcelUseCase useCase, [FromQuery] RequestFilterJson request)
     {
         byte[] file = await useCase.Execute(request: request);
         
@@ -30,7 +30,7 @@ public class ReportController : ControllerBase
     [HttpGet(template: "pdf")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetPdf([FromServices] IGenerateExpensesReportPdfUseCase useCase, [FromQuery] RequestInformationReportJson request)
+    public async Task<IActionResult> GetPdf([FromServices] IGenerateExpensesReportPdfUseCase useCase, [FromQuery] RequestFilterJson request)
     {
         byte[] file = await useCase.Execute(request: request);
         

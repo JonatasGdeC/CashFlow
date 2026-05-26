@@ -11,6 +11,9 @@ public class Expense
     public decimal Amount { get; set; }
     public PaymentType PaymentType { get; set; }
     
+    public Guid? CategoryId { get; set; }
+    public Category? Category { get; set; }
+    
     public Guid UserId { get; set; }
     public required User User { get; set; }
 }

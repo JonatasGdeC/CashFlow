@@ -60,6 +60,123 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categoria já registrada..
+        /// </summary>
+        internal static string CATEGORY_ALREADY_EXISTS {
+            get {
+                return ResourceManager.GetString("CATEGORY_ALREADY_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A cor não pode ter mais que 20 caracteres..
+        /// </summary>
+        internal static string CATEGORY_COLOR_MAXIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("CATEGORY_COLOR_MAXIMUM_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A cor é obrigatória..
+        /// </summary>
+        internal static string CATEGORY_COLOR_REQUIRED {
+            get {
+                return ResourceManager.GetString("CATEGORY_COLOR_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A descrição não pode ter mais que 1000 caracteres..
+        /// </summary>
+        internal static string CATEGORY_DESCRIPTION_MAXIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("CATEGORY_DESCRIPTION_MAXIMUM_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O mês informado é inválido..
+        /// </summary>
+        internal static string CATEGORY_GOAL_MONTH_INVALID {
+            get {
+                return ResourceManager.GetString("CATEGORY_GOAL_MONTH_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meta da categoria não encontrada..
+        /// </summary>
+        internal static string CATEGORY_GOAL_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("CATEGORY_GOAL_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O valor da meta deve ser maior que zero..
+        /// </summary>
+        internal static string CATEGORY_GOAL_TARGET_AMOUNT_MUST_BE_GREATER_THAN_ZERO {
+            get {
+                return ResourceManager.GetString("CATEGORY_GOAL_TARGET_AMOUNT_MUST_BE_GREATER_THAN_ZERO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O ano informado é inválido..
+        /// </summary>
+        internal static string CATEGORY_GOAL_YEAR_INVALID {
+            get {
+                return ResourceManager.GetString("CATEGORY_GOAL_YEAR_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O id da categoria é obrigatório..
+        /// </summary>
+        internal static string CATEGORY_ID_REQUIRED {
+            get {
+                return ResourceManager.GetString("CATEGORY_ID_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O nome não pode ter mais que 100 caracteres..
+        /// </summary>
+        internal static string CATEGORY_NAME_MAXIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("CATEGORY_NAME_MAXIMUM_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O nome é obrigatório..
+        /// </summary>
+        internal static string CATEGORY_NAME_REQUIRED {
+            get {
+                return ResourceManager.GetString("CATEGORY_NAME_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categoria não encontrada..
+        /// </summary>
+        internal static string CATEGORY_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("CATEGORY_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O tipo da categoria informado é inválido..
+        /// </summary>
+        internal static string CATEGORY_TYPE_INVALID {
+            get {
+                return ResourceManager.GetString("CATEGORY_TYPE_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail ou senha inválidos..
         /// </summary>
         internal static string EMAIL_OR_PASSWORD_INVALID {
@@ -137,6 +254,69 @@ namespace CashFlow.Exception {
         internal static string EXPENSE_TITLE_REQUIRED {
             get {
                 return ResourceManager.GetString("EXPENSE_TITLE_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O valor deve ser maior que zero..
+        /// </summary>
+        internal static string INCOME_AMOUNT_MUST_BE_GREATER_THAN_ZERO {
+            get {
+                return ResourceManager.GetString("INCOME_AMOUNT_MUST_BE_GREATER_THAN_ZERO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A data não pode ser futura..
+        /// </summary>
+        internal static string INCOME_DATE_CANNOT_BE_IN_THE_FUTURE {
+            get {
+                return ResourceManager.GetString("INCOME_DATE_CANNOT_BE_IN_THE_FUTURE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A data é obrigatória..
+        /// </summary>
+        internal static string INCOME_DATE_REQUIRED {
+            get {
+                return ResourceManager.GetString("INCOME_DATE_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A descrição não pode ter mais que 1000 caracteres..
+        /// </summary>
+        internal static string INCOME_DESCRIPTION_MAXIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("INCOME_DESCRIPTION_MAXIMUM_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Receita não encontrada..
+        /// </summary>
+        internal static string INCOME_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("INCOME_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O título não pode ter mais que 100 caracteres..
+        /// </summary>
+        internal static string INCOME_TITLE_MAXIMUM_LENGTH {
+            get {
+                return ResourceManager.GetString("INCOME_TITLE_MAXIMUM_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O título é obrigatório..
+        /// </summary>
+        internal static string INCOME_TITLE_REQUIRED {
+            get {
+                return ResourceManager.GetString("INCOME_TITLE_REQUIRED", resourceCulture);
             }
         }
         
