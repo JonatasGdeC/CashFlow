@@ -10,4 +10,5 @@ public class ResponseExpenseJson
     public DateTime Date { get; set; }
     public decimal Amount { get; set; }
     public PaymentType PaymentType { get; set; }
+    public Guid? CategoryId { get; set; }
 }
