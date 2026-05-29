@@ -125,11 +125,10 @@ Os testes de API usam configuracao de ambiente de teste com banco em memoria.
 
 ## Observações para avaliação
 
-- A solucao principal e `CashFlow.sln`.
-- O projeto executavel da API e `src/CashFlow.Api/CashFlow.Api.csproj`.
-- O banco utilizado em desenvolvimento e MySQL.
-- As migrations estao em `src/CashFlow.Infrastructure/DataAccess/Migrations`.
-- A documentacao Swagger fica disponivel apenas em ambiente de desenvolvimento.
+- O projeto executável da API é `src/CashFlow.Api/CashFlow.Api.csproj`.
+- O banco utilizado em desenvolvimento é MySQL.
+- As migrations estão em `src/CashFlow.Infrastructure/DataAccess/Migrations`.
+- A documentação Swagger fica disponível apenas em ambiente de desenvolvimento.
 - A API está hospedada no plano gratuito da Render.
 - A primeira requisição pode demorar alguns segundos devido ao cold start.
 
