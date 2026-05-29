@@ -1,4 +1,6 @@
-﻿using CashFlow.Application.UsesCases.Expense.Delete;
+﻿using System;
+using System.Threading.Tasks;
+using CashFlow.Application.UsesCases.Expense.Delete;
 using CashFlow.Application.UsesCases.Expense.GetAll;
 using CashFlow.Application.UsesCases.Expense.GetById;
 using CashFlow.Application.UsesCases.Expense.GetDashboard;
@@ -7,6 +9,7 @@ using CashFlow.Application.UsesCases.Expense.Update;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Response;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlow.Api.Controllers;
