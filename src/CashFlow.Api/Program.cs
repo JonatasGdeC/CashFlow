@@ -15,27 +15,39 @@ using Microsoft.OpenApi;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args: args);
 
+const string CorsPolicyName = "Frontend";
+
 builder.Services.AddCors(setupAction: options =>
 {
-    options.AddPolicy(name: "Frontend", configurePolicy: policy =>
+    options.AddPolicy(name: CorsPolicyName, configurePolicy: policy =>
     {
         policy
-            .WithOrigins("http://localhost:5295", "https://cash-flow-jgc.vercel.app")
+            .WithOrigins(
+                "http://localhost:5295",
+                "https://cash-flow-jgc.vercel.app"
+            )
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(configure: options =>
+{
+    options.Filters.Add(filterType: typeof(ExceptionFilter));
+});
+
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(setupAction: config =>
 {
     config.AddSecurityDefinition(name: "Bearer", securityScheme: new OpenApiSecurityScheme
     {
         Name = "Authorization",
-        Description = @"JWT Authorization header using the Bearer scheme.
-                      Enter 'Bearer' [space] and then your token in the text input below.
-                      Example: 'Bearer 12345abcdef'",
+        Description = """
+                      JWT Authorization header using the Bearer scheme.
+                      Enter 'Bearer' [space] and then your token.
+                      Example: 'Bearer 12345abcdef'
+                      """,
         In = ParameterLocation.Header,
         Scheme = "Bearer",
         Type = SecuritySchemeType.ApiKey
@@ -50,23 +62,28 @@ builder.Services.AddSwaggerGen(setupAction: config =>
     });
 });
 
-builder.Services.AddMvc(setupAction: options => options.Filters.Add(filterType: typeof(ExceptionFilter)));
+builder.Services.AddInfrastructure(
+    configuration: builder.Configuration,
+    connectionString: builder.Configuration.GetConnectionString(name: "connection")!
+);
 
-builder.Services.AddInfrastructure(configuration: builder.Configuration, connectionString: builder.Configuration.GetConnectionString(name: "connection")!);
 builder.Services.AddApplication();
 
-builder.Services.AddAuthentication(configureOptions: config =>
+builder.Services.AddAuthentication(configureOptions: options =>
 {
-    config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(configureOptions: config =>
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(configureOptions: options =>
 {
-    config.TokenValidationParameters = new TokenValidationParameters
+    string signingKey = builder.Configuration.GetValue<string>(key: "Settings:Jwt:SigningKey")!;
+
+    options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = false,
         ValidateAudience = false,
         ClockSkew = TimeSpan.Zero,
-        IssuerSigningKey = new SymmetricSecurityKey(key: Encoding.UTF8.GetBytes(s: builder.Configuration.GetValue<string>(key: "Settings:Jwt:SigningKey")!))
+        IssuerSigningKey = new SymmetricSecurityKey(key: Encoding.UTF8.GetBytes(s: signingKey))
     };
 });
 
@@ -76,7 +93,22 @@ builder.Services.AddHealthChecks();
 
 WebApplication app = builder.Build();
 
-app.UseCors(policyName: "Frontend");
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseCors(policyName: CorsPolicyName);
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseMiddleware<CultureMiddleware>();
 
 app.MapHealthChecks(pattern: "/Health", options: new HealthCheckOptions
 {
@@ -88,29 +120,20 @@ app.MapHealthChecks(pattern: "/Health", options: new HealthCheckOptions
     }
 });
 
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.UseMiddleware<CultureMiddleware>();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(); 
-}
-
-app.UseHttpsRedirection();
 app.MapControllers();
 
 if (!builder.Configuration.IsTestEnvironment())
 {
-    await MigrateDatabase();  
-};
+    await MigrateDatabaseAsync();
+}
 
-app.Run();
+await app.RunAsync();
 
-async Task MigrateDatabase()
+async Task MigrateDatabaseAsync()
 {
     await using AsyncServiceScope scope = app.Services.CreateAsyncScope();
-    await DataBaseMigration.MigrateDatabase(serviceProvider: scope.ServiceProvider);
+
+    await DataBaseMigration.MigrateDatabase(
+        serviceProvider: scope.ServiceProvider
+    );
 }
