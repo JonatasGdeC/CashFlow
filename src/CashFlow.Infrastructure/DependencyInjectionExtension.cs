@@ -44,8 +44,10 @@ public static class DependencyInjectionExtension
 
     private static void AddDbContext(IServiceCollection services, string connectionString)
     { 
-        ServerVersion? serverVersion = ServerVersion.AutoDetect(connectionString: connectionString);
-        services.AddDbContext<CashFlowDbContext>(optionsAction: config => config.UseMySql(connectionString: connectionString, serverVersion: serverVersion));
+        MySqlServerVersion serverVersion = new(version: new Version(major: 8, minor: 0, build: 11));
+        
+        services.AddDbContext<CashFlowDbContext>(optionsAction: options =>
+            options.UseMySql(connectionString: connectionString, serverVersion: serverVersion));
     }
     
     private static void AddRepositories(IServiceCollection services)
