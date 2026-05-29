@@ -20,7 +20,7 @@ builder.Services.AddCors(setupAction: options =>
     options.AddPolicy(name: "Frontend", configurePolicy: policy =>
     {
         policy
-            .WithOrigins("http://localhost:5295", "https://cas h-flow-jgc.vercel.app/")
+            .WithOrigins("http://localhost:5295", "https://cash-flow-jgc.vercel.app")
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
