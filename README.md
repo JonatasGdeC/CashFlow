@@ -8,20 +8,7 @@
 ![xUnit](https://img.shields.io/badge/xUnit-Tests-5E2B97?style=for-the-badge)
 ![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
 
-CashFlow e uma API REST para controle de despesas pessoais. O projeto permite cadastrar usuarios, autenticar com token JWT, registrar despesas, consultar despesas cadastradas, atualizar ou remover registros e gerar relatorios em PDF e Excel.
-
-## Funcionalidades
-
-- Cadastro, consulta, atualizacao e exclusao de usuario.
-- Login com geracao de token JWT.
-- Cadastro, listagem, consulta por id, atualizacao e exclusao de despesas.
-- Geracao de relatorios de despesas em PDF e Excel.
-- Validacoes de entrada com FluentValidation.
-- Persistencia em banco MySQL usando Entity Framework Core.
-- Documentacao interativa via Swagger em ambiente de desenvolvimento.
-- Testes automatizados para casos de uso, validadores e endpoints da API.
-
-
+CashFlow e uma API REST para controle de despesas pessoais. O projeto permite cadastrar usuários, autenticar com token JWT, registrar despesas/rendas, consultar despesas/rendas cadastradas, atualizar ou remover registros e gerar relatórios em PDF e Excel.
 
 ## Estrutura do projeto
 
@@ -42,24 +29,24 @@ CashFlow/
 `-- CashFlow.sln
 ```
 
-## Pre-requisitos
+## Pré-requisitos
 
 Antes de executar o projeto, instale:
 
 - [.NET SDK 10](https://dotnet.microsoft.com/)
 - [MySQL Server](https://dev.mysql.com/downloads/mysql/)
-- Uma IDE ou editor de sua preferencia, como Rider, Visual Studio ou VS Code
+- Uma IDE ou editor de sua preferência, como Rider, Visual Studio ou VS Code
 
 ## Como executar localmente
 
-Clone o repositorio e acesse a pasta do projeto:
+Clone o repositório e acesse a pasta do projeto:
 
 ```bash
 git clone https://github.com/JonatasGdeC/CashFlow.git
 cd CashFlow
 ```
 
-Restaure as dependencias:
+Restaure as dependências:
 
 ```bash
 dotnet restore
@@ -81,7 +68,7 @@ Configure a conexao com o banco em `src/CashFlow.Api/appsettings.Development.jso
 }
 ```
 
-Tambem e possivel configurar por variaveis de ambiente:
+Também e possível configurar por variáveis de ambiente:
 
 ```bash
 ConnectionStrings__connection="Server=localhost;Database=CashFlowDb;Uid=root;Pwd=sua_senha;"
@@ -136,10 +123,21 @@ dotnet test tests/WebApi.Tests/WebApi.Tests.csproj
 
 Os testes de API usam configuracao de ambiente de teste com banco em memoria.
 
-## Observacoes para avaliacao
+## Observações para avaliação
 
 - A solucao principal e `CashFlow.sln`.
 - O projeto executavel da API e `src/CashFlow.Api/CashFlow.Api.csproj`.
 - O banco utilizado em desenvolvimento e MySQL.
 - As migrations estao em `src/CashFlow.Infrastructure/DataAccess/Migrations`.
 - A documentacao Swagger fica disponivel apenas em ambiente de desenvolvimento.
+- A API está hospedada no plano gratuito da Render.
+- A primeira requisição pode demorar alguns segundos devido ao cold start.
+
+## Demo
+
+### Frontend
+https://cash-flow-jgc.vercel.app
+
+### API
+https://cashflow-api-xjcf.onrender.com
+
