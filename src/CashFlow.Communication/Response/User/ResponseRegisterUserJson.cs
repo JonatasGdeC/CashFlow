@@ -1,7 +1,7 @@
 namespace CashFlow.Communication.Response.User;
 
-public class ResponseRegisterUserJson
+public record ResponseRegisterUserJson
 {
-    public required string Name { get; set; }
-    public required string Token { get; set; }
+    public required string Name { get; init; }
+    public required string Token { get; init; }
 }

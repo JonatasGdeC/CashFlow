@@ -1,6 +1,6 @@
 namespace CashFlow.Communication.Requests.Income;
 
-public class RequestRegisterIncomeJson
+public record RequestRegisterIncomeJson
 {
     public string Title { get; set; } = string.Empty;
     public string? Description { get; set; }

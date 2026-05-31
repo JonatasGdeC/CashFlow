@@ -1,9 +1,9 @@
 namespace CashFlow.Communication.Response.Income;
 
-public class ResponseIncomeShortJson
+public record ResponseIncomeShortJson
 {
-    public Guid Id { get; set; }
-    public required string Title { get; set; }
-    public decimal Amount { get; set; }
-    public Guid? CategoryId { get; set; }
+    public Guid Id { get; init; }
+    public required string Title { get; init; }
+    public decimal Amount { get; init; }
+    public Guid? CategoryId { get; init; }
 }

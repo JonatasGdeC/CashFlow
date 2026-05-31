@@ -2,7 +2,7 @@ using CashFlow.Communication.Enums;
 
 namespace CashFlow.Communication.Requests.Category;
 
-public class RequestRegisterCategoryJson
+public record RequestRegisterCategoryJson
 {
     public string Name { get; set; } = string.Empty;
     public string? Description { get; set; }

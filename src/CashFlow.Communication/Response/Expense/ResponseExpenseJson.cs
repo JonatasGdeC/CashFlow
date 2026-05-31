@@ -2,13 +2,13 @@ using CashFlow.Communication.Enums;
 
 namespace CashFlow.Communication.Response.Expense;
 
-public class ResponseExpenseJson
+public record ResponseExpenseJson
 {
-    public Guid Id { get; set; }
-    public required string Title { get; set; }
-    public string? Description { get; set; }
-    public DateTime Date { get; set; }
-    public decimal Amount { get; set; }
-    public PaymentType PaymentType { get; set; }
-    public Guid? CategoryId { get; set; }
+    public Guid Id { get; init; }
+    public required string Title { get; init; }
+    public string? Description { get; init; }
+    public DateTime Date { get; init; }
+    public decimal Amount { get; init; }
+    public PaymentType PaymentType { get; init; }
+    public Guid? CategoryId { get; init; }
 }

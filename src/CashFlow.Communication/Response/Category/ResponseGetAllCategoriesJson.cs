@@ -1,6 +1,6 @@
 namespace CashFlow.Communication.Response.Category;
 
-public class ResponseGetAllCategoriesJson
+public record ResponseGetAllCategoriesJson
 {
-    public List<ResponseCategoryShortJson> ListAllCategories { get; set; } = [];
+    public List<ResponseCategoryShortJson> ListAllCategories { get; init; } = [];
 }

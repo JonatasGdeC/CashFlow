@@ -1,10 +1,10 @@
 namespace CashFlow.Communication.Response.CategoryGoal;
 
-public class ResponseCategoryGoalJson
+public record ResponseCategoryGoalJson
 {
-    public Guid Id { get; set; }
-    public decimal TargetAmount { get; set; }
-    public int Month { get; set; }
-    public int Year { get; set; }
-    public Guid CategoryId { get; set; }
+    public Guid Id { get; init; }
+    public decimal TargetAmount { get; init; }
+    public int Month { get; init; }
+    public int Year { get; init; }
+    public Guid CategoryId { get; init; }
 }

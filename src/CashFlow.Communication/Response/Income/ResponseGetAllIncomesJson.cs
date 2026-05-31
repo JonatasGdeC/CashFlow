@@ -1,6 +1,6 @@
 namespace CashFlow.Communication.Response.Income;
 
-public class ResponseGetAllIncomesJson
+public record ResponseGetAllIncomesJson
 {
-    public List<ResponseIncomeShortJson> ListAllIncomes { get; set; } = [];
+    public List<ResponseIncomeShortJson> ListAllIncomes { get; init; } = [];
 }

@@ -2,10 +2,10 @@ using CashFlow.Communication.Enums;
 
 namespace CashFlow.Communication.Response.Category;
 
-public class ResponseCategoryShortJson
+public record ResponseCategoryShortJson
 {
-    public Guid Id { get; set; }
-    public required string Name { get; set; }
-    public required string Color { get; set; }
-    public CategoryType Type { get; set; }
+    public Guid Id { get; init; }
+    public required string Name { get; init; }
+    public required string Color { get; init; }
+    public CategoryType Type { get; init; }
 }
