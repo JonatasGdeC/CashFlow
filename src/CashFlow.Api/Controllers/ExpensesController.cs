@@ -1,9 +1,12 @@
-﻿using CashFlow.Application.UsesCases.Expense.Delete;
+﻿using System.Net.Mime;
+using CashFlow.Application.UsesCases.Expense.Delete;
 using CashFlow.Application.UsesCases.Expense.GetAll;
 using CashFlow.Application.UsesCases.Expense.GetByFilter;
 using CashFlow.Application.UsesCases.Expense.GetById;
 using CashFlow.Application.UsesCases.Expense.GetDashboard;
 using CashFlow.Application.UsesCases.Expense.Register;
+using CashFlow.Application.UsesCases.Expense.Reports.Excel;
+using CashFlow.Application.UsesCases.Expense.Reports.Pdf;
 using CashFlow.Application.UsesCases.Expense.Update;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Requests.Expense;
@@ -63,6 +66,36 @@ public class ExpensesController : ControllerBase
     {
         ResponseDashboardJson response = await useCase.Execute();
         return Ok(value: response);
+    }
+    
+    [HttpGet(template: "report/excel")]
+    [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
+    [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetExcel([FromServices] IGenerateExpensesReportExcelUseCase useCase, [FromQuery] RequestFilterJson request)
+    {
+        byte[] file = await useCase.Execute(request: request);
+        
+        if (file.Length > 0)
+        {
+            return File(fileContents: file, contentType: MediaTypeNames.Application.Octet, fileDownloadName: "report.xlsx");
+        }
+        
+        return NoContent();
+    }
+    
+    [HttpGet(template: "report/pdf")]
+    [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
+    [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetPdf([FromServices] IGenerateExpensesReportPdfUseCase useCase, [FromQuery] RequestFilterJson request)
+    {
+        byte[] file = await useCase.Execute(request: request);
+        
+        if (file.Length > 0)
+        {
+            return File(fileContents: file, contentType: MediaTypeNames.Application.Pdf, fileDownloadName: "report.pdf");
+        }
+        
+        return NoContent();
     }
 
     [HttpGet]
