@@ -20,6 +20,7 @@ using CashFlow.Application.UsesCases.Expense.Reports.Pdf;
 using CashFlow.Application.UsesCases.Expense.Update;
 using CashFlow.Application.UsesCases.Income.Delete;
 using CashFlow.Application.UsesCases.Income.GetAll;
+using CashFlow.Application.UsesCases.Income.GetByFilter;
 using CashFlow.Application.UsesCases.Income.GetById;
 using CashFlow.Application.UsesCases.Income.GetDashboard;
 using CashFlow.Application.UsesCases.Income.Register;
@@ -66,6 +67,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IDeleteIncomeUseCase, DeleteIncomeUseCase>();
         services.AddScoped<IUpdateIncomeUseCase, UpdateIncomeUseCase>();
         services.AddScoped<IGetIncomeDashboard, GetIncomeDashboard>();
+        services.AddScoped<IGetIncomesByFilter, GetIncomesByFilter>();
 
         services.AddScoped<IRegisterCategoryUseCase, RegisterCategoryUseCase>();
         services.AddScoped<IGetAllCategoryUseCase, GetAllCategoryUseCase>();

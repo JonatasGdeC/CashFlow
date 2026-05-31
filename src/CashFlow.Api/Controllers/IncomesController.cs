@@ -1,5 +1,6 @@
 using CashFlow.Application.UsesCases.Income.Delete;
 using CashFlow.Application.UsesCases.Income.GetAll;
+using CashFlow.Application.UsesCases.Income.GetByFilter;
 using CashFlow.Application.UsesCases.Income.GetById;
 using CashFlow.Application.UsesCases.Income.GetDashboard;
 using CashFlow.Application.UsesCases.Income.Register;
@@ -33,6 +34,20 @@ public class IncomesController : ControllerBase
     public async Task<IActionResult> GetAllIncomes([FromServices] IGetAllIncomeUseCase useCase)
     {
         ResponseGetAllIncomesJson response = await useCase.Execute();
+        if (response.ListAllIncomes.Count > 0)
+        {
+            return Ok(value: response);
+        }
+
+        return NoContent();
+    }
+    
+    [HttpGet(template: "filter")]
+    [ProducesResponseType(type: typeof(ResponseGetAllIncomesJson), statusCode: StatusCodes.Status200OK)]
+    [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetIncomesByFilter([FromServices] IGetIncomesByFilter useCase, [FromBody] RequestFilterJson request)
+    {
+        ResponseGetAllIncomesJson response = await useCase.Execute(request: request);
         if (response.ListAllIncomes.Count > 0)
         {
             return Ok(value: response);
