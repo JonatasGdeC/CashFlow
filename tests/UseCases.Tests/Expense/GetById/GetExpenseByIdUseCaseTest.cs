@@ -1,6 +1,7 @@
 using AutoMapper;
 using CashFlow.Application.UsesCases.Expense.GetById;
 using CashFlow.Communication.Response;
+using CashFlow.Communication.Response.Expense;
 using CashFlow.Domain.Repositories.Expenses;
 using CashFlow.Domain.Services.LoggedUser;
 using CashFlow.Exception;

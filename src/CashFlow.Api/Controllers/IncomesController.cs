@@ -5,7 +5,9 @@ using CashFlow.Application.UsesCases.Income.GetDashboard;
 using CashFlow.Application.UsesCases.Income.Register;
 using CashFlow.Application.UsesCases.Income.Update;
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Income;
 using CashFlow.Communication.Response;
+using CashFlow.Communication.Response.Income;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

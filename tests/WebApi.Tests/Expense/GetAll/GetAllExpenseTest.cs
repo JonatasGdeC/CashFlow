@@ -1,6 +1,7 @@
 using System.Net;
 using System.Text.Json;
 using CashFlow.Communication.Response;
+using CashFlow.Communication.Response.Expense;
 using FluentAssertions;
 using WebApi.Tests.Utils;
 

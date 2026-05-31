@@ -1,6 +1,7 @@
 using CashFlow.Communication.Enums;
 using CashFlow.Application.UsesCases.Expense.Register;
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Expense;
 using CashFlow.Exception;
 using CommomTestsUtilies.Requests;
 using FluentAssertions;

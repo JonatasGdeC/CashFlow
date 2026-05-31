@@ -1,5 +1,6 @@
 using Bogus;
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.User;
 
 namespace CommomTestsUtilies.Requests;
 

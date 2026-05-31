@@ -1,4 +1,5 @@
 using CashFlow.Communication.Response;
+using CashFlow.Communication.Response.Category;
 
 namespace CashFlow.Application.UsesCases.Category.GetById;
 

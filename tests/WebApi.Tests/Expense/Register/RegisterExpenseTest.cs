@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Net;
 using System.Text.Json;
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Expense;
 using CashFlow.Communication.Response;
 using CashFlow.Exception;
 using CommomTestsUtilies.Requests;

@@ -1,7 +1,8 @@
-namespace CashFlow.Communication.Requests;
+namespace CashFlow.Communication.Response.CategoryGoal;
 
-public class RequestRegisterCategoryGoalJson
+public class ResponseCategoryGoalJson
 {
+    public Guid Id { get; set; }
     public decimal TargetAmount { get; set; }
     public int Month { get; set; }
     public int Year { get; set; }

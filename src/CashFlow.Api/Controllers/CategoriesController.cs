@@ -5,7 +5,9 @@ using CashFlow.Application.UsesCases.Category.Register;
 using CashFlow.Application.UsesCases.Category.Update;
 using CashFlow.Communication.Enums;
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Category;
 using CashFlow.Communication.Response;
+using CashFlow.Communication.Response.Category;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

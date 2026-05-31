@@ -3,6 +3,7 @@ using System.Net;
 using System.Text.Json;
 using CashFlow.Communication.Enums;
 using CashFlow.Communication.Response;
+using CashFlow.Communication.Response.Expense;
 using CashFlow.Exception;
 using FluentAssertions;
 using WebApi.Tests.InlineData;

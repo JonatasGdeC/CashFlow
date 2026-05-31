@@ -1,7 +1,9 @@
 using AutoMapper;
 using CashFlow.Application.UsesCases.Expense.Register;
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Expense;
 using CashFlow.Communication.Response;
+using CashFlow.Communication.Response.Expense;
 using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Expenses;
 using CashFlow.Domain.Services.LoggedUser;

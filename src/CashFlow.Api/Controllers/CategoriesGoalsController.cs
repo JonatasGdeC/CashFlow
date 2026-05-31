@@ -4,7 +4,9 @@ using CashFlow.Application.UsesCases.CategoryGoal.GetById;
 using CashFlow.Application.UsesCases.CategoryGoal.Register;
 using CashFlow.Application.UsesCases.CategoryGoal.Update;
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.CategoryGoal;
 using CashFlow.Communication.Response;
+using CashFlow.Communication.Response.CategoryGoal;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

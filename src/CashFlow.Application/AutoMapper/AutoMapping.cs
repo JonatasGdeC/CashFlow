@@ -1,6 +1,16 @@
 using AutoMapper;
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Category;
+using CashFlow.Communication.Requests.CategoryGoal;
+using CashFlow.Communication.Requests.Expense;
+using CashFlow.Communication.Requests.Income;
+using CashFlow.Communication.Requests.User;
 using CashFlow.Communication.Response;
+using CashFlow.Communication.Response.Category;
+using CashFlow.Communication.Response.CategoryGoal;
+using CashFlow.Communication.Response.Expense;
+using CashFlow.Communication.Response.Income;
+using CashFlow.Communication.Response.User;
 using CashFlow.Domain.Enitites;
 
 namespace CashFlow.Application.AutoMapper;

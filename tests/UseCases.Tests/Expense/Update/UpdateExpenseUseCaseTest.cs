@@ -1,6 +1,7 @@
 using AutoMapper;
 using CashFlow.Application.UsesCases.Expense.Update;
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Expense;
 using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Categories;
 using CashFlow.Domain.Repositories.Expenses;

@@ -1,5 +1,6 @@
 using AutoMapper;
 using CashFlow.Communication.Response;
+using CashFlow.Communication.Response.CategoryGoal;
 using CashFlow.Domain.Repositories.CategoriesGoals;
 using CashFlow.Domain.Services.LoggedUser;
 using CashFlow.Exception;

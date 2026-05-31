@@ -1,8 +1,9 @@
-namespace CashFlow.Communication.Requests;
+namespace CashFlow.Communication.Response.Income;
 
-public class RequestRegisterIncomeJson
+public class ResponseIncomeJson
 {
-    public string Title { get; set; } = string.Empty;
+    public Guid Id { get; set; }
+    public required string Title { get; set; }
     public string? Description { get; set; }
     public DateTime Date { get; set; }
     public decimal Amount { get; set; }

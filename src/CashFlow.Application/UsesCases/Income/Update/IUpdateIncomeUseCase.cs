@@ -1,4 +1,5 @@
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Income;
 
 namespace CashFlow.Application.UsesCases.Income.Update;
 

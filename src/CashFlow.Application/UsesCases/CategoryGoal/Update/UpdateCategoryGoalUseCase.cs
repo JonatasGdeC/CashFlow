@@ -1,6 +1,7 @@
 using AutoMapper;
 using CashFlow.Application.UsesCases.CategoryGoal.Register;
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.CategoryGoal;
 using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Categories;
 using CashFlow.Domain.Repositories.CategoriesGoals;

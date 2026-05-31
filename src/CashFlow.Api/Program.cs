@@ -15,11 +15,11 @@ using Microsoft.OpenApi;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args: args);
 
-const string CorsPolicyName = "Frontend";
+const string corsPolicyName = "Frontend";
 
 builder.Services.AddCors(setupAction: options =>
 {
-    options.AddPolicy(name: CorsPolicyName, configurePolicy: policy =>
+    options.AddPolicy(name: corsPolicyName, configurePolicy: policy =>
     {
         policy
             .WithOrigins(
@@ -103,7 +103,7 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-app.UseCors(policyName: CorsPolicyName);
+app.UseCors(policyName: corsPolicyName);
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -1,6 +1,6 @@
-namespace CashFlow.Communication.Response;
+namespace CashFlow.Communication.Response.Income;
 
-public class ResponseExpenseShortJson
+public class ResponseIncomeShortJson
 {
     public Guid Id { get; set; }
     public required string Title { get; set; }

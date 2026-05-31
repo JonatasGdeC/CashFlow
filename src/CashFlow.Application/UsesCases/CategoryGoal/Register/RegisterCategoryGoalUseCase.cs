@@ -1,6 +1,8 @@
 using AutoMapper;
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.CategoryGoal;
 using CashFlow.Communication.Response;
+using CashFlow.Communication.Response.CategoryGoal;
 using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Categories;
 using CashFlow.Domain.Repositories.CategoriesGoals;

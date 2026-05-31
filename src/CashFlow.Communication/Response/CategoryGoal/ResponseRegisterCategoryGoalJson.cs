@@ -1,4 +1,4 @@
-namespace CashFlow.Communication.Response;
+namespace CashFlow.Communication.Response.CategoryGoal;
 
 public class ResponseRegisterCategoryGoalJson
 {

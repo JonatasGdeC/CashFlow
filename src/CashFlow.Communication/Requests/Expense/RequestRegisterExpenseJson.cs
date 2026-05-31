@@ -1,11 +1,10 @@
 using CashFlow.Communication.Enums;
 
-namespace CashFlow.Communication.Response;
+namespace CashFlow.Communication.Requests.Expense;
 
-public class ResponseExpenseJson
+public class RequestRegisterExpenseJson
 {
-    public Guid Id { get; set; }
-    public required string Title { get; set; }
+    public string Title { get; set; } =  String.Empty;
     public string? Description { get; set; }
     public DateTime Date { get; set; }
     public decimal Amount { get; set; }

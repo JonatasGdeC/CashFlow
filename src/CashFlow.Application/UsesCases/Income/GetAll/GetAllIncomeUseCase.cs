@@ -1,5 +1,6 @@
 using AutoMapper;
 using CashFlow.Communication.Response;
+using CashFlow.Communication.Response.Income;
 using CashFlow.Domain.Repositories.Incomes;
 using CashFlow.Domain.Services.LoggedUser;
 
