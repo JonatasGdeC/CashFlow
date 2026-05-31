@@ -11,6 +11,7 @@ using CashFlow.Application.UsesCases.CategoryGoal.Register;
 using CashFlow.Application.UsesCases.CategoryGoal.Update;
 using CashFlow.Application.UsesCases.Expense.Delete;
 using CashFlow.Application.UsesCases.Expense.GetAll;
+using CashFlow.Application.UsesCases.Expense.GetByFilter;
 using CashFlow.Application.UsesCases.Expense.GetById;
 using CashFlow.Application.UsesCases.Expense.GetDashboard;
 using CashFlow.Application.UsesCases.Expense.Register;
@@ -54,6 +55,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IDeleteExpenseUseCase, DeleteExpenseUseCase>();
         services.AddScoped<IUpdateExpenseUseCase, UpdateExpenseUseCase>();
         services.AddScoped<IGetExpenseDashboard, GetExpenseDashboard>();
+        services.AddScoped<IGetExpenseByFilter, GetExpenseByFilter>();
         
         services.AddScoped<IGenerateExpensesReportExcelUseCase, GenerateExpensesReportExcelUseCase>();
         services.AddScoped<IGenerateExpensesReportPdfUseCase, GenerateExpensesReportPdfUseCase>();
