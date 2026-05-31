@@ -1,6 +1,6 @@
 using MigraDoc.DocumentObjectModel;
 
-namespace CashFlow.Application.UsesCases.Expense.Reports.Pdf;
+namespace CashFlow.Application.Utils.GenerateReportPdf;
 
 public static class ColorsHelper
 {

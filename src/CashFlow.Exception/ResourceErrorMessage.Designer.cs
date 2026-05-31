@@ -96,20 +96,20 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The month is invalid..
-        /// </summary>
-        public static string CATEGORY_GOAL_MONTH_INVALID {
-            get {
-                return ResourceManager.GetString("CATEGORY_GOAL_MONTH_INVALID", resourceCulture);
-            }
-        }
-
-        /// <summary>
         ///   Looks up a localized string similar to A goal already exists for this category..
         /// </summary>
         public static string CATEGORY_GOAL_ALREADY_EXISTS {
             get {
                 return ResourceManager.GetString("CATEGORY_GOAL_ALREADY_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The month is invalid..
+        /// </summary>
+        public static string CATEGORY_GOAL_MONTH_INVALID {
+            get {
+                return ResourceManager.GetString("CATEGORY_GOAL_MONTH_INVALID", resourceCulture);
             }
         }
         
@@ -335,6 +335,15 @@ namespace CashFlow.Exception {
         public static string OLD_PASSWORD_INVALID {
             get {
                 return ResourceManager.GetString("OLD_PASSWORD_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown error..
+        /// </summary>
+        public static string UNKNOWN_ERROR {
+            get {
+                return ResourceManager.GetString("UNKNOWN_ERROR", resourceCulture);
             }
         }
         

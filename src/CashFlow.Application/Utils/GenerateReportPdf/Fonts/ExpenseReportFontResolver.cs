@@ -1,7 +1,7 @@
 using System.Reflection;
 using PdfSharp.Fonts;
 
-namespace CashFlow.Application.UsesCases.Expense.Reports.Pdf.Fonts;
+namespace CashFlow.Application.Utils.GenerateReportPdf.Fonts;
 
 public class ExpenseReportFontResolver : IFontResolver
 {
@@ -29,6 +29,6 @@ public class ExpenseReportFontResolver : IFontResolver
     {
         Assembly assembly = Assembly.GetExecutingAssembly();
 
-        return assembly.GetManifestResourceStream(name: $"CashFlow.Application.UsesCases.Expense.Reports.Pdf.Fonts.{faceName}.ttf");
+        return assembly.GetManifestResourceStream(name: $"CashFlow.Application.Utils.GenerateReportPdf.Fonts.{faceName}.ttf");
     }
 }

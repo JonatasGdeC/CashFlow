@@ -1,4 +1,4 @@
-namespace CashFlow.Application.UsesCases.Expense.Reports.Pdf.Fonts;
+namespace CashFlow.Application.Utils.GenerateReportPdf.Fonts;
 
 public class FontHelper
 {

@@ -144,4 +144,7 @@
     <data name="CATEGORY_ALREADY_EXISTS" xml:space="preserve">
         <value>La categoría ya existe.</value>
     </data>
+    <data name="UNKNOWN_ERROR" xml:space="preserve">
+        <value>Error desconocido.</value>
+    </data>
 </root>

@@ -96,6 +96,15 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ya existe una meta para esta categoría..
+        /// </summary>
+        internal static string CATEGORY_GOAL_ALREADY_EXISTS {
+            get {
+                return ResourceManager.GetString("CATEGORY_GOAL_ALREADY_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to El mes informado no es válido..
         /// </summary>
         internal static string CATEGORY_GOAL_MONTH_INVALID {
@@ -326,6 +335,15 @@ namespace CashFlow.Exception {
         internal static string OLD_PASSWORD_INVALID {
             get {
                 return ResourceManager.GetString("OLD_PASSWORD_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error desconocido..
+        /// </summary>
+        internal static string UNKNOWN_ERROR {
+            get {
+                return ResourceManager.GetString("UNKNOWN_ERROR", resourceCulture);
             }
         }
         
