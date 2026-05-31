@@ -24,6 +24,8 @@ using CashFlow.Application.UsesCases.Income.GetByFilter;
 using CashFlow.Application.UsesCases.Income.GetById;
 using CashFlow.Application.UsesCases.Income.GetDashboard;
 using CashFlow.Application.UsesCases.Income.Register;
+using CashFlow.Application.UsesCases.Income.Reports.Excel;
+using CashFlow.Application.UsesCases.Income.Reports.Pdf;
 using CashFlow.Application.UsesCases.Income.Update;
 using CashFlow.Application.UsesCases.User.Delete;
 using CashFlow.Application.UsesCases.User.Get;
@@ -57,7 +59,6 @@ public static class DependencyInjectionExtension
         services.AddScoped<IUpdateExpenseUseCase, UpdateExpenseUseCase>();
         services.AddScoped<IGetExpenseDashboard, GetExpenseDashboard>();
         services.AddScoped<IGetExpenseByFilter, GetExpenseByFilter>();
-        
         services.AddScoped<IGenerateExpensesReportExcelUseCase, GenerateExpensesReportExcelUseCase>();
         services.AddScoped<IGenerateExpensesReportPdfUseCase, GenerateExpensesReportPdfUseCase>();
 
@@ -68,6 +69,8 @@ public static class DependencyInjectionExtension
         services.AddScoped<IUpdateIncomeUseCase, UpdateIncomeUseCase>();
         services.AddScoped<IGetIncomeDashboard, GetIncomeDashboard>();
         services.AddScoped<IGetIncomesByFilter, GetIncomesByFilter>();
+        services.AddScoped<IGenerateIncomesReportExcelUseCase, GenerateIncomesReportExcelUseCase>();
+        services.AddScoped<IGenerateIncomesReportPdfUseCase, GenerateIncomesReportPdfUseCase>();
 
         services.AddScoped<IRegisterCategoryUseCase, RegisterCategoryUseCase>();
         services.AddScoped<IGetAllCategoryUseCase, GetAllCategoryUseCase>();

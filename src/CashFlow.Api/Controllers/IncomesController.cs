@@ -1,9 +1,12 @@
+using System.Net.Mime;
 using CashFlow.Application.UsesCases.Income.Delete;
 using CashFlow.Application.UsesCases.Income.GetAll;
 using CashFlow.Application.UsesCases.Income.GetByFilter;
 using CashFlow.Application.UsesCases.Income.GetById;
 using CashFlow.Application.UsesCases.Income.GetDashboard;
 using CashFlow.Application.UsesCases.Income.Register;
+using CashFlow.Application.UsesCases.Income.Reports.Excel;
+using CashFlow.Application.UsesCases.Income.Reports.Pdf;
 using CashFlow.Application.UsesCases.Income.Update;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Requests.Income;
@@ -63,6 +66,36 @@ public class IncomesController : ControllerBase
     {
         ResponseDashboardJson response = await useCase.Execute();
         return Ok(value: response);
+    }
+    
+    [HttpGet(template: "report/excel")]
+    [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
+    [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetExcel([FromServices] IGenerateIncomesReportExcelUseCase useCase, [FromQuery] RequestFilterJson request)
+    {
+        byte[] file = await useCase.Execute(request: request);
+        
+        if (file.Length > 0)
+        {
+            return File(fileContents: file, contentType: MediaTypeNames.Application.Octet, fileDownloadName: "report.xlsx");
+        }
+        
+        return NoContent();
+    }
+    
+    [HttpGet(template: "report/pdf")]
+    [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
+    [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetPdf([FromServices] IGenerateIncomesReportPdfUseCase useCase, [FromQuery] RequestFilterJson request)
+    {
+        byte[] file = await useCase.Execute(request: request);
+        
+        if (file.Length > 0)
+        {
+            return File(fileContents: file, contentType: MediaTypeNames.Application.Pdf, fileDownloadName: "report.pdf");
+        }
+        
+        return NoContent();
     }
 
     [HttpGet]
