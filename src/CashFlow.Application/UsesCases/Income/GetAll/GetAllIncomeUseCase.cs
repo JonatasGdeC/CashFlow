@@ -1,4 +1,5 @@
 using AutoMapper;
+using CashFlow.Communication.Requests;
 using CashFlow.Communication.Response;
 using CashFlow.Communication.Response.Income;
 using CashFlow.Domain.Repositories.Incomes;
@@ -8,11 +9,20 @@ namespace CashFlow.Application.UsesCases.Income.GetAll;
 
 public class GetAllIncomeUseCase(IIncomesReadRepository readRepository, IMapper mapper, ILoggedUser loggedUser) : IGetAllIncomeUseCase
 {
-    public async Task<ResponseGetAllIncomesJson> Execute()
+    public async Task<ResponseGetAllIncomesJson> Execute(RequestFilterJson? request)
     {
         Domain.Enitites.User currentUser = await loggedUser.Get();
-        List<Domain.Enitites.Income>? response = await readRepository.GetAllIncomes(userId: currentUser.Id);
+        List<Domain.Enitites.Income>? response;
 
+        if (request != null)
+        {
+            response = await readRepository.GetFilter(request: request, userId: currentUser.Id);
+        }
+        else
+        {
+            response = await readRepository.GetAllIncomes(userId: currentUser.Id);
+        }
+        
         return new ResponseGetAllIncomesJson
         {
             ListAllIncomes = mapper.Map<List<ResponseIncomeShortJson>>(source: response)

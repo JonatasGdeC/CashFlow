@@ -1,4 +1,5 @@
 using AutoMapper;
+using CashFlow.Communication.Requests;
 using CashFlow.Communication.Response;
 using CashFlow.Communication.Response.Expense;
 using CashFlow.Domain.Repositories.Expenses;
@@ -8,10 +9,19 @@ namespace CashFlow.Application.UsesCases.Expense.GetAll;
 
 public class GetAllExpenseUseCase(IExpensesReadRepository readRepository, IMapper mapper, ILoggedUser loggedUser) : IGetAllExpenseUseCase
 {
-    public async Task<ResponseGetAllExpensesJson> Execute()
+    public async Task<ResponseGetAllExpensesJson> Execute(RequestFilterJson? request)
     {
         Domain.Enitites.User currentUser = await loggedUser.Get();
-        List<Domain.Enitites.Expense>? response = await readRepository.GetAllExpenses(userId: currentUser.Id);
+        List<Domain.Enitites.Expense>? response;
+        if (request != null)
+        {
+            response = await readRepository.GetFilter(request: request, userId: currentUser.Id);
+        }
+        else
+        {
+           response = await readRepository.GetAllExpenses(userId: currentUser.Id);
+        }
+         
 
         return new ResponseGetAllExpensesJson
         {

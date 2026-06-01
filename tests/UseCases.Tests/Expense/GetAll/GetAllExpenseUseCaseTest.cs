@@ -22,7 +22,7 @@ public class GetAllExpenseUseCaseTest
 
         GetAllExpenseUseCase useCase = CreateUseCase(user: loggedUser, expenses: expenses);
 
-        ResponseGetAllExpensesJson result = await useCase.Execute();
+        ResponseGetAllExpensesJson result = await useCase.Execute(request: new());
 
         result.Should().NotBeNull();
         result.ListAllExpenses.Should().NotBeNullOrEmpty().And.AllSatisfy(expected: expense =>

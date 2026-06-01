@@ -1,7 +1,6 @@
 ﻿using System.Net.Mime;
 using CashFlow.Application.UsesCases.Expense.Delete;
 using CashFlow.Application.UsesCases.Expense.GetAll;
-using CashFlow.Application.UsesCases.Expense.GetByFilter;
 using CashFlow.Application.UsesCases.Expense.GetById;
 using CashFlow.Application.UsesCases.Expense.GetDashboard;
 using CashFlow.Application.UsesCases.Expense.Register;
@@ -34,21 +33,7 @@ public class ExpensesController : ControllerBase
     [HttpGet]
     [ProducesResponseType(type: typeof(ResponseGetAllExpensesJson), statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetAllExpenses([FromServices] IGetAllExpenseUseCase useCase)
-    {
-        ResponseGetAllExpensesJson response = await useCase.Execute();
-        if (response.ListAllExpenses.Count > 0)
-        {
-            return Ok(value: response);
-        }
-
-        return NoContent();
-    }
-    
-    [HttpGet(template: "filter")]
-    [ProducesResponseType(type: typeof(ResponseGetAllExpensesJson), statusCode: StatusCodes.Status200OK)]
-    [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetExpensesByFilter([FromServices] IGetExpenseByFilter useCase, [FromBody] RequestFilterJson request)
+    public async Task<IActionResult> GetAllExpenses([FromServices] IGetAllExpenseUseCase useCase, [FromQuery] RequestFilterJson? request = null)
     {
         ResponseGetAllExpensesJson response = await useCase.Execute(request: request);
         if (response.ListAllExpenses.Count > 0)

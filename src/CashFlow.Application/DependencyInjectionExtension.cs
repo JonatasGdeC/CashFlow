@@ -6,7 +6,6 @@ using CashFlow.Application.UsesCases.Category.Register;
 using CashFlow.Application.UsesCases.Category.Update;
 using CashFlow.Application.UsesCases.Expense.Delete;
 using CashFlow.Application.UsesCases.Expense.GetAll;
-using CashFlow.Application.UsesCases.Expense.GetByFilter;
 using CashFlow.Application.UsesCases.Expense.GetById;
 using CashFlow.Application.UsesCases.Expense.GetDashboard;
 using CashFlow.Application.UsesCases.Expense.Register;
@@ -20,7 +19,6 @@ using CashFlow.Application.UsesCases.Goal.Register;
 using CashFlow.Application.UsesCases.Goal.Update;
 using CashFlow.Application.UsesCases.Income.Delete;
 using CashFlow.Application.UsesCases.Income.GetAll;
-using CashFlow.Application.UsesCases.Income.GetByFilter;
 using CashFlow.Application.UsesCases.Income.GetById;
 using CashFlow.Application.UsesCases.Income.GetDashboard;
 using CashFlow.Application.UsesCases.Income.Register;
@@ -58,7 +56,6 @@ public static class DependencyInjectionExtension
         services.AddScoped<IDeleteExpenseUseCase, DeleteExpenseUseCase>();
         services.AddScoped<IUpdateExpenseUseCase, UpdateExpenseUseCase>();
         services.AddScoped<IGetExpenseDashboard, GetExpenseDashboard>();
-        services.AddScoped<IGetExpenseByFilter, GetExpenseByFilter>();
         services.AddScoped<IGenerateExpensesReportExcelUseCase, GenerateExpensesReportExcelUseCase>();
         services.AddScoped<IGenerateExpensesReportPdfUseCase, GenerateExpensesReportPdfUseCase>();
 
@@ -68,7 +65,6 @@ public static class DependencyInjectionExtension
         services.AddScoped<IDeleteIncomeUseCase, DeleteIncomeUseCase>();
         services.AddScoped<IUpdateIncomeUseCase, UpdateIncomeUseCase>();
         services.AddScoped<IGetIncomeDashboard, GetIncomeDashboard>();
-        services.AddScoped<IGetIncomesByFilter, GetIncomesByFilter>();
         services.AddScoped<IGenerateIncomesReportExcelUseCase, GenerateIncomesReportExcelUseCase>();
         services.AddScoped<IGenerateIncomesReportPdfUseCase, GenerateIncomesReportPdfUseCase>();
 
