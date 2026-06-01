@@ -24,12 +24,12 @@ public class CategoryRepository(CashFlowDbContext context) : ICategoriesReadRepo
 
     public async Task Add(Category category)
     {
-        await context.AddAsync(entity: category);
+        await context.Categories.AddAsync(entity: category);
     }
 
     public void Delete(Category category)
     {
-        context.Remove(entity: category);
+        context.Categories.Remove(entity: category);
     }
 
     public void Update(Category category)

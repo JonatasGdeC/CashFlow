@@ -66,7 +66,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IIncomesReadRepository, IncomeRepository>();
         services.AddScoped<IIncomesWriteRepository, IncomeRepository>();
         
-        services.AddScoped<ICategoriesGoalsReadRepository, CategoryGoalRepository>();
-        services.AddScoped<ICategoriesGoalsWriteRepository, CategoryGoalRepository>();
+        services.AddScoped<ICategoriesGoalsReadRepository, GoalRepository>();
+        services.AddScoped<ICategoriesGoalsWriteRepository, GoalRepository>();
     }
 }

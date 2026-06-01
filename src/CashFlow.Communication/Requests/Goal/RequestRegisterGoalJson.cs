@@ -1,6 +1,6 @@
-namespace CashFlow.Communication.Requests.CategoryGoal;
+namespace CashFlow.Communication.Requests.Goal;
 
-public record RequestRegisterCategoryGoalJson
+public record RequestRegisterGoalJson
 {
     public decimal TargetAmount { get; set; }
     public int Month { get; set; }

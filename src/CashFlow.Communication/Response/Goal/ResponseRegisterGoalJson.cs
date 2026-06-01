@@ -1,6 +1,6 @@
-namespace CashFlow.Communication.Response.CategoryGoal;
+namespace CashFlow.Communication.Response.Goal;
 
-public record ResponseRegisterCategoryGoalJson
+public record ResponseRegisterGoalJson
 {
     public Guid Id { get; init; }
     public Guid CategoryId { get; init; }

@@ -1,13 +1,12 @@
-using CashFlow.Communication.Requests;
-using CashFlow.Communication.Requests.CategoryGoal;
+using CashFlow.Communication.Requests.Goal;
 using CashFlow.Exception;
 using FluentValidation;
 
-namespace CashFlow.Application.UsesCases.CategoryGoal.Register;
+namespace CashFlow.Application.UsesCases.Goal.Register;
 
-public class RegisterCategoryGoalValidator : AbstractValidator<RequestRegisterCategoryGoalJson>
+public class RegisterGoalValidator : AbstractValidator<RequestRegisterGoalJson>
 {
-    public RegisterCategoryGoalValidator()
+    public RegisterGoalValidator()
     {
         RuleFor(expression: categoryGoal => categoryGoal.TargetAmount)
             .GreaterThan(valueToCompare: 0).WithMessage(errorMessage: ResourceErrorMessage.CATEGORY_GOAL_TARGET_AMOUNT_MUST_BE_GREATER_THAN_ZERO);

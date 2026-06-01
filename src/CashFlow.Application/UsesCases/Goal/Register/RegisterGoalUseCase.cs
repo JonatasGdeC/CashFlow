@@ -1,8 +1,6 @@
 using AutoMapper;
-using CashFlow.Communication.Requests;
-using CashFlow.Communication.Requests.CategoryGoal;
-using CashFlow.Communication.Response;
-using CashFlow.Communication.Response.CategoryGoal;
+using CashFlow.Communication.Requests.Goal;
+using CashFlow.Communication.Response.Goal;
 using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Categories;
 using CashFlow.Domain.Repositories.CategoriesGoals;
@@ -11,17 +9,17 @@ using CashFlow.Exception;
 using CashFlow.Exception.ExceptionBase;
 using FluentValidation.Results;
 
-namespace CashFlow.Application.UsesCases.CategoryGoal.Register;
+namespace CashFlow.Application.UsesCases.Goal.Register;
 
-public class RegisterCategoryGoalUseCase(
+public class RegisterGoalUseCase(
     ICategoriesGoalsWriteRepository writeRepository,
     ICategoriesGoalsReadRepository readRepository,
     ICategoriesWriteRepository categoriesWriteRepository,
     IUnitOfWork unitOfWork,
     IMapper mapper,
-    ILoggedUser loggedUser) : IRegisterCategoryGoalUseCase
+    ILoggedUser loggedUser) : IRegisterGoalUseCase
 {
-    public async Task<ResponseRegisterCategoryGoalJson> Execute(RequestRegisterCategoryGoalJson request)
+    public async Task<ResponseRegisterGoalJson> Execute(RequestRegisterGoalJson request)
     {
         Domain.Enitites.User currentUser = await loggedUser.Get();
         await Validate(request: request, userId: currentUser.Id);
@@ -33,21 +31,21 @@ public class RegisterCategoryGoalUseCase(
             throw new NotFoundException(message: ResourceErrorMessage.CATEGORY_NOT_FOUND);
         }
 
-        Domain.Enitites.CategoryGoal categoryGoal = mapper.Map<Domain.Enitites.CategoryGoal>(source: request);
-        categoryGoal.UserId = currentUser.Id;
+        Domain.Enitites.Goal goal = mapper.Map<Domain.Enitites.Goal>(source: request);
+        goal.UserId = currentUser.Id;
 
-        await writeRepository.Add(categoryGoal: categoryGoal);
+        await writeRepository.Add(goal: goal);
         await unitOfWork.Commit();
 
-        return mapper.Map<ResponseRegisterCategoryGoalJson>(source: categoryGoal);
+        return mapper.Map<ResponseRegisterGoalJson>(source: goal);
     }
 
-    private async Task Validate(RequestRegisterCategoryGoalJson request, Guid userId)
+    private async Task Validate(RequestRegisterGoalJson request, Guid userId)
     {
-        RegisterCategoryGoalValidator validator = new();
+        RegisterGoalValidator validator = new();
         ValidationResult result = validator.Validate(instance: request);
 
-        Domain.Enitites.CategoryGoal? categoryGoalExist = await readRepository.GetCategoryGoalByCategoryId(categoryId: request.CategoryId, userId: userId);
+        Domain.Enitites.Goal? categoryGoalExist = await readRepository.GetCategoryGoalByCategoryId(categoryId: request.CategoryId, userId: userId);
 
         if (categoryGoalExist != null)
         {

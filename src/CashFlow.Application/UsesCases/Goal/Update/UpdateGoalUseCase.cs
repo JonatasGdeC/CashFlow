@@ -1,7 +1,6 @@
 using AutoMapper;
-using CashFlow.Application.UsesCases.CategoryGoal.Register;
-using CashFlow.Communication.Requests;
-using CashFlow.Communication.Requests.CategoryGoal;
+using CashFlow.Application.UsesCases.Goal.Register;
+using CashFlow.Communication.Requests.Goal;
 using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Categories;
 using CashFlow.Domain.Repositories.CategoriesGoals;
@@ -10,21 +9,21 @@ using CashFlow.Exception;
 using CashFlow.Exception.ExceptionBase;
 using FluentValidation.Results;
 
-namespace CashFlow.Application.UsesCases.CategoryGoal.Update;
+namespace CashFlow.Application.UsesCases.Goal.Update;
 
-public class UpdateCategoryGoalUseCase(
+public class UpdateGoalUseCase(
     ICategoriesGoalsWriteRepository writeRepository,
     ICategoriesWriteRepository categoriesWriteRepository,
     IUnitOfWork unitOfWork,
     IMapper mapper,
-    ILoggedUser loggedUser) : IUpdateCategoryGoalUseCase
+    ILoggedUser loggedUser) : IUpdateGoalUseCase
 {
-    public async Task Execute(Guid id, RequestRegisterCategoryGoalJson request)
+    public async Task Execute(Guid id, RequestRegisterGoalJson request)
     {
         Validate(request: request);
 
         Domain.Enitites.User currentUser = await loggedUser.Get();
-        Domain.Enitites.CategoryGoal? categoryGoal = await writeRepository.GetCategoryGoalByIdToUpdate(categoryGoalId: id, userId: currentUser.Id);
+        Domain.Enitites.Goal? categoryGoal = await writeRepository.GetCategoryGoalByIdToUpdate(categoryGoalId: id, userId: currentUser.Id);
 
         if (categoryGoal == null)
         {
@@ -41,13 +40,13 @@ public class UpdateCategoryGoalUseCase(
         mapper.Map(source: request, destination: categoryGoal);
         categoryGoal.Id = id;
 
-        writeRepository.Update(categoryGoal: categoryGoal);
+        writeRepository.Update(goal: categoryGoal);
         await unitOfWork.Commit();
     }
 
-    private void Validate(RequestRegisterCategoryGoalJson request)
+    private void Validate(RequestRegisterGoalJson request)
     {
-        RegisterCategoryGoalValidator validator = new();
+        RegisterGoalValidator validator = new();
         ValidationResult result = validator.Validate(instance: request);
 
         if (!result.IsValid)

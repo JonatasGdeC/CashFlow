@@ -1,6 +1,6 @@
 namespace CashFlow.Domain.Enitites;
 
-public class CategoryGoal
+public class Goal
 {
     public Guid Id { get; set; }
     public decimal TargetAmount { get; set; }

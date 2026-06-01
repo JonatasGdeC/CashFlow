@@ -1,6 +1,6 @@
-namespace CashFlow.Communication.Response.CategoryGoal;
+namespace CashFlow.Communication.Response.Goal;
 
-public record ResponseCategoryGoalJson
+public record ResponseGoalJson
 {
     public Guid Id { get; init; }
     public decimal TargetAmount { get; init; }
