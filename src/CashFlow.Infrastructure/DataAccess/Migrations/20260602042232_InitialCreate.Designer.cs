@@ -62,7 +62,7 @@ namespace CashFlow.Infrastructure.DataAccess.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid?>("CategoryId")
                         .HasColumnType("char(36)");
@@ -105,7 +105,7 @@ namespace CashFlow.Infrastructure.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("TargetAmount")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("char(36)");
@@ -129,7 +129,7 @@ namespace CashFlow.Infrastructure.DataAccess.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid?>("CategoryId")
                         .HasColumnType("char(36)");
