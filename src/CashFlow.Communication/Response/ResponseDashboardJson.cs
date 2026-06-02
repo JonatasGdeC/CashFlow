@@ -1,7 +1,7 @@
 namespace CashFlow.Communication.Response;
 
-public class ResponseDashboardJson
+public record ResponseDashboardJson
 {
-    public Dictionary<int, decimal> AmountForMonth { get; set; } = new();
-    public decimal TotalAmountForYear { get; set; }
+    public Dictionary<int, decimal> AmountForMonth { get; init; } = new();
+    public decimal TotalAmountForYear { get; init; }
 }

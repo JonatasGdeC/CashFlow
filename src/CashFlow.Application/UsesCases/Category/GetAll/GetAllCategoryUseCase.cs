@@ -1,6 +1,7 @@
 using AutoMapper;
 using CashFlow.Communication.Enums;
 using CashFlow.Communication.Response;
+using CashFlow.Communication.Response.Category;
 using CashFlow.Domain.Repositories.Categories;
 using CashFlow.Domain.Services.LoggedUser;
 using DomainCategoryType = CashFlow.Domain.Enums.CategoryType;

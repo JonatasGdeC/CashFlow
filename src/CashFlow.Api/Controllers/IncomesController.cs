@@ -1,11 +1,16 @@
+using System.Net.Mime;
 using CashFlow.Application.UsesCases.Income.Delete;
 using CashFlow.Application.UsesCases.Income.GetAll;
 using CashFlow.Application.UsesCases.Income.GetById;
 using CashFlow.Application.UsesCases.Income.GetDashboard;
 using CashFlow.Application.UsesCases.Income.Register;
+using CashFlow.Application.UsesCases.Income.Reports.Excel;
+using CashFlow.Application.UsesCases.Income.Reports.Pdf;
 using CashFlow.Application.UsesCases.Income.Update;
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Income;
 using CashFlow.Communication.Response;
+using CashFlow.Communication.Response.Income;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,9 +33,9 @@ public class IncomesController : ControllerBase
     [HttpGet]
     [ProducesResponseType(type: typeof(ResponseGetAllIncomesJson), statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetAllIncomes([FromServices] IGetAllIncomeUseCase useCase)
+    public async Task<IActionResult> GetAllIncomes([FromServices] IGetAllIncomeUseCase useCase, [FromQuery] RequestFilterJson? request = null)
     {
-        ResponseGetAllIncomesJson response = await useCase.Execute();
+        ResponseGetAllIncomesJson response = await useCase.Execute(request: request);
         if (response.ListAllIncomes.Count > 0)
         {
             return Ok(value: response);
@@ -38,7 +43,7 @@ public class IncomesController : ControllerBase
 
         return NoContent();
     }
-
+    
     [HttpGet(template: "dashboard")]
     [ProducesResponseType(type: typeof(ResponseDashboardJson), statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
@@ -46,6 +51,36 @@ public class IncomesController : ControllerBase
     {
         ResponseDashboardJson response = await useCase.Execute();
         return Ok(value: response);
+    }
+    
+    [HttpGet(template: "report/excel")]
+    [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
+    [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetExcel([FromServices] IGenerateIncomesReportExcelUseCase useCase, [FromQuery] RequestFilterJson request)
+    {
+        byte[] file = await useCase.Execute(request: request);
+        
+        if (file.Length > 0)
+        {
+            return File(fileContents: file, contentType: MediaTypeNames.Application.Octet, fileDownloadName: "report.xlsx");
+        }
+        
+        return NoContent();
+    }
+    
+    [HttpGet(template: "report/pdf")]
+    [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
+    [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetPdf([FromServices] IGenerateIncomesReportPdfUseCase useCase, [FromQuery] RequestFilterJson request)
+    {
+        byte[] file = await useCase.Execute(request: request);
+        
+        if (file.Length > 0)
+        {
+            return File(fileContents: file, contentType: MediaTypeNames.Application.Pdf, fileDownloadName: "report.pdf");
+        }
+        
+        return NoContent();
     }
 
     [HttpGet]

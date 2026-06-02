@@ -1,6 +1,7 @@
 using AutoMapper;
 using CashFlow.Application.UsesCases.Expense.Register;
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Expense;
 using CashFlow.Domain.Enums;
 using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Categories;

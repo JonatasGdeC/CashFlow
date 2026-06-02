@@ -4,8 +4,8 @@ namespace CashFlow.Domain.Repositories.CategoriesGoals;
 
 public interface ICategoriesGoalsWriteRepository
 {
-    Task Add(CategoryGoal categoryGoal);
-    void Delete(CategoryGoal categoryGoal);
-    void Update(CategoryGoal categoryGoal);
-    Task<CategoryGoal?> GetCategoryGoalByIdToUpdate(Guid categoryGoalId, Guid userId);
+    Task Add(Goal goal);
+    void Delete(Goal goal);
+    void Update(Goal goal);
+    Task<Goal?> GetCategoryGoalByIdToUpdate(Guid categoryGoalId, Guid userId);
 }

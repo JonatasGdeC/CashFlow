@@ -1,6 +1,7 @@
 using AutoMapper;
 using CashFlow.Application.UsesCases.Expense.GetAll;
 using CashFlow.Communication.Response;
+using CashFlow.Communication.Response.Expense;
 using CashFlow.Domain.Repositories.Expenses;
 using CashFlow.Domain.Services.LoggedUser;
 using CommomTestsUtilies.Entities;
@@ -21,7 +22,7 @@ public class GetAllExpenseUseCaseTest
 
         GetAllExpenseUseCase useCase = CreateUseCase(user: loggedUser, expenses: expenses);
 
-        ResponseGetAllExpensesJson result = await useCase.Execute();
+        ResponseGetAllExpensesJson result = await useCase.Execute(request: new());
 
         result.Should().NotBeNull();
         result.ListAllExpenses.Should().NotBeNullOrEmpty().And.AllSatisfy(expected: expense =>

@@ -1,4 +1,5 @@
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.Category;
 
 namespace CashFlow.Application.UsesCases.Category.Update;
 

@@ -4,7 +4,9 @@ using CashFlow.Application.UsesCases.User.Register;
 using CashFlow.Application.UsesCases.User.Update;
 using CashFlow.Application.UsesCases.User.UpdatePassword;
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Requests.User;
 using CashFlow.Communication.Response;
+using CashFlow.Communication.Response.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

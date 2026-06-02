@@ -22,13 +22,16 @@
 
     <ItemGroup>
       <None Remove="UsesCases\Expense\Reports\Pdf\Fonts\Raleway-Black.ttf" />
-      <EmbeddedResource Include="UsesCases\Expense\Reports\Pdf\Fonts\Raleway-Black.ttf" />
       <None Remove="UsesCases\Expense\Reports\Pdf\Fonts\Raleway-Regular.ttf" />
-      <EmbeddedResource Include="UsesCases\Expense\Reports\Pdf\Fonts\Raleway-Regular.ttf" />
       <None Remove="UsesCases\Expense\Reports\Pdf\Fonts\WorkSans-Black.ttf" />
-      <EmbeddedResource Include="UsesCases\Expense\Reports\Pdf\Fonts\WorkSans-Black.ttf" />
       <None Remove="UsesCases\Expense\Reports\Pdf\Fonts\WorkSans-Regular.ttf" />
-      <EmbeddedResource Include="UsesCases\Expense\Reports\Pdf\Fonts\WorkSans-Regular.ttf" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Utils\GenerateReportPdf\Fonts\Raleway-Black.ttf" />
+      <EmbeddedResource Include="Utils\GenerateReportPdf\Fonts\Raleway-Regular.ttf" />
+      <EmbeddedResource Include="Utils\GenerateReportPdf\Fonts\WorkSans-Black.ttf" />
+      <EmbeddedResource Include="Utils\GenerateReportPdf\Fonts\WorkSans-Regular.ttf" />
     </ItemGroup>
 
 </Project>

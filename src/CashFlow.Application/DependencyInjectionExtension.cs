@@ -4,11 +4,6 @@ using CashFlow.Application.UsesCases.Category.GetAll;
 using CashFlow.Application.UsesCases.Category.GetById;
 using CashFlow.Application.UsesCases.Category.Register;
 using CashFlow.Application.UsesCases.Category.Update;
-using CashFlow.Application.UsesCases.CategoryGoal.Delete;
-using CashFlow.Application.UsesCases.CategoryGoal.GetByCategoryId;
-using CashFlow.Application.UsesCases.CategoryGoal.GetById;
-using CashFlow.Application.UsesCases.CategoryGoal.Register;
-using CashFlow.Application.UsesCases.CategoryGoal.Update;
 using CashFlow.Application.UsesCases.Expense.Delete;
 using CashFlow.Application.UsesCases.Expense.GetAll;
 using CashFlow.Application.UsesCases.Expense.GetById;
@@ -17,11 +12,18 @@ using CashFlow.Application.UsesCases.Expense.Register;
 using CashFlow.Application.UsesCases.Expense.Reports.Excel;
 using CashFlow.Application.UsesCases.Expense.Reports.Pdf;
 using CashFlow.Application.UsesCases.Expense.Update;
+using CashFlow.Application.UsesCases.Goal.Delete;
+using CashFlow.Application.UsesCases.Goal.GetByCategoryId;
+using CashFlow.Application.UsesCases.Goal.GetById;
+using CashFlow.Application.UsesCases.Goal.Register;
+using CashFlow.Application.UsesCases.Goal.Update;
 using CashFlow.Application.UsesCases.Income.Delete;
 using CashFlow.Application.UsesCases.Income.GetAll;
 using CashFlow.Application.UsesCases.Income.GetById;
 using CashFlow.Application.UsesCases.Income.GetDashboard;
 using CashFlow.Application.UsesCases.Income.Register;
+using CashFlow.Application.UsesCases.Income.Reports.Excel;
+using CashFlow.Application.UsesCases.Income.Reports.Pdf;
 using CashFlow.Application.UsesCases.Income.Update;
 using CashFlow.Application.UsesCases.User.Delete;
 using CashFlow.Application.UsesCases.User.Get;
@@ -54,7 +56,6 @@ public static class DependencyInjectionExtension
         services.AddScoped<IDeleteExpenseUseCase, DeleteExpenseUseCase>();
         services.AddScoped<IUpdateExpenseUseCase, UpdateExpenseUseCase>();
         services.AddScoped<IGetExpenseDashboard, GetExpenseDashboard>();
-        
         services.AddScoped<IGenerateExpensesReportExcelUseCase, GenerateExpensesReportExcelUseCase>();
         services.AddScoped<IGenerateExpensesReportPdfUseCase, GenerateExpensesReportPdfUseCase>();
 
@@ -64,6 +65,8 @@ public static class DependencyInjectionExtension
         services.AddScoped<IDeleteIncomeUseCase, DeleteIncomeUseCase>();
         services.AddScoped<IUpdateIncomeUseCase, UpdateIncomeUseCase>();
         services.AddScoped<IGetIncomeDashboard, GetIncomeDashboard>();
+        services.AddScoped<IGenerateIncomesReportExcelUseCase, GenerateIncomesReportExcelUseCase>();
+        services.AddScoped<IGenerateIncomesReportPdfUseCase, GenerateIncomesReportPdfUseCase>();
 
         services.AddScoped<IRegisterCategoryUseCase, RegisterCategoryUseCase>();
         services.AddScoped<IGetAllCategoryUseCase, GetAllCategoryUseCase>();
@@ -71,11 +74,11 @@ public static class DependencyInjectionExtension
         services.AddScoped<IDeleteCategoryUseCase, DeleteCategoryUseCase>();
         services.AddScoped<IUpdateCategoryUseCase, UpdateCategoryUseCase>();
 
-        services.AddScoped<IRegisterCategoryGoalUseCase, RegisterCategoryGoalUseCase>();
-        services.AddScoped<IGetByIdCategoryGoalUseCase, GetByIdCategoryGoalUseCase>();
-        services.AddScoped<IGetCategoryGoalByCategoryIdUseCase, GetCategoryGoalByCategoryIdUseCase>();
-        services.AddScoped<IDeleteCategoryGoalUseCase, DeleteCategoryGoalUseCase>();
-        services.AddScoped<IUpdateCategoryGoalUseCase, UpdateCategoryGoalUseCase>();
+        services.AddScoped<IRegisterGoalUseCase, RegisterGoalUseCase>();
+        services.AddScoped<IGetGoalByIdUseCase, GetGoalByIdUseCase>();
+        services.AddScoped<IGetGoalByCategoryIdUseCase, GetGoalByCategoryIdUseCase>();
+        services.AddScoped<IDeleteGoalUseCase, DeleteGoalUseCase>();
+        services.AddScoped<IUpdateGoalUseCase, UpdateGoalUseCase>();
         
         services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
         services.AddScoped<IGetUserProfileUseCase, GetUserProfileUseCase>();
