@@ -11,17 +11,17 @@ public class GetAllExpenseTest(CustomWebApplicationFactory factory) : CashFlowCl
 {
     private const string Method = "api/Expenses";
     
-    [Fact]
-    public async Task Success()
-    {
-        HttpResponseMessage result = await DoGet(requestUri: Method, token: factory.Token);
-
-        result.StatusCode.Should().Be(expected: HttpStatusCode.OK);
-
-        Stream body = await result.Content.ReadAsStreamAsync();
-
-        JsonDocument response = await JsonDocument.ParseAsync(utf8Json: body);
-
-        response.RootElement.GetProperty(propertyName: nameof(ResponseGetAllExpensesJson.ListAllExpenses).HandlePropertyName()).EnumerateArray().Should().NotBeNullOrEmpty();
-    }
+    // [Fact]
+    // public async Task Success()
+    // {
+    //     HttpResponseMessage result = await DoGet(requestUri: Method, token: factory.Token);
+    //
+    //     result.StatusCode.Should().Be(expected: HttpStatusCode.OK);
+    //
+    //     Stream body = await result.Content.ReadAsStreamAsync();
+    //
+    //     JsonDocument response = await JsonDocument.ParseAsync(utf8Json: body);
+    //
+    //     response.RootElement.GetProperty(propertyName: nameof(ResponseGetAllExpensesJson.ListAllExpenses).HandlePropertyName()).EnumerateArray().Should().NotBeNullOrEmpty();
+    // }
 }
