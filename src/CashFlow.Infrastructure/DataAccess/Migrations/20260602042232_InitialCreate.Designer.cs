@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CashFlow.Infrastructure.DataAccess.Migrations
 {
     [DbContext(typeof(CashFlowDbContext))]
-    [Migration("20260601224929_Refactor_Rename-CategoryGoal-to-Goal")]
-    partial class Refactor_RenameCategoryGoaltoGoal
+    [Migration("20260602042232_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
