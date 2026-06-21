@@ -6,13 +6,14 @@ using CashFlow.Domain.Repositories.Incomes;
 using CashFlow.Domain.Services.LoggedUser;
 
 namespace CashFlow.Application.UsesCases.Income.GetAll;
+using Domain.Enitites;
 
 public class GetAllIncomeUseCase(IIncomesReadRepository readRepository, IMapper mapper, ILoggedUser loggedUser) : IGetAllIncomeUseCase
 {
     public async Task<ResponseGetAllIncomesJson> Execute(RequestFilterJson? request)
     {
-        Domain.Enitites.User currentUser = await loggedUser.Get();
-        List<Domain.Enitites.Income>? response;
+        User currentUser = await loggedUser.Get();
+        List<Income>? response;
 
         if (request != null)
         {

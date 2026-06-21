@@ -1,8 +1,6 @@
 using AutoMapper;
 using CashFlow.Application.UsesCases.User.Register;
-using CashFlow.Communication.Requests;
 using CashFlow.Communication.Requests.User;
-using CashFlow.Communication.Response;
 using CashFlow.Communication.Response.User;
 using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Users;

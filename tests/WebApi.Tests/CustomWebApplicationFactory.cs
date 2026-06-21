@@ -1,4 +1,3 @@
-using CashFlow.Domain.Enitites;
 using CashFlow.Domain.Security.Cryptography;
 using CashFlow.Domain.Security.Tokens;
 using CashFlow.Infrastructure.DataAccess;
@@ -9,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace WebApi.Tests;
+using CashFlow.Domain.Enitites;
 
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {

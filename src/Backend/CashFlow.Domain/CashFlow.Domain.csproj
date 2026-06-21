@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CashFlow.Communication\CashFlow.Communication.csproj" />
+      <ProjectReference Include="..\..\Shared\CashFlow.Communication\CashFlow.Communication.csproj" />
     </ItemGroup>
 
 </Project>

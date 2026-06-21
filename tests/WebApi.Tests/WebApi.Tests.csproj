@@ -22,7 +22,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\CashFlow.Api\CashFlow.Api.csproj" />
+      <ProjectReference Include="..\..\src\Backend\CashFlow.Api\CashFlow.Api.csproj" />
+      <ProjectReference Include="..\..\src\Backend\CashFlow.Domain\CashFlow.Domain.csproj" />
+      <ProjectReference Include="..\..\src\Backend\CashFlow.Infrastructure\CashFlow.Infrastructure.csproj" />
       <ProjectReference Include="..\CommomTestsUtilies\CommomTestsUtilies.csproj" />
     </ItemGroup>
 

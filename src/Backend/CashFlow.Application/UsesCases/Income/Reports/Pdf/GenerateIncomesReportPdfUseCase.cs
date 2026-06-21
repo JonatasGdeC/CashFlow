@@ -5,6 +5,7 @@ using CashFlow.Domain.Services.LoggedUser;
 using PdfSharp.Fonts;
 
 namespace CashFlow.Application.UsesCases.Income.Reports.Pdf;
+using Domain.Enitites;
 
 public class GenerateIncomesReportPdfUseCase : IGenerateIncomesReportPdfUseCase
 {
@@ -20,8 +21,8 @@ public class GenerateIncomesReportPdfUseCase : IGenerateIncomesReportPdfUseCase
 
     public async Task<byte[]> Execute(RequestFilterJson request)
     {
-        Domain.Enitites.User currentUser = await _loggedUser.Get();
-        List<Domain.Enitites.Income>? response = await _readRepository.GetFilter(request: request, userId: currentUser.Id);
+        User currentUser = await _loggedUser.Get();
+        List<Income>? response = await _readRepository.GetFilter(request: request, userId: currentUser.Id);
         
         if (response is null || response.Count == 0)
         {
