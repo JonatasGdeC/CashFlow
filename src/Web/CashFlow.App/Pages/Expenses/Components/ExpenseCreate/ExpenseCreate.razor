@@ -1,0 +1,70 @@
+@using CashFlow.Communication.Response.Category
+<div class="modal-backdrop">
+    <section class="panel panel-pad modal-panel">
+        <div class="modal-header">
+            <div>
+                <p class="eyebrow">Criar despesa</p>
+                <h2>Nova despesa</h2>
+            </div>
+            <button class="icon-button" title="Fechar" type="button" disabled="@_isSubmitting" @onclick="HandleCancelAsync">X</button>
+        </div>
+        <EditForm Model="_expenseModel" OnSubmit="@HandleCreateExpenseAsync" class="form-grid">
+            <div class="form-grid two-cols">
+                <div class="field">
+                    <label for="title">Titulo</label>
+                    <InputText id="title" @bind-Value="_expenseModel.Title" disabled="@_isSubmitting" placeholder="Ex: Supermercado" />
+                </div>
+                <div class="field">
+                    <label for="amount">Valor</label>
+                    <InputNumber id="amount" @bind-Value="_expenseModel.Amount" disabled="@_isSubmitting" />
+                </div>
+            </div>
+            <div class="form-grid two-cols">
+                <div class="field">
+                    <label for="date">Data</label>
+                    <InputDate id="date" @bind-Value="_expenseModel.Date" disabled="@_isSubmitting" />
+                </div>
+                <div class="field">
+                    <label for="payment">Pagamento</label>
+                    <InputSelect id="payment" @bind-Value="_expenseModel.PaymentType" disabled="@_isSubmitting">
+                        @foreach (PaymentType paymentType in Enum.GetValues<PaymentType>())
+                        {
+                            <option value="@paymentType">@GetPaymentTypeDescription(paymentType: paymentType)</option>
+                        }
+                    </InputSelect>
+                </div>
+            </div>
+            <div class="field">
+                <label for="category">Categoria</label>
+                <InputSelect id="category" @bind-Value="_expenseModel.CategoryId" disabled="@_isSubmitting">
+                    <option value="">Sem categoria</option>
+                    @foreach (ResponseCategoryShortJson category in _expenseCategories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </InputSelect>
+            </div>
+            <div class="field">
+                <label for="notes">Observacoes</label>
+                <InputTextArea id="notes" @bind-Value="_expenseModel.Description" disabled="@_isSubmitting" placeholder="Detalhes opcionais para a API salvar" />
+            </div>
+            <div class="button-row">
+                <button class="btn btn-primary" type="submit" disabled="@_isSubmitting">
+                    @(_isSubmitting ? "Salvando..." : "Salvar despesa")
+                </button>
+                <button class="btn btn-ghost" type="button" disabled="@_isSubmitting" @onclick="HandleCancelAsync">Cancelar</button>
+            </div>
+        </EditForm>
+
+        @if (_listFeedbacks.Any())
+        {
+            <p class="form-feedback error">
+                @foreach (string feedback in _listFeedbacks)
+                {
+                    @feedback
+                    <br/>
+                }
+            </p>
+        }
+    </section>
+</div>

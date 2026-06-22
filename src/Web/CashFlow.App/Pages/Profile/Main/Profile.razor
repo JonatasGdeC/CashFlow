@@ -1,0 +1,43 @@
+@page "/profile"
+@using CashFlow.App.Pages.Profile.Components.UserDelete
+@using CashFlow.App.Pages.Profile.Components.UserPassword
+@using CashFlow.App.Pages.Profile.Components.UserProfile
+
+<PageTitle>CashFlow - Perfil</PageTitle>
+
+<section class="app-screen">
+    <header class="page-header">
+        <div>
+            <h1 class="page-title">Dados da conta.</h1>
+            <p class="page-subtitle">Formularios separados para alterar nome, email, senha e excluir a propriaconta.</p>
+        </div>
+    </header>
+
+    @if (_isLoading)
+    {
+        <section class="panel panel-pad">
+            <p class="page-subtitle">Carregando perfil...</p>
+        </section>
+    }
+    else
+    {
+        <div class="content-grid">
+            <UserProfile ProfileModel="@_profileModel" UpdateProfileModel="@(request => _profileModel = request)" />
+            
+            <UserPassword/>
+            
+            <UserDelete ProfileModel="@_profileModel"/>
+        </div>
+    }
+    
+    @if (_listFeedbacks.Any())
+    {
+        <p class="form-feedback error">
+            @foreach (string feedback in _listFeedbacks)
+            {
+                @feedback
+                <br/>
+            }
+        </p>
+    }
+</section>

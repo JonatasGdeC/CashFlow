@@ -1,0 +1,31 @@
+@using CashFlow.App.Pages.Categories.Components.CategoryById
+@using CashFlow.App.Utils
+@using CashFlow.Communication.Response.Income
+
+<section class="panel panel-pad">
+    <div class="section-title-row">
+        <h2>Rendas recentes</h2>
+        <span class="pill">@Incomes.Count itens</span>
+    </div>
+
+    @if (Incomes.Count == 0)
+    {
+        <p class="page-subtitle">Nenhuma renda registrada.</p>
+    }
+    else
+    {
+        <div class="expense-list">
+            @foreach (ResponseIncomeShortJson income in Incomes)
+            {
+                <a class="expense-item" href="@($"incomes/{income.Id}")">
+                    <span class="expense-icon income-icon">@GetInitial.Execute(value: income.Title)</span>
+                    <span class="expense-main">
+                        <strong>@income.Title</strong>
+                    </span>
+                    <CategoryById CategoryId="@income.CategoryId"/>
+                    <span class="expense-amount income-amount">+ @income.Amount.ToString(format: "C")</span>
+                </a>
+            }
+        </div>
+    }
+</section>

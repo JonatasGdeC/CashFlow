@@ -1,0 +1,66 @@
+@using CashFlow.App.Pages.Categories.Components.CategoryCreateModal
+@using CashFlow.App.Pages.Categories.Components.GoalCreateModal
+@using CashFlow.Communication.Response.Category
+@using CashFlow.Communication.Response.Goal
+
+<div class="category-list">
+    @foreach (ResponseCategoryShortJson category in Categories)
+    {
+        ResponseGoalJson? goal = GetGoal(categoryId: category.Id);
+        
+        <article class="category-item">
+            <span class="category-color" style="@($"background: {NormalizeColor(color: category.Color)}")"></span>
+            <div class="category-main">
+                <strong>@category.Name</strong>
+                <small>@GetGoalText(goal: goal, type: category.Type)</small>
+                @if (goal is not null)
+                {
+                    int pct = GetProgressPercentage(goal: goal, categoryId: category.Id);
+                    decimal amount = GetCategoryAmount(categoryId: category.Id);
+                    string fillClass = category.Type == CategoryType.Income ? "progress-fill progress-fill--income" : "progress-fill progress-fill--expense";
+                    <div class="goal-progress">
+                        <div class="progress-track">
+                            <div class="@fillClass" style="--value: @(pct)%"></div>
+                        </div>
+                        <span class="goal-progress-label">@amount.ToString(format: "C") de @goal.TargetAmount.ToString(format: "C")</span>
+                    </div>
+                }
+            </div>
+            <div class="button-row">
+                <button class="btn btn-ghost" type="button" @onclick="() => OpenGoalModal(category: category)">@(goal is null ? "Criar meta" : "Editar meta")</button>
+                @if (goal is not null)
+                {
+                    <button class="btn btn-danger" type="button" @onclick="() => HandleDeleteGoalAsync(goal: goal)">Remover meta</button>
+                }
+                
+                <button class="btn btn-ghost" type="button" @onclick="() => OpenEditCategoryModal(category: category)">
+                    <span class="material-symbols-outlined">edit</span>
+                </button>
+            </div>
+        </article>
+        
+        if (_listFeedbacks.Any())
+        {
+            <p class="form-feedback error">
+                @foreach (string feedback in _listFeedbacks)
+                {
+                    @feedback
+                    <br/>
+                }
+            </p>
+        }
+    }
+</div>
+
+@if (_showGoalModal && _selectedCategoryForGoal is not null)
+{
+    <GoalCreateModal OnClose="@CloseGoalModal" GoalModel="@_goalModel" 
+                     EditingGoalId="@_editingGoalId" LoadCategoriesGoalsAsync="@LoadCategoriesGoalsAsync" 
+                     SelectedCategoryForGoal="@_selectedCategoryForGoal"/>
+}
+
+@if (_showCategoryCreate)
+{
+    <CategoryCreateModal CategoryEditModel="@_selectedCategoryForGoal"
+                         OnClose="@CloseEditModal" LoadCategoriesAsync="@LoadCategoriesGoalsAsync"/>
+}

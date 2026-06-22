@@ -1,0 +1,22 @@
+@using CashFlow.App.Layout.NavMenu
+@using CashFlow.App.Pages.Login
+@inherits LayoutComponentBase
+
+@if (!_isAuthenticated)
+{
+    <Login/>
+}
+else
+{
+    <div class="page">
+        <aside class="sidebar">
+            <NavMenu/>
+        </aside>
+
+        <main>
+            <article class="content">
+                @Body
+            </article>
+        </main>
+    </div>
+}

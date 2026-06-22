@@ -1,0 +1,26 @@
+@using CashFlow.App.Pages.Expenses.Components.ExpenseCreate
+@using CashFlow.App.Pages.Expenses.Components.ExpenseReportModal
+<header class="page-header">
+    <div>
+        <p class="eyebrow">Despesas</p>
+        <h1 class="page-title">Registre e acompanhe seus gastos.</h1>
+        <p class="page-subtitle">Lista compacta para consulta rapida. Ao abrir uma despesa, a tela mostra os detalhes e as acoes de atualizar ou excluir.</p>
+    </div>
+    <div class="button-row">
+        <button class="btn btn-ghost" @onclick="OpenReport">
+            <span class="material-symbols-outlined">bar_chart</span>
+            <p>Relatório</p>
+        </button>
+        <button class="btn btn-primary" @onclick="OpenCreate">Nova despesa</button>
+    </div>
+</header>
+
+@if (_showCreate)
+{
+    <ExpenseCreate OnExpenseCreated="@HandleExpenseCreatedAsync" OnCancel="@CloseCreate" />
+}
+
+@if (_showReport)
+{
+    <ExpenseReportModal OnClose="@CloseReport" />
+}

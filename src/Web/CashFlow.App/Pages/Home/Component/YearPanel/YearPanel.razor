@@ -1,0 +1,18 @@
+<aside class="panel panel-pad">
+    <div class="section-title-row">
+        <h2>Resumo anual</h2>
+        <span class="pill">@DateTime.Today.Year</span>
+    </div>
+    <div class="summary-grid">
+        <div class="metric">
+            <span>Despesas</span>
+            <strong>@YearExpenses.ToString(format: "C")</strong>
+            <small>Total do ano</small>
+        </div>
+        <div class="metric">
+            <span>Rendas</span>
+            <strong>@YearIncomes.ToString(format: "C")</strong>
+            <small>Total do ano</small>
+        </div>
+    </div>
+</aside>

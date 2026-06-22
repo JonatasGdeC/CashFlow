@@ -425,8 +425,9 @@ test-results/
 # Mac bundle stuff
 *.dmg
 *.app
-!src/Web/CashFlow.App/
-!src/Web/CashFlow.App/**
+
+!CashFlow.App/
+!CashFlow.App/**
 
 # content below from: https://github.com/github/gitignore/blob/main/Global/macOS.gitignore
 # General

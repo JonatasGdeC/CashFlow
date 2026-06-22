@@ -1,0 +1,29 @@
+<section class="panel balance-panel">
+    <div class="user-chip">
+        <div class="avatar">@UserInitials</div>
+        <div>
+            <strong>Hey, @UserName</strong>
+            <span>@UserEmail</span>
+        </div>
+    </div>
+
+    <div>
+        <p class="balance-label">Saldo anual</p>
+        <p class="balance-value">@YearBalance.ToString(format: "C")</p>
+    </div>
+
+    <div class="quick-actions">
+        <a class="quick-action" href="expenses">
+            <span class="material-symbols-outlined">payments</span>
+            <small>Despesa</small>
+        </a>
+        <a class="quick-action" href="incomes">
+            <span class="material-symbols-outlined">account_balance_wallet</span>
+            <small>Renda</small>
+        </a>
+        <a class="quick-action" href="categories">
+            <span class="material-symbols-outlined">target</span>
+            <small>Metas</small>
+        </a>
+    </div>
+</section>

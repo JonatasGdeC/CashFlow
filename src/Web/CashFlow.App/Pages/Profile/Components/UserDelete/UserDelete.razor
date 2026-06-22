@@ -1,0 +1,52 @@
+<section class="panel panel-pad danger-zone">
+    <div class="section-title-row">
+        <h2>Excluir conta</h2>
+    </div>
+    <p class="page-subtitle">Esta ação remove a conta e os dados associados conforme a regra da API.</p>
+    <div class="button-row" style="margin-top: 16px;">
+        <button class="btn btn-danger" type="button" disabled="@_isDeletingAccount"
+                @onclick="OpenDeleteConfirmation">
+            Excluir minha conta
+        </button>
+    </div>
+    
+    @if (_listFeedbacks.Any())
+    {
+        <p class="form-feedback @(_hasErrorFeedback ? "error" : string.Empty)">
+            @foreach (string feedback in _listFeedbacks)
+            {
+                @feedback
+                <br/>
+            }
+        </p>
+    }
+</section>
+
+@if (_showDeleteConfirmation)
+{
+    <div class="modal-backdrop">
+        <section class="panel panel-pad modal-panel">
+            <div class="modal-header">
+                <div>
+                    <p class="eyebrow">Excluir conta</p>
+                    <h2>Confirmar exclusão</h2>
+                </div>
+                <button class="icon-button" title="Fechar" type="button" disabled="@_isDeletingAccount"
+                        @onclick="CloseDeleteConfirmation">X
+                </button>
+            </div>
+            <p class="page-subtitle">Esta ação remove permanentemente a conta vinculada ao email @ProfileModel!.Email e seus dados associados.
+            </p>
+            <div class="button-row" style="margin-top: 18px;">
+                <button class="btn btn-danger" type="button" disabled="@_isDeletingAccount"
+                        @onclick="HandleDeleteAccountAsync">
+                    @(_isDeletingAccount ? "Excluindo..." : "Confirmar exclusão")
+                </button>
+                <button class="btn btn-ghost" type="button" disabled="@_isDeletingAccount"
+                        @onclick="CloseDeleteConfirmation">
+                    Cancelar
+                </button>
+            </div>
+        </section>
+    </div>
+}

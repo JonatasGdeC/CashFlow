@@ -1,0 +1,46 @@
+<div class="modal-backdrop">
+    <section class="panel panel-pad modal-panel">
+        <div class="modal-header">
+            <div>
+                <p class="eyebrow">Despesas</p>
+                <h2>Gerar relatório</h2>
+            </div>
+            <button class="icon-button" title="Fechar" type="button" disabled="@IsDownloading" @onclick="OnClose">X</button>
+        </div>
+
+        <div class="form-grid">
+            <div class="field">
+                <label for="expense-report-month">Mês e ano</label>
+                <input id="expense-report-month" type="month" value="@SelectedMonth" @onchange="@HandleSelectedMonthChanged" disabled="@IsDownloading" />
+            </div>
+
+            <div class="field">
+                <label for="expense-pdf-title">Nome do arquivo</label>
+                <input id="expense-pdf-title" type="text" @bind="_title" disabled="@IsDownloading" />
+            </div>
+            
+            <div class="button-row">
+                <button class="btn btn-primary" type="button" disabled="@IsDownloading" @onclick="DownloadPdfAsync">
+                    <span class="material-symbols-outlined">download</span>
+                    <p>@(_isDownloadingPdf ? "Baixando PDF..." : "Baixar PDF")</p>
+                </button>
+                <button class="btn btn-secondary" type="button" disabled="@IsDownloading" @onclick="DownloadExcelAsync">
+                    <span class="material-symbols-outlined">download</span>
+                    <p>@(_isDownloadingExcel ? "Baixando Excel..." : "Baixar Excel")</p>
+                </button>
+                <button class="btn btn-ghost" type="button" disabled="@IsDownloading" @onclick="OnClose">Cancelar</button>
+            </div>
+        </div>
+
+        @if (_listFeedbacks.Any())
+        {
+            <p class="form-feedback error">
+                @foreach (string feedback in _listFeedbacks)
+                {
+                    @feedback
+                    <br/>
+                }
+            </p>
+        }
+    </section>
+</div>

@@ -1,0 +1,25 @@
+<section class="panel panel-pad">
+    <div class="section-title-row">
+        <h2>Fluxo do mês</h2>
+        <a class="pill" href="reports">Relatório</a>
+    </div>
+    <p class="page-subtitle">@MonthExpenses.ToString(format: "C") gastos em @DateTime.Today.ToString(format: "MMMM/yyyy")</p>
+    <div class="progress-track" style="@ExpenseProgressStyle">
+        <span class="progress-fill"></span>
+    </div>
+
+    <div class="description-list">
+        <div class="description-row">
+            <span>Rendas do mês</span>
+            <strong class="income-amount">+ @MonthIncomes.ToString(format: "C")</strong>
+        </div>
+        <div class="description-row">
+            <span>Despesas do mês</span>
+            <strong class="expense-amount">- @MonthExpenses.ToString(format: "C")</strong>
+        </div>
+        <div class="description-row">
+            <span>Saldo do mês</span>
+            <strong>@MonthBalance.ToString(format: "C")</strong>
+        </div>
+    </div>
+</section>
