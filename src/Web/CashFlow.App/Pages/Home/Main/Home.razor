@@ -1,0 +1,50 @@
+@page "/"
+@using CashFlow.App.Pages.Home.Component.BalancePanel
+@using CashFlow.App.Pages.Home.Component.HeaderHome
+@using CashFlow.App.Pages.Home.Component.MonthByMonthPanel
+@using CashFlow.App.Pages.Home.Component.MonthPanel
+@using CashFlow.App.Pages.Home.Component.RecentsPanel
+@using CashFlow.App.Pages.Home.Component.YearPanel
+
+<PageTitle>CashFlow - Dashboard</PageTitle>
+
+<section class="app-screen">
+    <HeaderHome/>
+
+    @if (_isLoading)
+    {
+        <section class="panel panel-pad">
+            <p class="page-subtitle">Carregando dashboard...</p>
+        </section>
+    }
+    else
+    {
+        <div class="dashboard-grid">
+            <BalancePanel ErrorFeedback="@(errors => _listFeedbacks = errors)"
+                          ExpenseDashboard="@_expenseDashboard" IncomeDashboard="@_incomeDashboard"/>
+
+            <div class="content-grid">
+                <MonthPanel ExpenseDashboard="@_expenseDashboard" IncomeDashboard="@_incomeDashboard"/>
+                
+                <YearPanel ExpenseDashboard="@_expenseDashboard" IncomeDashboard="@_incomeDashboard"/>
+            </div>
+        </div>
+
+        <div class="content-grid dashboard-lower-grid">
+            <RecentsPanel ErrorFeedback="@(errors => _listFeedbacks = errors)"/>
+
+            <MonthByMonthPanel ExpenseDashboard="@_expenseDashboard" IncomeDashboard="@_incomeDashboard"/>
+        </div>
+    }
+
+    @if (_listFeedbacks.Any())
+    {
+        <p class="form-feedback error">
+            @foreach (string feedback in _listFeedbacks)
+            {
+                @feedback
+                <br/>
+            }
+        </p>
+    }
+</section>

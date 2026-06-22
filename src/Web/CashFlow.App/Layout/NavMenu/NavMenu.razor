@@ -1,0 +1,44 @@
+@inject CookieAuthenticationStateProvider CookieAuthenticationStateProvider
+
+<div class="nav-shell">
+    <div class="brand-row">
+        <a class="brand" href="">
+            <span class="brand-mark">@_statusEmoji</span>
+            <span>CashFlow</span>
+        </a>
+        <button title="Abrir menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+        <nav class="nav-list">
+            <a class="nav-link" href="">
+                <span class="nav-icon"><span class="material-symbols-outlined">home</span></span>
+                <p>Dashboard</p>
+            </a>
+            <a class="nav-link" href="expenses">
+                <span class="nav-icon"><span class="material-symbols-outlined">payments</span></span> 
+                <p>Despesas</p>
+            </a>
+            <a class="nav-link" href="incomes">
+                <span class="nav-icon"><span class="material-symbols-outlined">account_balance_wallet</span></span> 
+                <p>Rendas</p>
+            </a>
+            <a class="nav-link" href="categories">
+                <span class="nav-icon"><span class="material-symbols-outlined">category</span> </span> 
+                <p>Categorias</p>
+            </a>
+            <a class="nav-link" href="profile">
+                <span class="nav-icon"><span class="material-symbols-outlined">settings_heart</span></span> 
+                <p>Perfil</p>
+            </a>
+            <button class="nav-link" type="button" @onclick="@HandleLogoutAsync">
+                <span class="nav-icon"><span class="material-symbols-outlined">logout</span></span> 
+                <p>Sair</p>
+            </button>
+        </nav>
+    </div>
+</div>

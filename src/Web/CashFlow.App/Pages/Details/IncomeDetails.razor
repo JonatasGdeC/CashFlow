@@ -1,0 +1,123 @@
+@page "/incomes/{IncomeId:guid}"
+
+<PageTitle>CashFlow - Detalhe da renda</PageTitle>
+
+<section class="app-screen">
+    @if (_isLoading)
+    {
+        <section class="panel panel-pad">
+            <p class="page-subtitle">Carregando renda...</p>
+        </section>
+    }
+    else if (_income is not null)
+    {
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">Detalhe da renda</p>
+                <h1 class="page-title">@_income.Title</h1>
+                <p class="page-subtitle">Informacoes completas da entrada selecionada, com acoes de atualizar ou excluir.</p>
+            </div>
+            <div class="button-row">
+                <a class="btn btn-ghost" href="incomes">Voltar</a>
+                <button class="btn btn-secondary" @onclick="OpenEdit">Atualizar</button>
+                <button class="btn btn-danger" @onclick="OpenDelete">Excluir</button>
+            </div>
+        </header>
+
+        <div class="detail-grid">
+            <section class="panel panel-pad detail-hero income-hero">
+                <span class="expense-icon income-icon">@GetInitial(value: _income.Title)</span>
+                <p class="eyebrow">Valor recebido</p>
+                <p class="detail-amount income-amount">+ @_income.Amount.ToString(format: "C")</p>
+                <p class="page-subtitle">@_income.Title</p>
+            </section>
+
+            <section class="panel panel-pad">
+                <div class="section-title-row">
+                    <h2>Dados da renda</h2>
+                    <span class="pill">Registrada</span>
+                </div>
+                <div class="description-list">
+                    <div class="description-row">
+                        <span>Data</span>
+                        <strong>@_income.Date.ToString(format: "dd/MM/yyyy")</strong>
+                    </div>
+                    <div class="description-row">
+                        <span>Descricao</span>
+                        <strong>@(_income.Description ?? "Sem descricao")</strong>
+                    </div>
+                </div>
+            </section>
+        </div>
+    }
+
+    @if (_listFeedbacks.Any())
+    {
+        <p class="form-feedback error">
+            @foreach (string feedback in _listFeedbacks)
+            {
+                @feedback
+                <br/>
+            }
+        </p>
+    }
+</section>
+
+@if (_showEdit)
+{
+    <div class="modal-backdrop">
+        <section class="panel panel-pad modal-panel">
+            <div class="modal-header">
+                <div>
+                    <p class="eyebrow">Atualizar</p>
+                    <h2>Editar renda</h2>
+                </div>
+                <button class="icon-button" title="Fechar" type="button" disabled="@_isSaving" @onclick="CloseEdit">X</button>
+            </div>
+            <EditForm Model="_editModel" OnSubmit="@HandleUpdateIncomeAsync" class="form-grid">
+                <div class="form-grid two-cols">
+                    <div class="field">
+                        <label for="edit-title">Titulo</label>
+                        <InputText id="edit-title" @bind-Value="_editModel.Title" disabled="@_isSaving" />
+                    </div>
+                    <div class="field">
+                        <label for="edit-amount">Valor</label>
+                        <InputNumber id="edit-amount" @bind-Value="_editModel.Amount" disabled="@_isSaving" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="edit-date">Data</label>
+                    <InputDate id="edit-date" @bind-Value="_editModel.Date" disabled="@_isSaving" />
+                </div>
+                <div class="field">
+                    <label for="edit-description">Descricao</label>
+                    <InputTextArea id="edit-description" @bind-Value="_editModel.Description" disabled="@_isSaving" />
+                </div>
+                <div class="button-row">
+                    <button class="btn btn-primary" type="submit" disabled="@_isSaving">@(_isSaving ? "Salvando..." : "Salvar alteracoes")</button>
+                    <button class="btn btn-ghost" type="button" disabled="@_isSaving" @onclick="CloseEdit">Cancelar</button>
+                </div>
+            </EditForm>
+        </section>
+    </div>
+}
+
+@if (_showDelete)
+{
+    <div class="modal-backdrop">
+        <section class="panel panel-pad modal-panel">
+            <div class="modal-header">
+                <div>
+                    <p class="eyebrow">Excluir</p>
+                    <h2>Confirmar exclusão</h2>
+                </div>
+                <button class="icon-button" title="Fechar" type="button" disabled="@_isDeleting" @onclick="CloseDelete">X</button>
+            </div>
+            <p class="page-subtitle">Ao confirmar, a API vai remover esta renda permanentemente.</p>
+            <div class="button-row" style="margin-top: 18px;">
+                <button class="btn btn-danger" type="button" disabled="@_isDeleting" @onclick="HandleDeleteIncomeAsync">@(_isDeleting ? "Excluindo..." : "Excluir renda")</button>
+                <button class="btn btn-ghost" type="button" disabled="@_isDeleting" @onclick="CloseDelete">Cancelar</button>
+            </div>
+        </section>
+    </div>
+}

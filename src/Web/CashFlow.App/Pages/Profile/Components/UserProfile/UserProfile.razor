@@ -1,0 +1,29 @@
+<section class="panel panel-pad">
+    <div class="section-title-row">
+        <h2>Informacoes pessoais</h2>
+    </div>
+    <EditForm Model="ProfileModel" OnSubmit="@HandleUpdateProfileAsync" class="form-grid">
+        <div class="field">
+            <label for="name">Nome</label>
+            <InputText id="name" @bind-Value="ProfileModel!.Name" disabled="@_isUpdatingProfile"/>
+        </div>
+        <div class="field">
+            <label for="email">Email</label>
+            <InputText id="email" type="email" @bind-Value="ProfileModel.Email" disabled="@_isUpdatingProfile"/>
+        </div>
+        <button class="btn btn-primary" type="submit" disabled="@_isUpdatingProfile">
+            @(_isUpdatingProfile ? "Salvando..." : "Salvar informacoes")
+        </button>
+    </EditForm>
+    
+    @if (_listFeedbacks.Any())
+    {
+        <p class="form-feedback @(_hasErrorFeedback ? "error" : string.Empty)">
+            @foreach (string feedback in _listFeedbacks)
+            {
+                @feedback
+                <br/>
+            }
+        </p>
+    }
+</section>

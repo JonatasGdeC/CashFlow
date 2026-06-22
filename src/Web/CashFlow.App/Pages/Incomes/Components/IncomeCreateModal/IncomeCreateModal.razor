@@ -1,0 +1,64 @@
+@using CashFlow.Communication.Response.Category
+<div class="modal-backdrop">
+    <section class="panel panel-pad modal-panel">
+        <div class="modal-header">
+            <div>
+                <p class="eyebrow">Criar renda</p>
+                <h2>Nova renda</h2>
+            </div>
+            <button class="icon-button" title="Fechar" type="button" disabled="@_isSubmitting" @onclick="CloseCreate">
+                X
+            </button>
+        </div>
+        <EditForm Model="_incomeModel" OnSubmit="@HandleCreateIncomeAsync" class="form-grid">
+            <div class="form-grid two-cols">
+                <div class="field">
+                    <label for="title">Titulo</label>
+                    <InputText id="title" @bind-Value="_incomeModel.Title" disabled="@_isSubmitting"
+                               placeholder="Ex: Salario"/>
+                </div>
+                <div class="field">
+                    <label for="amount">Valor</label>
+                    <InputNumber id="amount" @bind-Value="_incomeModel.Amount" disabled="@_isSubmitting"/>
+                </div>
+            </div>
+            <div class="form-grid two-cols">
+                <div class="field">
+                    <label for="date">Data</label>
+                    <InputDate id="date" @bind-Value="_incomeModel.Date" disabled="@_isSubmitting"/>
+                </div>
+                <div class="field">
+                    <label for="category">Categoria</label>
+                    <InputSelect id="category" @bind-Value="_incomeModel.CategoryId" disabled="@_isSubmitting">
+                        <option value="">Sem categoria</option>
+                        @foreach (ResponseCategoryShortJson category in _incomeCategories)
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    </InputSelect>
+                </div>
+            </div>
+            <div class="field">
+                <label for="notes">Observacoes</label>
+                <InputTextArea id="notes" @bind-Value="_incomeModel.Description" disabled="@_isSubmitting"/>
+            </div>
+            <div class="button-row">
+                <button class="btn btn-primary" type="submit"
+                        disabled="@_isSubmitting">@(_isSubmitting ? "Salvando..." : "Salvar renda")</button>
+                <button class="btn btn-ghost" type="button" disabled="@_isSubmitting" @onclick="CloseCreate">Cancelar
+                </button>
+            </div>
+        </EditForm>
+        
+        @if (_listFeedbacks.Any())
+        {
+            <p class="form-feedback error">
+                @foreach (string feedback in _listFeedbacks)
+                {
+                    @feedback
+                    <br/>
+                }
+            </p>
+        }
+    </section>
+</div>

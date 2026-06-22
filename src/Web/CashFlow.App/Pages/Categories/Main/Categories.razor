@@ -1,0 +1,57 @@
+@page "/categories"
+@using CashFlow.App.Pages.Categories.Components.CategoryHeader
+@using CashFlow.App.Pages.Categories.Components.CategoryHelper
+@using CashFlow.App.Pages.Categories.Components.CategoryList
+
+<PageTitle>CashFlow - Categorias e metas</PageTitle>
+
+<section class="app-screen">
+    <CategoryHeader SelectedType="@_selectedType" HandleSelectedType="@(type => _selectedType = type)" LoadCategoriesAsync="@OnInitializedAsync"/>
+
+    <section class="panel panel-pad">
+        <div class="segmented-control" role="tablist">
+            <button class="@GetTabClass(categoryType: CategoryType.Expense)" type="button" @onclick="() => ChangeCategoryTypeAsync(categoryType: CategoryType.Expense)">Despesas</button>
+            <button class="@GetTabClass(categoryType: CategoryType.Income)" type="button" @onclick="() => ChangeCategoryTypeAsync(categoryType: CategoryType.Income)">Rendas</button>
+        </div>
+    </section>
+
+    @if (_isLoading)
+    {
+        <section class="panel panel-pad" style="margin-top: 18px;">
+            <p class="page-subtitle">Carregando categorias...</p>
+        </section>
+    }
+    else
+    {
+        <div class="content-grid" style="margin-top: 18px;">
+            <section class="panel panel-pad">
+                <div class="section-title-row">
+                    <h2>@GetCategoryTypeTitle(type: _selectedType)</h2>
+                    <span class="pill">@_categories.Count itens</span>
+                </div>
+
+                @if (_categories.Count == 0)
+                {
+                    <p class="page-subtitle">Nenhuma categoria cadastrada.</p>
+                }
+                else
+                {
+                    <CategoryList Categories="@_categories" LoadCategoriesGoalsAsync="@OnInitializedAsync" GoalsByCategory="@_goalsByCategory" AmountsByCategory="@_amountsByCategory"/>
+                }
+            </section>
+            
+            <CategoryHelper SelectedType="@_selectedType"/>
+        </div>
+    }
+
+    @if (_listFeedbacks.Any())
+    {
+        <p class="form-feedback error">
+            @foreach (string feedback in _listFeedbacks)
+            {
+                @feedback
+                <br/>
+            }
+        </p>
+    }
+</section>

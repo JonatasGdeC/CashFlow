@@ -1,0 +1,8 @@
+.balance-panel {
+    background: var(--ink);
+    color: var(--paper);
+    display: grid;
+    gap: 22px;
+    min-height: 330px;
+    padding: 22px;
+}

@@ -1,0 +1,27 @@
+﻿@using System.Net.Http
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.AspNetCore.Components.WebAssembly.Http
+@using Microsoft.JSInterop
+@using CashFlow.App
+@using CashFlow.App.Auth
+@using CashFlow.App.Layout
+@using CashFlow.App.Layout.MainLayout
+
+@using CashFlow.Adapter.Services
+@using Microsoft.AspNetCore.Components.Authorization
+@using CashFlow.Communication.Enums
+
+@inject UserApiService UserApiService
+@inject LoginApiService LoginApiService
+@inject ExpenseApiService ExpenseApiService
+@inject CategoryApiService CategoryApiService
+@inject GoalApiService GoalApiService
+@inject IncomeApiService IncomeApiService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject CookieAuthenticationStateProvider CookieAuthenticationStateProvider
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JsRuntime

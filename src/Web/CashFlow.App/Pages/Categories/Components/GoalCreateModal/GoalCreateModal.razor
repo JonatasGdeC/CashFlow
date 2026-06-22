@@ -1,0 +1,46 @@
+<div class="modal-backdrop">
+    @if (GoalModel != null && SelectedCategoryForGoal != null)
+    {
+        <section class="panel panel-pad modal-panel">
+            <div class="modal-header">
+                <div>
+                    <p class="eyebrow">Meta de categoria</p>
+                    <h2>@SelectedCategoryForGoal.Name</h2>
+                </div>
+                <button class="icon-button" title="Fechar" type="button" disabled="@_isSubmittingGoal" @onclick="CloseGoalModal">X</button>
+            </div>
+            <EditForm Model="GoalModel" OnSubmit="@HandleSaveGoalAsync" class="form-grid">
+                <div class="field">
+                    <label for="goal-amount">Valor da meta</label>
+                    <InputNumber id="goal-amount" @bind-Value="GoalModel.TargetAmount" disabled="@_isSubmittingGoal"/>
+                </div>
+                <div class="form-grid two-cols">
+                    <div class="field">
+                        <label for="goal-month">Mes</label>
+                        <InputNumber id="goal-month" @bind-Value="GoalModel.Month" disabled="@_isSubmittingGoal"/>
+                    </div>
+                    <div class="field">
+                        <label for="goal-year">Ano</label>
+                        <InputNumber id="goal-year" @bind-Value="GoalModel.Year" disabled="@_isSubmittingGoal"/>
+                    </div>
+                </div>
+                <p class="page-subtitle">@GetGoalMeaning(type: SelectedCategoryForGoal.Type)</p>
+                <div class="button-row">
+                    <button class="btn btn-primary" type="submit" disabled="@_isSubmittingGoal">@(_isSubmittingGoal ? "Salvando..." : "Salvar meta")</button>
+                    <button class="btn btn-ghost" type="button" disabled="@_isSubmittingGoal" @onclick="CloseGoalModal">Cancelar</button>
+                </div>
+            </EditForm>
+            
+            @if (_listFeedbacks.Any())
+            {
+                <p class="form-feedback error">
+                    @foreach (string feedback in _listFeedbacks)
+                    {
+                        @feedback
+                        <br/>
+                    }
+                </p>
+            }
+        </section>
+    }
+</div>

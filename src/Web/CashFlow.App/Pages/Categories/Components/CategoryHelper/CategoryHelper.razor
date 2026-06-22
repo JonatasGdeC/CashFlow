@@ -1,0 +1,16 @@
+<aside class="panel panel-pad">
+    <div class="section-title-row">
+        <h2>Como interpretar</h2>
+        <span class="pill">@GetCategoryTypeLabel(type: SelectedType)</span>
+    </div>
+    <div class="description-list">
+        <div class="description-row">
+            <span>Meta</span>
+            <strong>@GetGoalMeaning(type: SelectedType)</strong>
+        </div>
+        <div class="description-row">
+            <span>Periodo padrao</span>
+            <strong>@DateTime.Today.ToString(format: "MM/yyyy")</strong>
+        </div>
+    </div>
+</aside>

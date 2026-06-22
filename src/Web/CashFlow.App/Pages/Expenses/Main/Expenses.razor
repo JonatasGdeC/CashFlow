@@ -1,0 +1,65 @@
+@page "/expenses"
+@using CashFlow.App.Pages.Expenses.Components.ExpenseList
+@using CashFlow.App.Pages.Expenses.Components.ExpenseResume
+@using CashFlow.App.Pages.Expenses.Components.HeaderExpense
+@using CashFlow.Communication.Response.Category
+
+<PageTitle>CashFlow - Despesas</PageTitle>
+
+<section class="app-screen">
+    <HeaderExpense ListFeedbacks="@(list => _listFeedbacks = list)"
+                   LoadExpensesAsync="@LoadExpensesAsync"/>
+
+    <div class="filter-bar panel panel-pad">
+        <div class="field">
+            <label for="expense-filter-month">Mês e ano</label>
+            <input id="expense-filter-month" type="month" value="@SelectedMonth" @onchange="HandleSelectedMonthChanged" disabled="@_isLoading" />
+        </div>
+        <div class="field">
+            <label for="expense-filter-title">Título</label>
+            <input id="expense-filter-title" type="text" value="@_filterRequest.Title" @onchange="HandleTitleChanged" disabled="@_isLoading" placeholder="Filtrar por título" />
+        </div>
+        <div class="field">
+            <label for="expense-filter-amount">Valor</label>
+            <input id="expense-filter-amount" type="number" step="0.01" min="0" value="@_filterRequest.Amount" @onchange="HandleAmountChanged" disabled="@_isLoading" placeholder="Ex: 150.00" />
+        </div>
+        <div class="field">
+            <label for="expense-filter-category">Categoria</label>
+            <select id="expense-filter-category" value="@_filterRequest.CategoryId" @onchange="HandleCategoryChanged" disabled="@_isLoading">
+                <option value="">Todas</option>
+                @foreach (ResponseCategoryShortJson category in _categories)
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            </select>
+        </div>
+        <button class="btn btn-ghost filter-bar-clear" type="button" disabled="@_isLoading" @onclick="ClearFiltersAsync">
+            <span class="material-symbols-outlined">filter_alt_off</span>
+        </button>
+    </div>
+
+    @if (_isLoading)
+    {
+        <section class="panel panel-pad">
+            <p class="page-subtitle">Carregando despesas...</p>
+        </section>
+    }
+    else
+    {
+        <div class="content-grid">
+            <ExpenseList Expenses="@_expenses"/>
+            <ExpenseResume Expenses="@_expenses"/>
+        </div>
+    }
+
+    @if (_listFeedbacks.Any())
+    {
+        <p class="form-feedback error">
+            @foreach (string feedback in _listFeedbacks)
+            {
+                @feedback
+                <br/>
+            }
+        </p>
+    }
+</section>

@@ -1,0 +1,42 @@
+.login-shell {
+    align-items: center;
+    display: grid;
+    min-height: calc(100vh - 130px);
+}
+
+.login-panel {
+    margin: 0 auto;
+    max-width: 440px;
+    width: 100%;
+}
+
+.login-form {
+    margin: 20px 0;
+}
+
+.auth-switch {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    display: grid;
+    gap: 4px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 20px;
+    padding: 4px;
+}
+
+.auth-switch-button {
+    background: transparent;
+    border: 0;
+    border-radius: 6px;
+    color: var(--muted);
+    cursor: pointer;
+    font-weight: 800;
+    min-height: 36px;
+}
+
+.auth-switch-button.active {
+    background: var(--paper);
+    box-shadow: 0 8px 22px rgba(24, 24, 22, 0.08);
+    color: var(--ink);
+}

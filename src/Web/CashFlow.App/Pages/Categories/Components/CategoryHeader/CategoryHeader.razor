@@ -1,0 +1,18 @@
+@using CashFlow.App.Pages.Categories.Components.CategoryCreateModal
+
+<header class="page-header">
+    <div>
+        <p class="eyebrow">Categorias e metas</p>
+        <h1 class="page-title">Planeje limites de gastos e objetivos de renda.</h1>
+        <p class="page-subtitle">Categorias de despesa usam meta como limite. Categorias de renda usam meta como objetivo a juntar.</p>
+    </div>
+    <div class="button-row">
+        <button class="btn btn-primary" @onclick="@OpenCategoryCreate">Nova categoria</button>
+    </div>
+</header>
+
+@if (_showCategoryCreate)
+{
+    <CategoryCreateModal CategoryModel="@_categoryModel" HandleSelectedType="@HandleSelectedType"
+                         OnClose="@CloseCategoryCreate" LoadCategoriesAsync="@LoadCategoriesAsync"/>
+}

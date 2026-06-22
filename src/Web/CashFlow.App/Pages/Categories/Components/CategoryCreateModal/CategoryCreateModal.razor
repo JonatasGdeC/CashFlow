@@ -1,0 +1,64 @@
+<div class="modal-backdrop">
+    <section class="panel panel-pad modal-panel">
+        <div class="modal-header">
+            <div>
+                <h2>@(CategoryEditModel != null ? "Editar" : "Nova") categoria</h2>
+            </div>
+            <button class="icon-button" title="Fechar" type="button" disabled="@_isSubmittingCategory"
+                    @onclick="CloseCategoryCreate">X
+            </button>
+        </div>
+        <EditForm Model="_registerCategoryRequest" OnSubmit="@HandleCreateCategoryAsync" class="form-grid">
+            <div class="form-grid two-cols">
+                <div class="field">
+                    <label for="category-name">Nome</label>
+                    <InputText id="category-name" @bind-Value="_registerCategoryRequest.Name" disabled="@_isSubmittingCategory"
+                               placeholder="Ex: Mercado"/>
+                </div>
+                <div class="field">
+                    <label for="category-color">Cor</label>
+                    <InputText id="category-color" type="color" @bind-Value="_registerCategoryRequest.Color"
+                               disabled="@_isSubmittingCategory"/>
+                </div>
+            </div>
+            <div class="field">
+                <label for="category-type">Tipo</label>
+                <InputSelect id="category-type" @bind-Value="_registerCategoryRequest.Type" disabled="@_isSubmittingCategory">
+                    <option value="@CategoryType.Expense">Despesa</option>
+                    <option value="@CategoryType.Income">Renda</option>
+                </InputSelect>
+            </div>
+            <div class="field">
+                <label for="category-description">Descricao</label>
+                <InputTextArea id="category-description" @bind-Value="_registerCategoryRequest.Description"
+                               disabled="@_isSubmittingCategory"/>
+            </div>
+            <div class="button-row">
+                <button class="btn btn-primary" type="submit"
+                        disabled="@_isSubmittingCategory">@(_isSubmittingCategory ? "Salvando..." : "Salvar categoria")</button>
+                <button class="btn btn-ghost" type="button" disabled="@_isSubmittingCategory"
+                        @onclick="CloseCategoryCreate">Cancelar
+                </button>
+                
+                @if (CategoryEditModel != null)
+                {
+                    <button class="btn btn-danger" type="button" @onclick="@DeleteCategory">
+                        <span class="material-symbols-outlined">delete</span>
+                        <p>Excluir</p>
+                    </button>
+                }
+            </div>
+        </EditForm>
+
+        @if (_listFeedbacks.Any())
+        {
+            <p class="form-feedback error">
+                @foreach (string feedback in _listFeedbacks)
+                {
+                    @feedback
+                    <br/>
+                }
+            </p>
+        }
+    </section>
+</div>

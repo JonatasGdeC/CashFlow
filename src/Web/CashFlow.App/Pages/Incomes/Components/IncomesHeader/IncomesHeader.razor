@@ -1,0 +1,27 @@
+@using CashFlow.App.Pages.Incomes.Components.IncomeCreateModal
+@using CashFlow.App.Pages.Incomes.Components.IncomeReportModal
+
+<header class="page-header">
+    <div>
+        <p class="eyebrow">Rendas</p>
+        <h1 class="page-title">Registre e acompanhe suas entradas.</h1>
+        <p class="page-subtitle">Organize salários, trabalhos extras e outras entradas por categoria.</p>
+    </div>
+    <div class="button-row">
+        <button class="btn btn-ghost" @onclick="OpenReport">
+            <span class="material-symbols-outlined">bar_chart</span>
+            <p>Relatório</p>
+        </button>
+        <button class="btn btn-primary" @onclick="OpenCreate">Nova renda</button>
+    </div>
+</header>
+
+@if (_showCreate)
+{
+    <IncomeCreateModal OnCancel="@CloseCreate" OnIncomeCreated="@HandleIncomeCreatedAsync"/>
+}
+
+@if (_showReport)
+{
+    <IncomeReportModal OnClose="@CloseReport" />
+}

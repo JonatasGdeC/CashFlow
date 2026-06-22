@@ -1,0 +1,29 @@
+@using CashFlow.App.Pages.Categories.Components.CategoryById
+<section class="panel panel-pad">
+    <div class="section-title-row">
+        <h2>Atividades recentes</h2>
+        <a class="pill" href="expenses">Ver despesas</a>
+    </div>
+
+    @if (_activities.Count == 0)
+    {
+        <p class="page-subtitle">Nenhum lancamento registrado.</p>
+    }
+    else
+    {
+        <div class="expense-list">
+            @foreach (DashboardActivity activity in _activities)
+            {
+                <a class="expense-item" href="@activity.Url">
+                    <span class="@activity.IconClass">@GetInitial(value: activity.Title)</span>
+                    <span class="expense-main">
+                        <strong>@activity.Title</strong>
+                        <small>@activity.Kind</small>
+                    </span>
+                    <CategoryById CategoryId="@activity.CategoryId"/>
+                    <span class="@activity.AmountClass">@activity.AmountPrefix @activity.Amount.ToString(format: "C")</span>
+                </a>
+            }
+        </div>
+    }
+</section>
