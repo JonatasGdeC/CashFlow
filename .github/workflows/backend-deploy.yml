@@ -1,12 +1,23 @@
-name: Build and Tests
+name: Build, Tests and Deploy
 
 on:
   push:
     branches:
       - master
+    paths:
+      - 'src/Backend/**'
+      - 'src/Shared/**'
+      - 'tests/Backend/**'
+      - '.github/workflows/backend-deploy.yml'
+
   pull_request:
     branches:
       - master
+    paths:
+      - 'src/Backend/**'
+      - 'src/Shared/**'
+      - 'tests/Backend/**'
+      - '.github/workflows/backend-deploy.yml'
 
 jobs:
   build-and-test:
