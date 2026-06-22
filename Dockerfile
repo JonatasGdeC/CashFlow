@@ -3,8 +3,8 @@ WORKDIR /src
 
 COPY . .
 
-RUN dotnet restore src/CashFlow.Api/CashFlow.Api.csproj
-RUN dotnet publish src/CashFlow.Api/CashFlow.Api.csproj -c Release -o /app/publish
+RUN dotnet restore src/Backend/CashFlow.Api/CashFlow.Api.csproj
+RUN dotnet publish src/Backend/CashFlow.Api/CashFlow.Api.csproj -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0
 WORKDIR /app
