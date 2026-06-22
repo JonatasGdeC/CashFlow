@@ -155,14 +155,6 @@ dotnet test tests/Backend/Validators.Tests/Validators.Tests.csproj
 
 dotnet test tests/Backend/WebApi.Tests/WebApi.Tests.csproj
 ```
-
----
-
-
-## Screenshots
-
-Adicione aqui imagens do Dashboard, Receitas, Despesas, Categorias e Relatórios.
-
 ---
 
 ## Autor
