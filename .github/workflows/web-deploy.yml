@@ -1,0 +1,74 @@
+name: Web Deploy
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'src/Web/**'
+      - 'src/Shared/**'
+      - '.github/workflows/frontend-deploy.yml'
+
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'src/Web/**'
+      - 'src/Shared/**'
+      - '.github/workflows/frontend-deploy.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore
+        run: dotnet restore CashFlow.sln
+
+      - name: Create production appsettings
+        run: |
+          mkdir -p src/Web/CashFlow.App/wwwroot
+          cat > src/Web/CashFlow.App/wwwroot/appsettings.Production.json << EOF
+          {
+            "ApiBaseUrl": "${{ secrets.API_BASE_URL }}"
+          }
+          EOF
+
+      - name: Publish
+        run: dotnet publish src/Web/CashFlow.App/CashFlow.App.csproj -c Release -o publish
+
+      - name: Add Vercel files
+        run: |
+          cat > publish/wwwroot/vercel.json << 'EOF'
+          {
+            "rewrites": [
+              {
+                "source": "/(.*)",
+                "destination": "/index.html"
+              }
+            ]
+          }
+          EOF
+
+          mkdir -p publish/wwwroot/.vercel
+
+          cat > publish/wwwroot/.vercel/project.json << EOF
+          {
+            "orgId": "${{ secrets.VERCEL_ORG_ID }}",
+            "projectId": "${{ secrets.VERCEL_PROJECT_ID }}"
+          }
+          EOF
+
+      - name: Deploy to Vercel
+        run: |
+          npm install -g vercel
+          cd publish/wwwroot
+          vercel deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
