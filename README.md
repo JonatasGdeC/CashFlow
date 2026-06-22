@@ -6,7 +6,7 @@ O sistema permite acompanhar receitas, despesas, categorias, metas financeiras e
 
 ## Demonstração
 
-**Aplicação:** [https://cash-flow-jgc.vercel.app/](https://cash-flow-jgc.vercel.app/)
+**Aplicação:** [https://cashflow-jgc.vercel.app/](https://cashflow-jgc.vercel.app/)
 
 > A API está hospedada no plano gratuito da Render. A primeira requisição pode levar alguns segundos devido ao cold start.
 
