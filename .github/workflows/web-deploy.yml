@@ -38,7 +38,7 @@ jobs:
           mkdir -p src/Web/CashFlow.App/wwwroot
           cat > src/Web/CashFlow.App/wwwroot/appsettings.Production.json << EOF
           {
-            "ApiBaseUrl": "${{ secrets.API_BASE_URL }}"
+            "ApiBaseUrl": "${{ secrets.FRONTEND_API_BASE_URL }}"
           }
           EOF
 
@@ -62,8 +62,8 @@ jobs:
 
           cat > publish/wwwroot/.vercel/project.json << EOF
           {
-            "orgId": "${{ secrets.VERCEL_ORG_ID }}",
-            "projectId": "${{ secrets.VERCEL_PROJECT_ID }}"
+            "orgId": "${{ secrets.FRONTEND_VERCEL_ORG_ID}}",
+            "projectId": "${{ secrets.FRONTEND_VERCEL_PROJECT_ID }}"
           }
           EOF
 
@@ -71,4 +71,4 @@ jobs:
         run: |
           npm install -g vercel
           cd publish/wwwroot
-          vercel deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+          vercel deploy --prod --yes --token=${{ secrets.FRONTEND_VERCEL_TOKEN }}
