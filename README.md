@@ -108,6 +108,9 @@ tests
 
 ## Executando Localmente
 
+> É necessário ter o [MySQL](https://www.mysql.com/downloads/) instalado e rodando na máquina para executar a API localmente.
+
+
 ### Clonar o repositório
 
 ```bash
